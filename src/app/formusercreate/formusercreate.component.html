@@ -12,7 +12,7 @@
     <input [(ngModel)]="user.lastName" #champMatricule="ngModel" name="lastName" required>
     <p *ngIf="champMatricule.invalid">
       Le champ 1 est invalide.
-
+      </p>
       <label>Password : </label>
       <input [(ngModel)]="user.password" #champPseudo="ngModel" name="password" required minlength="3"
         maxlength="20">
