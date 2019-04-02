@@ -27,11 +27,12 @@ export class UserService {
 
     createUser(user: User): Observable<User> {
     const URL_BACKEND = environment.backendUrl;
-    return this.http.post<User>(URL_BACKEND + 'users/',
+    return this.http.post<User>(URL_BACKEND + 'users',
       {
         'firstName': user.firstName,
         'lastName': user.lastName,
         'password': user.password,
+        'email': user.email,
         'role': null,
 
       },

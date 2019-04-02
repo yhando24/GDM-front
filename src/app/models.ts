@@ -30,3 +30,15 @@ export enum MissionStatusEnum {
 export enum TransportEnum {
   TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
 }
+
+export interface Kind {
+
+  name?: string;
+  adr?: number;
+  bonusPercentage?: number;
+  updatedAt?: Date;
+  invoiced?: boolean;
+  bonus?: boolean;
+  dailyCharges?: number;
+  authorizationToExceed?: boolean;
+}
