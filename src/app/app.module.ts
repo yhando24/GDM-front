@@ -5,18 +5,21 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
+import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [AppComponent, FormusercreateComponent],
+  declarations: [AppComponent, FormusercreateComponent, ListerUserComponent],
 
-
-
-  imports: [BrowserModule, NgbModule,
+  imports: [
+    BrowserModule,
+    NgbModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule,
+    FormsModule
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
