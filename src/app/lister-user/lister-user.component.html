@@ -1,0 +1,24 @@
+<h2>liste des utilisteurs</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of listeUsers; index as i" >
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ user.firstName }}
+      </td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.role }}</td>
+      <td><button type="button" class="btn btn-warning" (click)="delete()">Supprimer</button></td>
+    </tr>
+  </tbody>
+</table>

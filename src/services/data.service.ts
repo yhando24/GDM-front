@@ -12,14 +12,18 @@ export class DataService {
   subjectCollegues = new Subject<User[]>();
   // listeCollegues: Collegue[] = [];
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     })
   };
 
+  finAllUser(): Observable<User[]> {
+    const URL_BACKEND = environment.backendUrl + 'users';
+    return this.http.get<User[]>(URL_BACKEND);
+  }
 
  // subjectVote = new Subject<Vote>();
 
