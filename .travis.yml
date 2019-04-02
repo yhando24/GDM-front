@@ -4,7 +4,6 @@ node_js:
 before_script:
   - npm install
 script: npm run build
-   - cp dist/GDM-front/index.html dist/GDM-front/404.html
 deploy:
   local-dir: dist/top-collegues-front
   provider: pages
