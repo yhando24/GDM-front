@@ -7,7 +7,7 @@ import { User } from 'src/app/models';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class UserService {
 
   subjectCollegues = new Subject<User[]>();
   // listeCollegues: Collegue[] = [];
@@ -23,6 +23,19 @@ export class DataService {
   finAllUser(): Observable<User[]> {
     const URL_BACKEND = environment.backendUrl + 'users';
     return this.http.get<User[]>(URL_BACKEND);
+  }
+
+    createUser(user: User): Observable<User> {
+    const URL_BACKEND = environment.backendUrl;
+    return this.http.post<User>(URL_BACKEND + 'users/',
+      {
+        'firstName': user.firstName,
+        'lastName': user.lastName,
+        'password': user.password,
+        'role': null,
+
+      },
+      this.httpOptions)
   }
 
  // subjectVote = new Subject<Vote>();
