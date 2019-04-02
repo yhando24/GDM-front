@@ -1,0 +1,22 @@
+<h2>liste des utilisteurs</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Departement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countries; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ user.name }}
+      </td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.departement }}</td>
+    </tr>
+  </tbody>
+</table>

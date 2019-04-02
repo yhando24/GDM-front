@@ -4,9 +4,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
+import { ListerUserComponent } from './lister-user/lister-user.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ListerUserComponent],
   imports: [BrowserModule, NgbModule,
     RouterModule.forRoot(ROUTES)],
   providers: [],
