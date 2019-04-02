@@ -16,7 +16,11 @@ export class FormusercreateComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
+
   ngOnInit() {
+
+  }
+  submit() {
     this.userService.createUser(this.user).subscribe(() => {
       this.user +' //Envoyé avec succès'
       this.router.navigate(['/accueil']);
@@ -25,4 +29,6 @@ export class FormusercreateComponent implements OnInit {
         this.messageErreur = error.error;
       });
   }
+
 }
+
