@@ -1,0 +1,45 @@
+.logo{
+  width: 4%;
+}
+
+.navbar-GDM{
+background-color: #ADB5BD;
+}
+
+.btn-deconnecter{
+
+}
+
+.btn-deconnecter {
+  color: #fff;
+  background-color: #524898;
+  border-color: #524898;
+}
+
+.btn-deconnecter:hover {
+  color: #fff;
+  background-color: #3E3673;
+  border-color: #3E3673;
+}
+
+.btn-deconnecter:focus, .btn-deconnecter.focus {
+  box-shadow: 0 0 0 0.2rem #3E3673;
+}
+
+.btn-deconnecter.disabled, .btn-deconnecter:disabled {
+  color: #fff;
+  background-color: #524898;
+  border-color: #524898;
+}
+
+.btn-deconnecter:not(:disabled):not(.disabled):active, .btn-deconnecter:not(:disabled):not(.disabled).active,
+.show > .btn-deconnecter.dropdown-toggle {
+  color: #fff;
+  background-color: #3E3673;
+  border-color: #3E3673;
+}
+
+.btn-deconnecter:not(:disabled):not(.disabled):active:focus, .btn-deconnecter:not(:disabled):not(.disabled).active:focus,
+.show > .btn-deconnecter.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}

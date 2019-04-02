@@ -4,12 +4,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
+
+import { HeaderComponent } from './header/header.component';
+import { CreationNatureMissionComponent } from './creation-nature-mission/creation-nature-mission.component';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [AppComponent, FormusercreateComponent, ListerUserComponent],
+  declarations: [AppComponent,
+    FormusercreateComponent,
+    ListerUserComponent,
+    CreationNatureMissionComponent,
+    HeaderComponent],
 
   imports: [
     BrowserModule,
