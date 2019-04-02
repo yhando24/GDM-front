@@ -10,3 +10,16 @@ export interface User {
 export enum Role {
   USER, ADMIN, MANAGER
 }
+
+export interface Kind {
+
+  name?: string;
+  adr?: number;
+  bonusPercentage?: number;
+  updatedAt?: Date;
+  invoiced?: boolean;
+  bonus?: boolean;
+  dailyCharges?: number;
+  authorizationToExceed?: boolean;
+
+}
