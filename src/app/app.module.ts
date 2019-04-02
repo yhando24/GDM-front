@@ -11,13 +11,15 @@ import { FormusercreateComponent } from './formusercreate/formusercreate.compone
 import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   declarations: [AppComponent,
     FormusercreateComponent,
     ListerUserComponent,
     CreationNatureMissionComponent,
-    HeaderComponent],
+    HeaderComponent,
+    AccueilComponent],
 
   imports: [
     BrowserModule,

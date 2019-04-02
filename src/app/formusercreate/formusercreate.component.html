@@ -1,3 +1,35 @@
-<p>
-  formusercreate works!
-</p>
+<h1>Formulaire piloté par le template</h1>
+<div class="row">
+  <form (ngSubmit)="submit()" #createUser="ngForm">
+
+    <label>Nom : </label>
+    <input [(ngModel)]="user.firstName" #champPseudo="ngModel" name="firstName" required minlength="3"
+      maxlength="20">
+    <p *ngIf="champPseudo.invalid && champPseudo.dirty">
+      Le pseudo doit contenir au moins 3 caractères.
+    </p>
+    <label>Prenom : </label>
+    <input [(ngModel)]="user.lastName" #champMatricule="ngModel" name="lastName" required>
+    <p *ngIf="champMatricule.invalid">
+      Le champ 1 est invalide.
+
+      <label>Password : </label>
+      <input [(ngModel)]="user.password" #champPseudo="ngModel" name="password" required minlength="3"
+        maxlength="20">
+      <p *ngIf="champPseudo.invalid && champPseudo.dirty">
+        Le pseudo doit contenir au moins 3 caractères.
+      </p>
+      <label>Email : </label>
+      <input [(ngModel)]="user.email" #champPseudo="ngModel" name="email" required minlength="3"
+        maxlength="20">
+      <p *ngIf="champPseudo.invalid && champPseudo.dirty">
+        Le pseudo doit contenir au moins 3 caractères.
+      </p>
+      <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>.
+      <p *ngIf="createUser.invalid">
+        Au moins un champ du formulaire est invalide.
+      </p>
+      <p *ngIf="messageErreur != ''">
+        {{messageErreur}} </p>
+  </form>`
+</div>
