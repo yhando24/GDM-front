@@ -1,4 +1,4 @@
-<h2>liste des utilisteurs</h2>
+<h2>liste des utilisateurs</h2>
 
 <table class="table table-striped">
   <thead>
@@ -16,9 +16,9 @@
       <td>
         {{ user.firstName }}
       </td>
-      <td>{{ user.lastname }}</td>
+      <td>{{ user.lastName }}</td>
       <td>{{ user.role }}</td>
-      <td><button type="button" class="btn btn-warning" (click)="delete()">Supprimer</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button></td>
     </tr>
   </tbody>
 </table>
