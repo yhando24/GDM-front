@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './../../services/data.service';
+import { UserService } from './../../services/data.service';
+import { User } from '../models';
 
 
 @Component({
@@ -9,13 +10,15 @@ import { DataService } from './../../services/data.service';
 })
 export class ListerUserComponent implements OnInit {
   listeUsers;
-  constructor(private data: DataService) { }
+  constructor(private data: UserService) { }
 
   ngOnInit() {
      this.data.finAllUser()
        .subscribe(arg => this.listeUsers = arg);
   }
-  delete() {
-    console.log('plop');
+  delete(user: User) {
+   /*  this.data.deleteOneUser(user)
+      .subscribe();
+ */
   }
 }

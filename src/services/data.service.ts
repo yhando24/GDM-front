@@ -7,7 +7,7 @@ import { User } from 'src/app/models';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class UserService {
 
   subjectCollegues = new Subject<User[]>();
   // listeCollegues: Collegue[] = [];
