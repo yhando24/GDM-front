@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { User } from '../models';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @Component({
@@ -9,24 +10,17 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './lister-user.component.html',
   styleUrls: ['./lister-user.component.css']
 })
-export class NgbdModalConfirmAutofocus {
-  constructor(public modal: NgbActiveModal) { }
-}
-export class NgbdModalConfirm {
-  constructor(public modal: NgbActiveModal) { }
-}
-const MODALS = {
-  focusFirst: NgbdModalConfirm,
-  autofocus: NgbdModalConfirmAutofocus
-};
+
 export class ListerUserComponent implements OnInit {
          listeUsers;
-         withAutofocus = `<button type="button" ngbAutofocus class="btn btn-danger"
-      (click)="modal.close('Ok click')">Ok</button>`;
-         constructor(
-           private data: UserService,
-           private modalService: NgbModal
-         ) {}
+         userToDelete: User;
+         titreModal: string;
+         messageModal: string;
+         footerModal: string;
+         constructor(private data: UserService, private modalService: NgbModal, config: NgbModalConfig) {
+           config.backdrop = 'static';
+           config.keyboard = false;
+         }
 
          ngOnInit() {
            this.data
@@ -34,6 +28,8 @@ export class ListerUserComponent implements OnInit {
              .subscribe(arg => (this.listeUsers = arg));
          }
          delete(user: User) {
+           console.log(user);
+           this.modalService.dismissAll();
            /* this.data.deleteOneUser(user).subscribe(); */
          }
          update(user: User) {
@@ -41,7 +37,10 @@ export class ListerUserComponent implements OnInit {
        .subscribe();
   */
          }
-         open(name: string) {
-           this.modalService.open(MODALS[name]);
-         }
+          open(content , user) {
+            this.titreModal = 'Voulez vous vraiment supprimer';
+            this.messageModal =  `L'utilisateur ${user.lastName} ${user.firstName}`;
+            this.userToDelete = user;
+            this.modalService.open(content);
+          }
        }

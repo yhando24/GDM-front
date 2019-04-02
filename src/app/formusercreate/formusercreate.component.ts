@@ -18,13 +18,11 @@ export class FormusercreateComponent implements OnInit {
 
   ngOnInit() {
     this.userService.createUser(this.user).subscribe(() => {
-      this.user + ' //Envoyé avec succès'
+      this.user +' //Envoyé avec succès'
       this.router.navigate(['/accueil']);
     },
       error => {
         this.messageErreur = error.error;
       });
   }
-
-}
 }
