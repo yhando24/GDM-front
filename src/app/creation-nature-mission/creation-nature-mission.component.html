@@ -2,50 +2,57 @@
   <div class="row justify-content-center">
     <div class="col-6">
       <h2>Création d'une nature de mission</h2>
+
       <form (ngSubmit)="submit()" #monForm="ngForm">
+
         <div class="form-group">
           <label for="formGroupExampleInput">Nature :</label>
-          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="nouvelleNature.name" name="name" #name="ngModel" required>
+          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="nouvelleNature.name"
+            name="name" #name="ngModel" required>
           <p *ngIf="name.dirty && name.invalid">
             Entrez le nom de votre nouvelle nature de mission
           </p>
         </div>
 
         <div class="form-group">
-          <label for="formGroupExampleInput">Taux journalier moyen :</label>
-          <input type="text" class="form-control" placeholder="Entrez le taux journalier moyen" [(ngModel)]="nouvelleNature.adr" name="adr" #adr="ngModel" required>
-        </div>
-
-        <div class="form-group">
           <label class="checked-GDM">Facturée
-            <input type="checkbox">
+            <input type="checkbox" [(ngModel)]="nouvelleNature.invoiced" name="invoiced" #invoiced="ngModel">
             <span class="checkmark"></span>
           </label>
         </div>
 
         <div class="form-group">
+          <label for="formGroupExampleInput">Taux journalier moyen :</label>
+          <input type="text" class="form-control" placeholder="Entrez le taux journalier moyen"
+            [(ngModel)]="nouvelleNature.adr" name="adr" #adr="ngModel" required>
+        </div>
+
+        <div class="form-group">
           <label class="checked-GDM">Versement prime
-            <input type="checkbox">
+            <input type="checkbox" [(ngModel)]="nouvelleNature.bonus" name="bonus" #bonus="ngModel">
             <span class="checkmark"></span>
           </label>
         </div>
 
         <div class="form-group">
           <label for="formGroupExampleInput">Pourcentage de la prime :</label>
-          <input type="text" class="form-control" placeholder="Entrez le pourcentage de la prime" [(ngModel)]="nouvelleNature.bonusPercentage" name="bonusPercentage" #bonusPercentage="ngModel" required>
+          <input type="text" class="form-control" placeholder="Entrez le pourcentage de la prime"
+            [(ngModel)]="nouvelleNature.bonusPercentage" name="bonusPercentage" #bonusPercentage="ngModel" required>
         </div>
 
         <div class="form-group">
           <label for="formGroupExampleInput">Plafond de frais journalier :</label>
-          <input type="text" class="form-control" placeholder="Entrez le plafond de frais journalier" [(ngModel)]="nouvelleNature.dailyCharges" name="dailyCharges" #dailyCharges="ngModel" required>
+          <input type="text" class="form-control" placeholder="Entrez le plafond de frais journalier"
+            [(ngModel)]="nouvelleNature.dailyCharges" name="dailyCharges" #dailyCharges="ngModel" required>
         </div>
 
         <div class="form-group">
           <label class="checked-GDM">Autorisation de dépassement de frais
-            <input type="checkbox">
+            <input type="checkbox" [(ngModel)]="nouvelleNature.authorizationToExceed" name="authorizationToExceed" #authorizationToExceed="ngModel">
             <span class="checkmark"></span>
           </label>
         </div>
+
         <div class="form-group center-boutons-formulaire">
           <button class="btn btn-primary bouton-formulaire" type="submit">Valider</button>
           <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
@@ -54,5 +61,3 @@
     </div>
   </div>
 </div>
-
-

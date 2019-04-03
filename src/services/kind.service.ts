@@ -17,7 +17,9 @@ export class KindService {
 
 
   createKind(nouvelleNature: Kind): Observable<Kind> {
-    return this.http.post<Kind>(URL_BACKEND + 'kinds', nouvelleNature);
+    console.log(nouvelleNature);
+    return null;
+    //return this.http.post<Kind>(URL_BACKEND + 'kinds', nouvelleNature);
   }
 
   findAllKind(): Observable<Kind[]> {
@@ -26,7 +28,7 @@ export class KindService {
 
   updateKind(kind: Kind): Observable<Kind> {
 
-    return this.http.put<Kind>(URL_BACKEND+ 'kind', {
+    return this.http.put<Kind>(URL_BACKEND + 'kind', {
 
       'name': kind.name,
       'adr': kind.adr,
