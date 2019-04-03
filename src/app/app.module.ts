@@ -13,23 +13,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
 import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     FormusercreateComponent,
     ListerUserComponent,
     CreationNatureMissionComponent,
     HeaderComponent,
     AccueilComponent,
-    UpdateNatureMissionComponent],
+    UpdateNatureMissionComponent
+  ],
 
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
 
   providers: [],
