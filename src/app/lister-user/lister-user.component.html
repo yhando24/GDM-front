@@ -1,5 +1,5 @@
 <h2>liste des utilisateurs</h2>
-
+<button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -64,12 +64,10 @@
       </div>
       <div class="form-group">
         <label>Role:</label><select class="form-control form-control-lg" [(ngModel)]="oneUser.role" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let r of enumRole" [value]="r">{{r}}</option>
+          <option *ngFor="let r of enumRole" [ngValue]="r">{{r}}</option>
         </select>
       </div>
+      <button type="submit" class="btn btn-outline-dark">Save</button>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modalUpdate.close('Save click')">Save</button>
   </div>
 </ng-template>

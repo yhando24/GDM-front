@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { User, Role, getEnum } from '../models';
-import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lister-user',
@@ -19,7 +19,7 @@ export class ListerUserComponent implements OnInit {
   enumRole: Role[];
   role: string;
 
-  constructor(private data: UserService, private modSer: NgbModal, config: NgbModalConfig) {
+  constructor(private data: UserService, private modSer: NgbModal, private router: Router) {
     }
 
     ngOnInit() {
@@ -29,11 +29,20 @@ export class ListerUserComponent implements OnInit {
           .subscribe(arg => (this.listeUsers = arg));
       }
 
-    delete(user: User) {
-      console.log(user);
+  delete(user: User) {
       this.modSer.dismissAll();
-    }
-
+      this.data
+        .deleteOneUser(user)
+        .subscribe(value => value,
+        error => console.log(`delete n'a pas fonctionee` + error.error));
+  }
+  submit() {
+    this.modSer.dismissAll();
+    this.data
+      .saveOneUser(this.oneUser)
+      .subscribe(value => value,
+        error => console.log(`update n'a pas fonctionne ` + error.error));
+  }
 
   openDelete(content: string , user: User) {
     this.titreModal = 'Voulez vous vraiment supprimer';
@@ -43,20 +52,10 @@ export class ListerUserComponent implements OnInit {
   }
   openUpdate(content: string, user: User) {
     this.oneUser = user;
-    this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log(this.oneUser);
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)} `;
+    this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
     });
   }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  newUser(){
+    this.router.navigate(['/creationUsers/']);
   }
 }
