@@ -3,13 +3,14 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { AuthServiceService } from 'src/services/auth-service.service';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(public auth: AuthServiceService) { }
+  constructor(public auth: AuthServiceService, private router: Router) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -27,6 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(cloned);
     } else {
       console.log('QUE DALLE');
+      this.router.navigateByUrl('/login');
       return next.handle(request).pipe(catchError((error: HttpErrorResponse) => {
         // Auto logout if 401 response returned from api
         if (error.status === 401) {

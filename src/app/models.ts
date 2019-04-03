@@ -1,5 +1,5 @@
 export interface User {
-
+  id?: number;
   firstName?: string;
   lastName?: string;
   password?: string;
@@ -8,7 +8,13 @@ export interface User {
 }
 
 export enum Role {
-  USER, ADMIN, MANAGER
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER'
+}
+
+export function getEnum() {
+  return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
 export interface Mission {
