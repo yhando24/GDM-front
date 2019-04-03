@@ -8,7 +8,13 @@ export interface User {
 }
 
 export enum Role {
-  USER, ADMIN, MANAGER
+  USER = 'user',
+  ADMIN = 'admin',
+  MANAGER = 'manager'
+}
+
+export function getEnum() {
+  return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
 export interface Mission {
