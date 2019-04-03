@@ -52,19 +52,19 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
+    <form [formGroup]="updateForm" novalidate>
       <div class="form-group">
         <label>email:</label><input class="form-control form-control-lg" type="text" name="email" placeholder="{{oneUser.email}}" disabled>
       </div>
       <div class="form-group">
-        <label>Nom:</label><input class="form-control form-control-lg" type="text" placeholder="{{oneUser.lastName}}" required>
+        <label>Nom:</label><input class="form-control form-control-lg" type="text" name="lastName" placeholder="{{oneUser.lastName}}" formControlName="lastName" required>
       </div>
       <div class="form-group">
-        <label>Prenom:</label><input class="form-control form-control-lg" type="text" placeholder="{{oneUser.firstName}}" required minlength="3">
+        <label>Prenom:</label><input class="form-control form-control-lg" type="text"  name="firstName" placeholder="{{oneUser.firstName}}" formControlName="firstName" required>
       </div>
       <div class="form-group">
         <label>Role:</label><select class="form-control form-control-lg">
-          <option *ngFor="let r of enumRole">{{r}}</option>
+          <option *ngFor="let r of enumRole" [value]="r">{{r}}</option>
         </select>
       </div>
     </form>

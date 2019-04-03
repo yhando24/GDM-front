@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { User, Role, getEnum } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Router, ResolveStart } from '@angular/router';
-
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -17,18 +16,21 @@ export class ListerUserComponent implements OnInit {
   oneUser: User;
   titreModal: string;
   messageModal: string;
-  footerModal: string;
   closeResult: string;
   enumRole: Role[];
-  role: Role;
-    constructor(private data: UserService, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
-      config.backdrop = 'static';
-      config.keyboard = false;
+  updateForm: FormGroup;
+
+  constructor(private data: UserService, private modSer: NgbModal, config: NgbModalConfig, private fb: FormBuilder) {
+    this.updateForm = this.fb.group(
+      {
+        lastName: ['', [Validators.required]],
+        firstName: ['', [Validators.required, Validators.minLength(3)]],
+      }
+    );
     }
 
     ngOnInit() {
       this.enumRole = getEnum();
-      console.log(this.enumRole);
       this.data
           .finAllUser()
           .subscribe(arg => (this.listeUsers = arg));
@@ -36,26 +38,26 @@ export class ListerUserComponent implements OnInit {
 
     delete(user: User) {
       console.log(user);
-      this.modalService.dismissAll();
+      this.modSer.dismissAll();
     }
 
-    update(user: User) {
-      this.router.navigate(['/user/' + user.email]);
-    }
-    openDelete(content: string , user: User) {
-      this.titreModal = 'Voulez vous vraiment supprimer';
-      this.messageModal =  `L'utilisateur ${user.lastName} ${user.firstName}`;
-      this.oneUser = user;
-      this.modalService.open(content);
-    }
+
+  openDelete(content: string , user: User) {
+    this.titreModal = 'Voulez vous vraiment supprimer';
+    this.messageModal =  `L'utilisateur ${user.lastName} ${user.firstName}`;
+    this.oneUser = user;
+    this.modSer.open(content);
+  }
   openUpdate(content: string, user: User) {
     this.oneUser = user;
-
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-      console.log(result);
+      console.log(this.oneUser);
+      console.log(this.updateForm);
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`,
+
+        console.log(this.updateForm);
     });
   }
   private getDismissReason(reason: any): string {

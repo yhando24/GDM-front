@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KindService } from 'src/services/kind.service';
-import { Kind, User} from '../models';
+import { Kind } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Route } from '@angular/compiler/src/core';
 
@@ -67,6 +67,5 @@ export class ListerNatureComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 }
 

@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { tap, map } from 'rxjs/operators';
-import { User, Kind } from 'src/app/models';
+import { Kind } from 'src/app/models';
 
 
 @Injectable({
