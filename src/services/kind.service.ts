@@ -20,22 +20,32 @@ export class KindService {
   }
 
   findAllKind(): Observable<Kind[]> {
-    const URL_BACKEND = environment.backendUrl + 'kind';
+    const URL_BACKEND = environment.backendUrl + 'kinds';
     return this.http.get<Kind[]>(URL_BACKEND);
   }
 
+  getById(id: number): Observable<Kind> {
+    const URL_BACKEND = environment.backendUrl + 'kinds';
+    return this.http.get<Kind>(URL_BACKEND);
+  }
+
   updateKind(kind: Kind): Observable<Kind> {
-    const URL_BACKEND = environment.backendUrl + 'kind';
+    const URL_BACKEND = environment.backendUrl + 'kinds';
     return this.http.put<Kind>(URL_BACKEND, {
 
-      'name': kind.name,
-      'adr': kind.adr,
-      'bonusPercentage': kind.bonusPercentage,
-      'updatedAt': kind.updatedAt,
-      'invoiced': kind.invoiced,
-      'bonus': kind.bonus,
-      'dailyCharges': kind.dailyCharges,
-      'authorizationToExceed': kind.authorizationToExceed,
+      name: kind.name,
+      adr: kind.adr,
+      bonusPercentage: kind.bonusPercentage,
+      updatedAt: kind.updatedAt,
+      invoiced: kind.invoiced,
+      bonus: kind.bonus,
+      dailyCharges: kind.dailyCharges,
+      authorizationToExceed: kind.authorizationToExceed,
     });
+  }
+
+  deleteKind(kind: Kind): Observable<Kind> {
+    const URL_BACKEND = environment.backendUrl + 'kind';
+    return this.http.delete<Kind>(URL_BACKEND);
   }
 }
