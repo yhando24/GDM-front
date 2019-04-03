@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { User, Role, getEnum } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -18,15 +17,9 @@ export class ListerUserComponent implements OnInit {
   messageModal: string;
   closeResult: string;
   enumRole: Role[];
-  updateForm: FormGroup;
+  role: string;
 
-  constructor(private data: UserService, private modSer: NgbModal, config: NgbModalConfig, private fb: FormBuilder) {
-    this.updateForm = this.fb.group(
-      {
-        lastName: ['', [Validators.required]],
-        firstName: ['', [Validators.required, Validators.minLength(3)]],
-      }
-    );
+  constructor(private data: UserService, private modSer: NgbModal, config: NgbModalConfig) {
     }
 
     ngOnInit() {
@@ -53,11 +46,8 @@ export class ListerUserComponent implements OnInit {
     this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       console.log(this.oneUser);
-      console.log(this.updateForm);
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`,
-
-        console.log(this.updateForm);
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)} `;
     });
   }
   private getDismissReason(reason: any): string {

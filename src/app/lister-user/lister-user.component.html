@@ -38,7 +38,7 @@
       <p>{{messageModal}}</p>
     </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-danger" (click)="delete(userToDelete)">confirmer</button>
+    <button type="button" class="btn btn-outline-danger" (click)="delete(oneUser)">confirmer</button>
     <button type="button" class="btn btn-outline-dark" (click)="d('Save click')">Annuler</button>
   </div>
 </ng-template>
@@ -52,18 +52,18 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="updateForm" novalidate>
+    <form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
       <div class="form-group">
         <label>email:</label><input class="form-control form-control-lg" type="text" name="email" placeholder="{{oneUser.email}}" disabled>
       </div>
       <div class="form-group">
-        <label>Nom:</label><input class="form-control form-control-lg" type="text" name="lastName" placeholder="{{oneUser.lastName}}" formControlName="lastName" required>
+        <label>Nom:</label><input class="form-control form-control-lg" type="text" name="lastName" placeholder="{{oneUser.lastName}}" [(ngModel)]="oneUser.lastName" required>
       </div>
       <div class="form-group">
-        <label>Prenom:</label><input class="form-control form-control-lg" type="text"  name="firstName" placeholder="{{oneUser.firstName}}" formControlName="firstName" required>
+        <label>Prenom:</label><input class="form-control form-control-lg" type="text"  name="firstName" placeholder="{{oneUser.firstName}}" [(ngModel)]="oneUser.firstName" required>
       </div>
       <div class="form-group">
-        <label>Role:</label><select class="form-control form-control-lg">
+        <label>Role:</label><select class="form-control form-control-lg" [(ngModel)]="oneUser.role" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let r of enumRole" [value]="r">{{r}}</option>
         </select>
       </div>
