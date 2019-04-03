@@ -13,12 +13,29 @@ const URL_BACKEND = environment.backendUrl;
 
 export class KindService {
 
-  constructor(private _http: HttpClient) { }
-
+  constructor(private http: HttpClient) { }
 
   createKind(nouvelleNature: Kind): Observable<Kind> {
-    return this._http.post<Kind>(URL_BACKEND + '/kinds', nouvelleNature);
+    return this.http.post<Kind>(URL_BACKEND + 'kinds', nouvelleNature);
   }
 
+  findAllKind(): Observable<Kind[]> {
+    const URL_BACKEND = environment.backendUrl + 'kind';
+    return this.http.get<Kind[]>(URL_BACKEND);
+  }
 
+  updateKind(kind: Kind): Observable<Kind> {
+    const URL_BACKEND = environment.backendUrl + 'kind';
+    return this.http.put<Kind>(URL_BACKEND, {
+
+      'name': kind.name,
+      'adr': kind.adr,
+      'bonusPercentage': kind.bonusPercentage,
+      'updatedAt': kind.updatedAt,
+      'invoiced': kind.invoiced,
+      'bonus': kind.bonus,
+      'dailyCharges': kind.dailyCharges,
+      'authorizationToExceed': kind.authorizationToExceed,
+    });
+  }
 }
