@@ -23,6 +23,12 @@ export interface Mission {
 
 }
 
+
+export interface token {
+
+id_token : string
+}
+
 export enum MissionStatusEnum {
  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
 }

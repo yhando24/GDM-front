@@ -10,9 +10,11 @@ import { CreationNatureMissionComponent } from './creation-nature-mission/creati
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
 import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
+import { ConnectionUserComponent } from './connection-user/connection-user.component';
+import { AuthInterceptor } from 'AuthInterceptor';
 
 @NgModule({
   declarations: [AppComponent,
@@ -21,17 +23,20 @@ import { UpdateNatureMissionComponent } from './update-nature-mission/update-nat
     CreationNatureMissionComponent,
     HeaderComponent,
     AccueilComponent,
-    UpdateNatureMissionComponent],
+    UpdateNatureMissionComponent,
+    ConnectionUserComponent],
 
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    FormsModule,
   ],
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
