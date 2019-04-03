@@ -25,6 +25,9 @@
           <label for="formGroupExampleInput">Taux journalier moyen :</label>
           <input type="text" class="form-control" placeholder="Entrez le taux journalier moyen"
             [(ngModel)]="nouvelleNature.adr" name="adr" #adr="ngModel" required>
+            <p *ngIf="adr.dirty && adr.invalid">
+                Entrez le taux journalier moyen
+              </p>
         </div>
 
         <div class="form-group">
@@ -34,16 +37,22 @@
           </label>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="bonus.value == !null">
           <label for="formGroupExampleInput">Pourcentage de la prime :</label>
           <input type="text" class="form-control" placeholder="Entrez le pourcentage de la prime"
-            [(ngModel)]="nouvelleNature.bonusPercentage" name="bonusPercentage" #bonusPercentage="ngModel" required>
+            [(ngModel)]="nouvelleNature.bonusPercentage" name="bonusPercentage" #bonusPercentage="ngModel"required>
+              <p *ngIf="bonusPercentage.dirty && bonusPercentage.invalid">
+                Entrez le pourcentage du bonus
+              </p>
         </div>
 
         <div class="form-group">
           <label for="formGroupExampleInput">Plafond de frais journalier :</label>
           <input type="text" class="form-control" placeholder="Entrez le plafond de frais journalier"
             [(ngModel)]="nouvelleNature.dailyCharges" name="dailyCharges" #dailyCharges="ngModel" required>
+              <p *ngIf="dailyCharges.dirty && dailyCharges.invalid">
+                Entrez le plafond de frais journalier
+              </p>
         </div>
 
         <div class="form-group">
@@ -54,8 +63,11 @@
         </div>
 
         <div class="form-group center-boutons-formulaire">
-          <button class="btn btn-primary bouton-formulaire" type="submit">Valider</button>
+          <button class="btn btn-primary bouton-formulaire" type="submit" [disabled]="!monForm.valid">Valider</button>
           <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
+          <p *ngIf="error && error.length>0">
+              {{error}}
+            </p>
         </div>
       </form>
     </div>
