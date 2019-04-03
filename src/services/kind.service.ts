@@ -17,9 +17,25 @@ export class KindService {
 
 
   createKind(nouvelleNature: Kind): Observable<Kind> {
-    console.log(nouvelleNature);
-    return this.http.post<Kind>(URL_BACKEND + '/kinds', nouvelleNature);
+    return this.http.post<Kind>(URL_BACKEND + 'kinds', nouvelleNature);
   }
 
+  findAllKind(): Observable<Kind[]> {
+    return this.http.get<Kind[]>(URL_BACKEND + 'kind');
+  }
 
+  updateKind(kind: Kind): Observable<Kind> {
+
+    return this.http.put<Kind>(URL_BACKEND+ 'kind', {
+
+      'name': kind.name,
+      'adr': kind.adr,
+      'bonusPercentage': kind.bonusPercentage,
+      'updatedAt': kind.updatedAt,
+      'invoiced': kind.invoiced,
+      'bonus': kind.bonus,
+      'dailyCharges': kind.dailyCharges,
+      'authorizationToExceed': kind.authorizationToExceed,
+    });
+  }
 }
