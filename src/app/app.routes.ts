@@ -13,6 +13,5 @@ export const ROUTES: Routes = [
   { path: 'users', component: ListerUserComponent },
   { path: 'updateNature', component: UpdateNatureMissionComponent},
   { path: 'creationUsers', component: FormusercreateComponent },
-
   { path: '', pathMatch: 'full', redirectTo: 'accueil' },
 ];
