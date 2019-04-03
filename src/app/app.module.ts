@@ -12,12 +12,8 @@ import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
-<<<<<<< HEAD
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
-=======
-import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
-import { ReactiveFormsModule } from '@angular/forms';
->>>>>>> bae29b225882e9b48d83a31d35e769611f5a7040
+
 
 
 @NgModule({
@@ -28,12 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CreationNatureMissionComponent,
     HeaderComponent,
     AccueilComponent,
-<<<<<<< HEAD
     ListerNatureComponent],
-=======
-    UpdateNatureMissionComponent
-  ],
->>>>>>> bae29b225882e9b48d83a31d35e769611f5a7040
 
   imports: [
     BrowserModule,
@@ -41,7 +32,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
-    ReactiveFormsModule
   ],
 
   providers: [],
