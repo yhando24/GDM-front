@@ -42,14 +42,14 @@ export class KindService {
     nouvelleNature.updatedAt = new Date() ;
     console.log(nouvelleNature);
     return this.http.post<Kind>(URL_BACKEND + 'kinds',  {
-      'name': nouvelleNature.name,
-      'adr': nouvelleNature.adr,
-      'bonusPercentage': nouvelleNature.bonusPercentage,
-      'updatedAt': nouvelleNature.updatedAt,
-      'invoiced': nouvelleNature.invoiced,
-      'bonus': nouvelleNature.bonus,
-      'dailyCharges': nouvelleNature.dailyCharges,
-      'authorizationToExceed': nouvelleNature.authorizationToExceed,
+      name: nouvelleNature.name,
+      adr: nouvelleNature.adr,
+      bonusPercentage: nouvelleNature.bonusPercentage,
+      updatedAt: nouvelleNature.updatedAt,
+      invoiced: nouvelleNature.invoiced,
+      bonus: nouvelleNature.bonus,
+      dailyCharges: nouvelleNature.dailyCharges,
+      authorizationToExceed: nouvelleNature.authorizationToExceed,
 
     },
     this.httpOptions);
