@@ -2,10 +2,13 @@
   <div class="row justify-content-center">
     <div class="col-6">
       <h2>Création d'une nature de mission</h2>
-      <form>
+      <form (ngSubmit)="submit()" #monForm="ngForm">
         <div class="form-group">
           <label for="formGroupExampleInput">Nature :</label>
-          <input type="text" class="form-control" placeholder="Entrez une nature">
+          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="nouvelleNature.name" name="name" #name="ngModel" required>
+          <p *ngIf="name.dirty && name.invalid">
+            vous devez renseignez votre matricule.
+          </p>
         </div>
 
         <div class="form-group">

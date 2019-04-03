@@ -13,11 +13,12 @@ const URL_BACKEND = environment.backendUrl;
 
 export class KindService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
   createKind(nouvelleNature: Kind): Observable<Kind> {
-    return this._http.post<Kind>(URL_BACKEND + '/kinds', nouvelleNature);
+    console.log(nouvelleNature);
+    return this.http.post<Kind>(URL_BACKEND + '/kinds', nouvelleNature);
   }
 
 
