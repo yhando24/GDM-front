@@ -10,7 +10,6 @@ import { User } from 'src/app/models';
 export class UserService {
 
   subjectCollegues = new Subject<User[]>();
-  // listeCollegues: Collegue[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -25,18 +24,18 @@ export class UserService {
     return this.http.get<User[]>(URL_BACKEND);
   }
 
-    createUser(user: User): Observable<User> {
+  createUser(user: User): Observable<User> {
     const URL_BACKEND = environment.backendUrl;
     return this.http.post<User>(URL_BACKEND + 'users',
       {
-        'firstName': user.firstName,
-        'lastName': user.lastName,
-        'password': user.password,
-        'email': user.email,
-        'role': null,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        email: user.email,
+        role: null,
 
       },
-      this.httpOptions)
+      this.httpOptions);
   }
 
  // subjectVote = new Subject<Vote>();

@@ -11,14 +11,65 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of listeUsers; index as i" >
+    <tr *ngFor="let user of listeUsers; index as i">
       <th scope="row">{{ i + 1 }}</th>
-      <td>
+      <td (click)=update(user)>
         {{ user.firstName }}
       </td>
       <td>{{ user.lastName }}</td>
       <td>{{ user.role }}</td>
-      <td><button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button></td>
+      <td>
+        <button type="button" class="btn btn-warning" (click)="openUpdate(modalUpdate, user)">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="openDelete(modalDelete, user)">Supprimer</button>
+      </td>
     </tr>
   </tbody>
 </table>
+
+<!-- modal verif suppression -->
+<ng-template #modalDelete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{titreModal}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <div class="modal-body">
+      <p>{{messageModal}}</p>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="delete(userToDelete)">confirmer</button>
+    <button type="button" class="btn btn-outline-dark" (click)="d('Save click')">Annuler</button>
+  </div>
+</ng-template>
+
+<!-- modal update-->
+<ng-template #modalUpdate let-modalUpdate>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalUpdate.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
+      <div class="form-group">
+        <label>email:</label><input class="form-control form-control-lg" type="text" name="email" placeholder="{{oneUser.email}}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Nom:</label><input class="form-control form-control-lg" type="text" placeholder="{{oneUser.lastName}}" required>
+      </div>
+      <div class="form-group">
+        <label>Prenom:</label><input class="form-control form-control-lg" type="text" placeholder="{{oneUser.firstName}}" required minlength="3">
+      </div>
+      <div class="form-group">
+        <label>Role:</label><select class="form-control form-control-lg">
+          <option *ngFor="let r of enumRole">{{r}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modalUpdate.close('Save click')">Save</button>
+  </div>
+</ng-template>

@@ -27,8 +27,8 @@
       <td>{{ kind.dailyCharges }}</td>
       <td>{{ kind.authorizationToExceed }}</td>
       <td>
-        <button type="button" class="btn btn-warning" (click)="openUpdate(ModalUpdate)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="openDelete(ModalDelete)">Supprimer</button>
+        <button type="button" class="btn btn-warning" (click)="openUpdate(ModalUpdate, kind)">Modifier</button>
+        <!-- <button type="button" class="btn btn-danger" (click)="openDelete(ModalDelete, kind)">Supprimer</button> -->
       </td>
     </tr>
   </tbody>
@@ -64,7 +64,7 @@
 
 
 <!-- Modal Delete Nature -->
-<ng-template #ModalDelete let-c="close" let-d="dismiss">
+<!-- <ng-template #ModalDelete let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -75,6 +75,7 @@
     <p>Hello, World!</p>
   </div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="openDelete()">confirmer</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
   </div>
-</ng-template>
+</ng-template> -->
