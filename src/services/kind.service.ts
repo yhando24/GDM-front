@@ -15,18 +15,18 @@ export class KindService {
 
   constructor(private http: HttpClient) { }
 
+
   createKind(nouvelleNature: Kind): Observable<Kind> {
     return this.http.post<Kind>(URL_BACKEND + 'kinds', nouvelleNature);
   }
 
   findAllKind(): Observable<Kind[]> {
-    const URL_BACKEND = environment.backendUrl + 'kind';
-    return this.http.get<Kind[]>(URL_BACKEND);
+    return this.http.get<Kind[]>(URL_BACKEND + 'kind');
   }
 
   updateKind(kind: Kind): Observable<Kind> {
-    const URL_BACKEND = environment.backendUrl + 'kind';
-    return this.http.put<Kind>(URL_BACKEND, {
+
+    return this.http.put<Kind>(URL_BACKEND+ 'kind', {
 
       'name': kind.name,
       'adr': kind.adr,
