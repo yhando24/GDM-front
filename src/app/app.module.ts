@@ -12,6 +12,7 @@ import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
+import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { AccueilComponent } from './accueil/accueil.component';
     CreationNatureMissionComponent,
     HeaderComponent,
     AccueilComponent,
-   ],
+    UpdateNatureMissionComponent],
 
   imports: [
     BrowserModule,
