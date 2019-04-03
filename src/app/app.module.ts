@@ -13,13 +13,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
 
+
 @NgModule({
   declarations: [AppComponent,
     FormusercreateComponent,
     ListerUserComponent,
     CreationNatureMissionComponent,
     HeaderComponent,
-    AccueilComponent],
+    AccueilComponent,
+   ],
 
   imports: [
     BrowserModule,
