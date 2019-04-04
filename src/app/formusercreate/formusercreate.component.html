@@ -1,35 +1,55 @@
-<h1>Formulaire piloté par le template</h1>
-<div class="row">
-  <form (ngSubmit)="submit()" #createUser="ngForm">
+<h1>Formulaire Création </h1>
 
-    <label>Nom : </label>
-    <input [(ngModel)]="user.firstName" #champPseudo="ngModel" name="firstName" required minlength="3"
-      maxlength="20">
-    <p *ngIf="champPseudo.invalid && champPseudo.dirty">
+<form (ngSubmit)="submit()" #createUser="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputNom">Nom</label>
+      <input type="Nom" class="form-control" id="inputNom" placeholder="Nom" [(ngModel)]="user.firstName" #champNom="ngModel" name="firstName" required minlength="3" maxlength="20">
+    </div>
+    <p *ngIf="champNom.invalid && champNom.dirty">
       Le pseudo doit contenir au moins 3 caractères.
     </p>
-    <label>Prenom : </label>
-    <input [(ngModel)]="user.lastName" #champMatricule="ngModel" name="lastName" required>
-    <p *ngIf="champMatricule.invalid">
-      Le champ 1 est invalide.
-      </p>
-      <label>Password : </label>
-      <input [(ngModel)]="user.password" #champPseudo="ngModel" name="password" required minlength="3"
+
+    <div class="form-group col-md-6">
+        <label for="inputPrenom">Prénom</label>
+        <input type="text" class="form-control" id="inputCity"  placeholder="prenom"[(ngModel)]="user.firstName" #champPrenom="ngModel" name="lastName" required minlength="3"
         maxlength="20">
-      <p *ngIf="champPseudo.invalid && champPseudo.dirty">
-        Le pseudo doit contenir au moins 3 caractères.
-      </p>
-      <label>Email : </label>
-      <input [(ngModel)]="user.email" #champPseudo="ngModel" name="email" required minlength="3"
+    </div>
+    <p *ngIf="champPrenom.invalid && champPrenom.dirty">
+      8 caractères minimum.
+    </p>
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input type="text" class="form-control" id="inputEmail" placeholder="email@email.fr" [(ngModel)]="user.email" #champEmail="ngModel" name="email" required minlength="5"
+    maxlength="20">
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password" [(ngModel)]="user.password" #champPassword="ngModel" name="password" required minlength="8"
         maxlength="20">
-      <p *ngIf="champPseudo.invalid && champPseudo.dirty">
-        Le pseudo doit contenir au moins 3 caractères.
-      </p>
-      <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>.
-      <p *ngIf="createUser.invalid">
-        Au moins un champ du formulaire est invalide.
-      </p>
-      <p *ngIf="messageErreur != ''">
-        {{messageErreur}} </p>
-  </form>`
-</div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputState">Role</label>
+      <select id="inputState" class="form-control">
+        <option selected>DEFAULT</option>
+        <option>USER</option>
+        <option>MANAGER</option>
+        <option>ADMIN</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+        <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>.
+        <p *ngIf="createUser.invalid">
+          Au moins un champ du formulaire est invalide.
+        </p>
+        <p *ngIf="messageErreur != ''">
+          {{messageErreur}} </p>
+    </div>
+  </div>
+</form>
