@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { KindService } from 'src/services/kind.service';
+import { Router } from '@angular/router';
+import { Kind } from '../models';
 
 @Component({
   selector: 'app-creation-nature-mission',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreationNatureMissionComponent implements OnInit {
 
-  constructor() { }
+  error: string;
+  nouvelleNature: Kind = {};
+
+  constructor(private serviceKind: KindService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  submit(){
+    this.serviceKind.createKind(this.nouvelleNature).subscribe(
+      value => this.router.navigateByUrl('accueil'),
+      error => this.error = error
+    );
+  }
 }

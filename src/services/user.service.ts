@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { tap, map } from 'rxjs/operators';
-import { User } from 'src/app/models';
+import { User, Role } from 'src/app/models';
+
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
+  URL_BACKEND = environment.backendUrl + 'users';
+  private listeUsers = new Subject<User[]>();
 
-  subjectCollegues = new Subject<User[]>();
-  // listeCollegues: Collegue[] = [];
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,72 +21,97 @@ export class UserService {
   };
 
   finAllUser(): Observable<User[]> {
-    const URL_BACKEND = environment.backendUrl + 'users';
-    return this.http.get<User[]>(URL_BACKEND);
+    return this.http.get<User[]>(this.URL_BACKEND);
   }
 
-    createUser(user: User): Observable<User> {
-    const URL_BACKEND = environment.backendUrl;
-    return this.http.post<User>(URL_BACKEND + 'users',
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(
+      this.URL_BACKEND,
       {
-        'firstName': user.firstName,
-        'lastName': user.lastName,
-        'password': user.password,
-        'email': user.email,
-        'role': null,
-
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        email: user.email,
+        role: user.role
       },
-      this.httpOptions)
+      this.httpOptions
+    );
   }
 
- // subjectVote = new Subject<Vote>();
+  saveOneUser(user: User): Observable<User> {
+    return this.http.patch<User>(
+      this.URL_BACKEND,
+      {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        email: user.email,
+        role: user.role
+      },
+      this.httpOptions
+    );
+  }
 
-//   listerVote(): Observable<Vote> {
-//     return this.subjectVote.asObservable();
+  deleteOneUser(user: User): Observable<User> {
+    return this.http.post<User>(
+      this.URL_BACKEND + '/delete',
+      {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        email: user.email,
+        role: user.role
+      },
+      this.httpOptions
+    );
+  }
+  // subjectVote = new Subject<Vote>();
 
-//   }
+  //   listerVote(): Observable<Vote> {
+  //     return this.subjectVote.asObservable();
 
-//   lister(): Observable<Collegue[]> {
-//     const URL_BACKEND = environment.backendUrl;
-//     return this._http.get<Collegue[]>(URL_BACKEND + 'collegues');
-//   }
+  //   }
 
-//   donnerUnAvis(collegue: Collegue, avis: Avis): Observable<Collegue> {
-//     const URL_BACKEND = environment.backendUrl;
-//     return this._http.patch<Collegue>(URL_BACKEND + 'collegues/' + collegue.pseudo,
-//       {
-//         action: avis
-//       },
-//       this.httpOptions).pipe(tap(coll => {
-//         const vote: Vote = {
-//           collegue: coll,
-//           avis: avis,
-//         };
-//         this.subjectVote.next(vote)
-//       }
-//       ))
-//   }
+  //   lister(): Observable<Collegue[]> {
+  //     const URL_BACKEND = environment.backendUrl;
+  //     return this._http.get<Collegue[]>(URL_BACKEND + 'collegues');
+  //   }
 
-//   verificatonForm(collegueForm: CollegueForm): Observable<CollegueForm> {
-//     const URL_BACKEND = environment.backendUrl;
-//     return this._http.post<CollegueForm>(URL_BACKEND + 'collegues/',
-//       {
-//         'matricule': collegueForm.matricule,
-//         'pseudo': collegueForm.pseudo,
-//         'photoUrl': collegueForm.photo
-//       },
-//       this.httpOptions)
-//   }
+  //   donnerUnAvis(collegue: Collegue, avis: Avis): Observable<Collegue> {
+  //     const URL_BACKEND = environment.backendUrl;
+  //     return this._http.patch<Collegue>(URL_BACKEND + 'collegues/' + collegue.pseudo,
+  //       {
+  //         action: avis
+  //       },
+  //       this.httpOptions).pipe(tap(coll => {
+  //         const vote: Vote = {
+  //           collegue: coll,
+  //           avis: avis,
+  //         };
+  //         this.subjectVote.next(vote)
+  //       }
+  //       ))
+  //   }
 
-//   detailProfil(pseudo: string): Observable<Collegue> {
-//     const URL_BACKEND = environment.backendUrl;
-//     return this._http.get<Collegue>(URL_BACKEND + 'collegues/' + pseudo)};
+  //   verificatonForm(collegueForm: CollegueForm): Observable<CollegueForm> {
+  //     const URL_BACKEND = environment.backendUrl;
+  //     return this._http.post<CollegueForm>(URL_BACKEND + 'collegues/',
+  //       {
+  //         'matricule': collegueForm.matricule,
+  //         'pseudo': collegueForm.pseudo,
+  //         'photoUrl': collegueForm.photo
+  //       },
+  //       this.httpOptions)
+  //   }
 
+  //   detailProfil(pseudo: string): Observable<Collegue> {
+  //     const URL_BACKEND = environment.backendUrl;
+  //     return this._http.get<Collegue>(URL_BACKEND + 'collegues/' + pseudo)};
 
-//     matriculeExist(matricule: string): Observable<Collegue> {
-//       const URL_BACKEND = environment.backendUrl;
-//       return this._http.get<Collegue>(URL_BACKEND + 'collegues?metricule=' + matricule)};
-// }
-
-
+  //     matriculeExist(matricule: string): Observable<Collegue> {
+  //       const URL_BACKEND = environment.backendUrl;
+  //       return this._http.get<Collegue>(URL_BACKEND + 'collegues?metricule=' + matricule)};
+  // }
 }
