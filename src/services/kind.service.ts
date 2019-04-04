@@ -56,47 +56,20 @@ export class KindService {
   }
 
   findAllKind(): Observable<Kind[]> {
-    const URL_BACKEND = environment.backendUrl + 'kinds';
-    return this.http.get<Kind[]>(URL_BACKEND);
+    return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
   }
 
   getById(id: number): Observable<Kind> {
-    const URL_BACKEND = environment.backendUrl + 'kinds';
-    return this.http.get<Kind>(URL_BACKEND);
+    return this.http.get<Kind>(URL_BACKEND + 'kinds');
   }
 
   updateKind(kind: Kind): Observable<Kind> {
-    const URL_BACKEND = environment.backendUrl + 'kinds';
-    return this.http.patch<Kind>(URL_BACKEND, {
-
-      id: kind.id,
-      name: kind.name,
-      adr: kind.adr,
-      bonusPercentage: kind.bonusPercentage,
-      updatedAt: kind.updatedAt,
-      invoiced: kind.invoiced,
-      bonus: kind.bonus,
-      dailyCharges: kind.dailyCharges,
-      authorizationToExceed: kind.authorizationToExceed,
-    },
-    this.httpOptions);
+    console.log(kind);
+    return this.http.patch<Kind>(URL_BACKEND + 'kinds', kind, this.httpOptions);
   }
 
-  deleteKind(kind: Kind): Observable<Kind> {
-    const URL_BACKEND = environment.backendUrl + 'kinds';
-    return this.http.post<Kind>(URL_BACKEND + '/deleteKind', {
-
-      id: kind.id,
-      name: kind.name,
-      adr: kind.adr,
-      bonusPercentage: kind.bonusPercentage,
-      updatedAt: kind.updatedAt,
-      invoiced: kind.invoiced,
-      bonus: kind.bonus,
-      dailyCharges: kind.dailyCharges,
-      authorizationToExceed: kind.authorizationToExceed,
-    },
-    this.httpOptions
-    );
+  deleteKind(id: number): Observable<void> {
+    console.log(id);
+    return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
 }

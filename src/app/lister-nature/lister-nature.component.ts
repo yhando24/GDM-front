@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -37,9 +37,9 @@ export class ListerNatureComponent implements OnInit {
   }
 
   delete(kind: Kind) {
-    console.log(kind + 'hjhvjhvjhvjhv')
+    console.log(kind);
     this.modalService.dismissAll();
-    this.data.deleteKind(kind).subscribe(value => value,
+    this.data.deleteKind(kind.id).subscribe(value => value,
       error => console.log(`la suppression a échoué` + error.error));
   }
 
@@ -57,7 +57,7 @@ export class ListerNatureComponent implements OnInit {
   openDelete(content: string, kind: Kind) {
     this.oneKind = kind;
     this.modalService.open(content);
-    this.data.deleteKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
+    //this.data.deleteKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
   }
 
   private getDismissReason(reason: any): string {
