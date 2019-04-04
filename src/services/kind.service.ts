@@ -42,14 +42,14 @@ export class KindService {
     nouvelleNature.updatedAt = new Date() ;
     console.log(nouvelleNature);
     return this.http.post<Kind>(URL_BACKEND + 'kinds',  {
-      'name': nouvelleNature.name,
-      'adr': nouvelleNature.adr,
-      'bonusPercentage': nouvelleNature.bonusPercentage,
-      'updatedAt': nouvelleNature.updatedAt,
-      'invoiced': nouvelleNature.invoiced,
-      'bonus': nouvelleNature.bonus,
-      'dailyCharges': nouvelleNature.dailyCharges,
-      'authorizationToExceed': nouvelleNature.authorizationToExceed,
+      name: nouvelleNature.name,
+      adr: nouvelleNature.adr,
+      bonusPercentage: nouvelleNature.bonusPercentage,
+      updatedAt: nouvelleNature.updatedAt,
+      invoiced: nouvelleNature.invoiced,
+      bonus: nouvelleNature.bonus,
+      dailyCharges: nouvelleNature.dailyCharges,
+      authorizationToExceed: nouvelleNature.authorizationToExceed,
 
     },
     this.httpOptions);
@@ -67,7 +67,7 @@ export class KindService {
 
   updateKind(kind: Kind): Observable<Kind> {
     const URL_BACKEND = environment.backendUrl + 'kinds';
-    return this.http.put<Kind>(URL_BACKEND, {
+    return this.http.patch<Kind>(URL_BACKEND, {
 
       id: kind.id,
       name: kind.name,
@@ -78,11 +78,25 @@ export class KindService {
       bonus: kind.bonus,
       dailyCharges: kind.dailyCharges,
       authorizationToExceed: kind.authorizationToExceed,
-    });
+    },
+    this.httpOptions);
   }
 
   deleteKind(kind: Kind): Observable<Kind> {
-    const URL_BACKEND = environment.backendUrl + 'kind';
-    return this.http.delete<Kind>(URL_BACKEND);
+    const URL_BACKEND = environment.backendUrl + 'kinds';
+    return this.http.post<Kind>(URL_BACKEND + '/deleteKind', {
+
+      id: kind.id,
+      name: kind.name,
+      adr: kind.adr,
+      bonusPercentage: kind.bonusPercentage,
+      updatedAt: kind.updatedAt,
+      invoiced: kind.invoiced,
+      bonus: kind.bonus,
+      dailyCharges: kind.dailyCharges,
+      authorizationToExceed: kind.authorizationToExceed,
+    },
+    this.httpOptions
+    );
   }
 }

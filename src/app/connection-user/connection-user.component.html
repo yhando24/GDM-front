@@ -1,0 +1,65 @@
+
+<div class="row">
+<!-- modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5>Veuillez saisir votre adresse mail :</h5>
+      </div>
+      <div class="modal-body">
+        <form #f="ngForm" >
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmailForget" class="form-control" required="required" name="emailForget">
+              <label for="inputEmailForget">Email</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" >Valider</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="card card-login mx-auto mt-5">
+    <div class="card-header">Connexion</div>
+    <div class="card-body">
+      <div class="container text-center">
+        <img id="logo-gdm-login" src="../../assets/resources/logo-GDM.png" alt="logo-gdm">
+      </div>
+
+      <form (ngSubmit)="login()" #f="ngForm" >
+        <div class="form-group">
+          <div class="form-label-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required"
+              autofocus="autofocus" name="email" [(ngModel)]="user.email" #email="ngModel">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required"
+              name="password" [(ngModel)]="user.password" #password="ngModel">
+
+          </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+
+      </form>
+
+
+
+      <div class="text-center">
+        <a data-toggle="modal" data-target=".bd-example-modal-lg">Mot de passe oublié ?</a>
+      </div>
+</div>

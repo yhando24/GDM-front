@@ -1,5 +1,5 @@
 export interface User {
-
+  id?: number;
   firstName?: string;
   lastName?: string;
   password?: string;
@@ -8,9 +8,9 @@ export interface User {
 }
 
 export enum Role {
-  USER = 'user',
-  ADMIN = 'admin',
-  MANAGER = 'manager'
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER'
 }
 
 export function getEnum() {
@@ -27,6 +27,12 @@ export interface Mission {
   missionStatus?: MissionStatusEnum;
   transportEnum?: TransportEnum;
 
+}
+
+
+export interface token {
+
+id_token : string
 }
 
 export enum MissionStatusEnum {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Route } from '@angular/compiler/src/core';
 
 
 @Component({
@@ -29,6 +28,19 @@ export class ListerNatureComponent implements OnInit {
   ngOnInit() {
     this.data.findAllKind()
       .subscribe(arg => (this.listeKinds = arg));
+  }
+
+  submit() {
+    this.modalService.dismissAll();
+    this.data.updateKind(this.oneKind).subscribe(value => value,
+      error => console.log(`l'update n'a pas eu lieu` + error.error));
+  }
+
+  delete(kind: Kind) {
+    console.log(kind + 'hjhvjhvjhvjhv')
+    this.modalService.dismissAll();
+    this.data.deleteKind(kind).subscribe(value => value,
+      error => console.log(`la suppression a échoué` + error.error));
   }
 
   openUpdate(content: string, kind: Kind) {
