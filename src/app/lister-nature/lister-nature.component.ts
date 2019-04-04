@@ -20,7 +20,7 @@ export class ListerNatureComponent implements OnInit {
   footerModal: string;
   closeResult: string;
 
-  constructor(private data: KindService, private modalService: NgbModal, config: NgbModalConfig, private router: Route) {
+  constructor(private data: KindService, private modalService: NgbModal, config: NgbModalConfig) {
 
     config.backdrop = 'static';
     config.keyboard = false;
@@ -31,32 +31,22 @@ export class ListerNatureComponent implements OnInit {
       .subscribe(arg => (this.listeKinds = arg));
   }
 
-  delete(kind: Kind) {
-    console.log(kind);
-    this.modalService.dismissAll();
-  }
-
-  update(kind: Kind) {
-    //this.router.navigate(['/kinds/' + user.email]);
-  }
-
   openUpdate(content: string, kind: Kind) {
     this.oneKind = kind;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(() => {
+        this.data.updateKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
+        console.log(this.oneKind);
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
   }
 
   openDelete(content: string, kind: Kind) {
-    this.modalService.open(content);
-    this.titreModal = 'Voulez vous vraiment supprimer ?';
-    this.messageModal = `La nature ${kind.name}`;
     this.oneKind = kind;
     this.modalService.open(content);
+    this.data.deleteKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
   }
-
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

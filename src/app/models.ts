@@ -39,6 +39,7 @@ export enum TransportEnum {
 
 export interface Kind {
 
+  id?: number;
   name?: string;
   adr?: number;
   bonusPercentage?: number;

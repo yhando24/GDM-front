@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { tap, map } from 'rxjs/operators';
 import { Kind } from 'src/app/models';
+
+const URL_BACKEND = environment.backendUrl;
 
 
 @Injectable({
@@ -68,6 +69,7 @@ export class KindService {
     const URL_BACKEND = environment.backendUrl + 'kinds';
     return this.http.put<Kind>(URL_BACKEND, {
 
+      id: kind.id,
       name: kind.name,
       adr: kind.adr,
       bonusPercentage: kind.bonusPercentage,
