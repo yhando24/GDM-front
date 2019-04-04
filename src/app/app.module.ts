@@ -10,12 +10,14 @@ import { CreationNatureMissionComponent } from './creation-nature-mission/creati
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
-import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
 import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
+import { ConnectionUserComponent } from './connection-user/connection-user.component';
+import { AuthInterceptor } from 'AuthInterceptor';
+import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 
 
 @NgModule({
@@ -26,10 +28,10 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
     CreationNatureMissionComponent,
     HeaderComponent,
     AccueilComponent,
-    UpdateNatureMissionComponent,
     ModalDeleteUserComponent,
-    ModalUpdateUserComponent
-  ],
+    ModalUpdateUserComponent,
+    ListerNatureComponent,
+    ConnectionUserComponent],
 
   imports: [
     BrowserModule,
@@ -37,10 +39,11 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
-    ReactiveFormsModule
   ],
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

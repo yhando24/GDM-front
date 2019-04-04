@@ -9,15 +9,24 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/users']" routerLinkActive="router-link-active" >Users</a>
                   </li>
+                <li class="nav-item">
+                      <a class="nav-link" [routerLink]="['/missions']" routerLinkActive="router-link-active" >Missions</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/kinds']" routerLinkActive="router-link-active" >Natures</a>
+                  </li>
               <li class="nav-item">
                 <a class="nav-link"  routerLink="/creationNature" >Creation Nature</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#">Link</a>
                 </li>
+                    <li class="nav-item">
+
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-deconnecter">Se déconnecter</button>
+              <a class="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
             </form>
           </div>
         </nav>
