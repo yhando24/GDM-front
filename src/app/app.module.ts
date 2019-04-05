@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
 
-import { ModalDeleteUserComponent, NgbdModalContent } from './modal-delete-user/modal-delete-user.component';
+import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
 import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { AuthInterceptor } from 'AuthInterceptor';
@@ -31,8 +31,7 @@ import { ListerNatureComponent } from './lister-nature/lister-nature.component';
     ModalDeleteUserComponent,
     ModalUpdateUserComponent,
     ListerNatureComponent,
-    ConnectionUserComponent,
-    NgbdModalContent
+    ConnectionUserComponent
   ],
 
   imports: [
@@ -42,7 +41,8 @@ import { ListerNatureComponent } from './lister-nature/lister-nature.component';
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  entryComponents: [NgbdModalContent],
+  entryComponents: [ModalUpdateUserComponent,
+    ModalDeleteUserComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

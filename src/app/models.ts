@@ -13,7 +13,7 @@ export enum Role {
   MANAGER = 'MANAGER'
 }
 
-export function getEnum() {
+export function getRolesEnum() {
   return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
@@ -32,7 +32,7 @@ export interface Mission {
 
 export interface token {
 
-id_token : string
+id_token: string;
 }
 
 export enum MissionStatusEnum {
