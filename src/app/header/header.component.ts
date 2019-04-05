@@ -10,24 +10,36 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements  OnDestroy {
+export class HeaderComponent implements  OnDestroy, OnInit {
+
 
 
 
   user : User = null;
   private subscription: Subscription;
   constructor(private auth: AuthServiceService, private router: Router) {
-    if(localStorage.getItem("id_token") != null){
 
+
+
+  }
+
+  ngOnInit(): void {
 
     console.log("DANS LE CONSTRUCTEUR")
-    this.auth.currentUser.then((valeur) => {
-    this.user=valeur;
-    }, (raison) => {
-      console.log(raison); // Erreur !
-    });
+    this.subscription = this.auth.currentUser.subscribe(
+      (data: User) => {
+        this.user = data;
+      },
+      error => {
+        console.log(error)
+        this.user == null;
+      },
 
-    }
+      () => {
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+      });
+
+
   }
 
 

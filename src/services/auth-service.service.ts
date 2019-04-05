@@ -45,21 +45,24 @@ export class AuthServiceService {
   get isAuthenticated(): boolean{
     return this.authenticated;
   }
-  get currentUser() :Promise<User> | null{
+  get currentUser() :Observable<User> | null{
     const helper = new JwtHelperService();
     const idToken = localStorage.getItem("id_token");
-    if (idToken != null){
+    if (idToken != null) {
     const email = helper.decodeToken(idToken).sub;
     this.authenticated = true;
     const URL_BACKEND = environment.backendUrl;
     if (this.current_User === null || this.current_User === undefined){
 
 
-      return this.http.get<User>(URL_BACKEND + 'login/?email=' + email).toPromise();
+      return this.http.get<User>(URL_BACKEND + 'login/?email=' + email)
 
     }else{
-      return of(this.current_User).toPromise();
+      return of(this.current_User);
     }
-    } return null;
+
+    } else {
+      return null;
+    }
   }
 }

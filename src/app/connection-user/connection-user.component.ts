@@ -35,7 +35,7 @@ export class ConnectionUserComponent implements OnInit {
       (r) => {
         localStorage.setItem('id_token', r.id_token);
         console.log("User is logged in");
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/users');
       }
     );
   }
