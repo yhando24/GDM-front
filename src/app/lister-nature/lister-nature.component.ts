@@ -39,7 +39,7 @@ export class ListerNatureComponent implements OnInit {
   delete(kind: Kind) {
     console.log(kind);
     this.modalService.dismissAll();
-    this.data.deleteKind(kind.id).subscribe(value => value,
+    this.data.deleteKind(kind.id).subscribe(value => this.ngOnInit(),
       error => console.log(`la suppression a échoué` + error.error));
   }
 
