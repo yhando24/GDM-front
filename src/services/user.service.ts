@@ -3,6 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { User } from 'src/app/models';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -63,17 +64,12 @@ export class UserService {
   }
 
   deleteOneUser(user: User): Observable<User> {
-    return this.http.post<User>(
-      this.URL_BACKEND + '/delete',
-      {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        password: user.password,
-        email: user.email,
-        role: user.role
-      },
+    return this.http.delete(
+      this.URL_BACKEND + '/delete/' + user.id,
       this.httpOptions
-    );
+    ).pipe(
+      catchError(error =>{
+        return error;
+      }));
   }
 }

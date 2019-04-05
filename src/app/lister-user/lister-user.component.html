@@ -33,20 +33,22 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of listeUsers; index as i">
+
       <th scope="row">{{ i + 1 }}</th>
-      <td (click)=update(user)>
+      <td >
         {{ user.firstName }}
       </td>
       <td>{{ user.lastName }}</td>
-      <td>{{ user.role }}</td>
+      <td>{{ user.role }}
+      </td>
       <td>
-        <button type="button" class="btn btn-warning" (click)="openUpdate(modalUpdate, user)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="openDelete(modalDelete, user)">Supprimer</button>
+        <button type="button" class="btn btn-warning"   (click)="update(user)">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button>
       </td>
     </tr>
   </tbody>
 </table>
-<router-outlet></router-outlet>
+<router-outlet ></router-outlet>
 
 
 

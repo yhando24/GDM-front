@@ -3,14 +3,16 @@ import { Component, OnInit } from '@angular/core';
 =======
 import { UserService } from './../../services/user.service';
 import { User, Role, getEnum } from '../models';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 >>>>>>> f72cccf96aafbc7a60c270b9a8a12ae1d412b70a
+
 
 @Component({
   selector: 'app-lister-user',
   templateUrl: './lister-user.component.html',
-  styleUrls: ['./lister-user.component.css']
+  styleUrls: ['./lister-user.component.css'],
+
 })
 <<<<<<< HEAD
 export class ListerUserComponent implements OnInit {
@@ -57,7 +59,8 @@ export class ListerUserComponent implements OnInit {
   newUser(){
     this.router.navigate(['/creationUsers/']);
   }
-  update(user) {
+  delete(user: User) {
+    console.log(user);
     this.data.addOneUser(user);
     this.router.navigate(['users/delete-user/']);
   }
