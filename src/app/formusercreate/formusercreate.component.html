@@ -1,0 +1,55 @@
+<h1>Formulaire Création </h1>
+
+<form (ngSubmit)="submit()" #createUser="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputNom">Nom</label>
+      <input type="Nom" class="form-control" id="inputNom" placeholder="Nom" [(ngModel)]="user.firstName" #champNom="ngModel" name="firstName" required minlength="3" maxlength="20">
+    </div>
+    <p *ngIf="champNom.invalid && champNom.dirty">
+      Le pseudo doit contenir au moins 3 caractères.
+    </p>
+
+    <div class="form-group col-md-6">
+        <label for="inputPrenom">Prénom</label>
+        <input type="text" class="form-control" id="inputPrenom"  placeholder="prenom"[(ngModel)]="user.lastName" #champPrenom="ngModel" name="lastName" required minlength="3"
+        maxlength="20">
+    </div>
+    <p *ngIf="champPrenom.invalid && champPrenom.dirty">
+      8 caractères minimum.
+    </p>
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input type="text" class="form-control" id="inputEmail" placeholder="email@email.fr" [(ngModel)]="user.email" #champEmail="ngModel" name="email" required minlength="5"
+    maxlength="20">
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password" [(ngModel)]="user.password" #champPassword="ngModel" name="password" required minlength="8"
+        maxlength="20">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputState">Role</label>
+      <select id="inputState" class="form-control">
+        <option selected>DEFAULT</option>
+        <option>USER</option>
+        <option>MANAGER</option>
+        <option>ADMIN</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+        <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>
+        <p *ngIf="createUser.invalid">
+          Au moins un champ du formulaire est invalide.
+        </p>
+        <p *ngIf="messageErreur != ''">
+          {{messageErreur}} </p>
+    </div>
+  </div>
+</form>

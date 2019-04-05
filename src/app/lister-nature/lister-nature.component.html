@@ -1,0 +1,109 @@
+<h2>liste des natures</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Taux moyen journalier </th>
+      <th scope="col">% Bonus</th>
+      <th scope="col">Date de creation</th>
+      <th scope="col">Facturable</th>
+      <th scope="col">Bonus</th>
+      <th scope="col">Plafond frais journalier</th>
+      <th scope="col">Autorisation de dépassement</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let kind of listeKinds; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ kind.name }}</td>
+      <td>{{ kind.adr }}</td>
+      <td>{{ kind.bonusPercentage }}</td>
+      <td>{{ kind.updatedAt }}</td>
+      <td>{{ kind.invoiced }}</td>
+      <td>{{ kind.bonus }}</td>
+      <td>{{ kind.dailyCharges }}</td>
+      <td>{{ kind.authorizationToExceed }}</td>
+      <td>
+        <button type="button" class="btn btn-warning" (click)="openUpdate(ModalUpdate, kind)">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="openDelete(ModalDelete, kind)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal Update Nature -->
+<ng-template #ModalUpdate let-modalUpdate>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modification de la Nature</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalUpdate.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
+      <div class="form-group">
+        <label>Nom</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="text" name="Nom" [(ngModel)]="oneKind.name">
+        </div>
+        <label>Taux moyen journalier</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="text" name="Taux moyen journalier"
+          [(ngModel)]="oneKind.adr">
+        </div>
+        <label>% Bonus</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="text" name="% Bonus"
+          [(ngModel)]="oneKind.bonusPercentage">
+        </div>
+        <label>Facturable</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="checkbox" name="Facturable" [(ngModel)]="oneKind.invoiced">
+        </div>
+        <label>Bonus</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="checkbox" name="Bonus" [(ngModel)]="oneKind.bonus">
+        </div>
+        <label>Plafond frais journalier</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="text" name="Plafond frais journalier"
+          [(ngModel)]="oneKind.dailyCharges">
+        </div>
+        <label>Autorisation de dépassement</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" type="checkbox" name="Autorisation de dépassement"
+          [(ngModel)]="oneKind.authorizationToExceed">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-primary" (click)="submit()">Valider</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modalUpdate.close('Close click')">Annuler</button>
+  </div>
+</ng-template>
+
+<!-- Modal Delete Nature -->
+<ng-template #ModalDelete let-modalDelete>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Suppression d'une nature</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modalDelete.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>Etes-vous certain de vouloir supprimer<span class="text-primary"> {{ oneKind.name }} </span> ?</strong>
+    </p>
+    <p>Toutes les informations associées a cette nature seront supprimées.
+      <span class="text-danger">Cette operation est irreversible.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary"
+      (click)="modalDelete.dismiss('cancel click')">Annuler</button>
+    <button type="button" class="btn btn-danger" (click)="delete(oneKind)">Confirmer</button>
+  </div>
+</ng-template>
