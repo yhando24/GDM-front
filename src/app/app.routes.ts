@@ -5,6 +5,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
+import { AppComponent } from './app.component';
 
 
 

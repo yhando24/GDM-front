@@ -5,7 +5,9 @@ import { environment } from 'src/environments/environment';
 import * as moment from "moment";
 import { tap } from 'rxjs/operators';
 import { Logeur } from 'src/app/connection-user/connection-user.component';
-import { Observable } from 'rxjs';
+import { Observable, of, from, Subject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,40 +15,51 @@ import { Observable } from 'rxjs';
 })
 export class AuthServiceService {
 
-  constructor(private http: HttpClient) { }
+  private subject = new Subject<any>();
+
+  authenticated: boolean = false;
+  current_User: User;
+
+  constructor(private http: HttpClient, private router: Router) { }
   login(email: string, password: string) : Observable<token> {
 
     const URL_BACKEND = environment.backendUrl;
     return this.http.post<token>(URL_BACKEND+'login', { email, password })
       .pipe(tap(res => this.setSession(res)));
+
   }
 
   private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+    this.authenticated = true;
   }
 
   logout() {
     localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
+    this.current_User =null;
+    this.router.navigateByUrl('/login');
+    this.authenticated = false;
+
   }
-
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+  get isAuthenticated(): boolean{
+    return this.authenticated;
   }
+  get currentUser() :Promise<User> | null{
+    const helper = new JwtHelperService();
+    const idToken = localStorage.getItem("id_token");
+    if (idToken != null){
+    const email = helper.decodeToken(idToken).sub;
+    this.authenticated = true;
+    const URL_BACKEND = environment.backendUrl;
+    if (this.current_User === null || this.current_User === undefined){
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
+
+      return this.http.get<User>(URL_BACKEND + 'login/?email=' + email).toPromise();
+
+    }else{
+      return of(this.current_User).toPromise();
+    }
+    } return null;
   }
-
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
-
-
-
 }

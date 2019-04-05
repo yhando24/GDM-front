@@ -19,8 +19,12 @@
 
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <a class="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
-            </form>
+
+          <div *ngIf="isAuthenticated()">Bonjour {{user.firstName}}</div>
+
+
+           <a *ngIf="!isAuthenticated()" lass="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
+           <a *ngIf="isAuthenticated()"  class="nav-link"><button class="btn btn-deconnecter" (click)="bye()">Deconnecter</button></a>
+
           </div>
         </nav>
