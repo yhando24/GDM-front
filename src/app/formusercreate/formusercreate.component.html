@@ -12,7 +12,7 @@
 
     <div class="form-group col-md-6">
         <label for="inputPrenom">Prénom</label>
-        <input type="text" class="form-control" id="inputCity"  placeholder="prenom"[(ngModel)]="user.firstName" #champPrenom="ngModel" name="lastName" required minlength="3"
+        <input type="text" class="form-control" id="inputPrenom"  placeholder="prenom"[(ngModel)]="user.lastName" #champPrenom="ngModel" name="lastName" required minlength="3"
         maxlength="20">
     </div>
     <p *ngIf="champPrenom.invalid && champPrenom.dirty">
@@ -44,7 +44,7 @@
   </div>
   <div class="form-group">
     <div class="form-check">
-        <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>.
+        <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>
         <p *ngIf="createUser.invalid">
           Au moins un champ du formulaire est invalide.
         </p>
