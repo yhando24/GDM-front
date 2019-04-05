@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gestion des missions</title>
+    <link rel="stylesheet" href="array-get.component.css">
+  </head>
+  <body>
+    <h1>Gestion des missions</h1>
+
+    <table>
+      <tr>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Nature</th>
+        <th>Départ</th>
+        <th>Arrivée</th>
+        <th>Transport</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <th></th>
+        <td></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td><button type="button" class="btn btn-primary" style=" border: 1px solid black; padding: 5px; border-radius: 25px;"><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" style="cursor: pointer;" src="../../assets/resources/cancel.png" width="10" height="10"/></button></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td></td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td><button type="button" class="btn btn-primary" style=" border: 1px solid black; padding: 5px; border-radius: 25px;"><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" style="cursor: pointer;" src="../../assets/resources/cancel.png" width="10" height="10"/></button></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>&nbsp;</td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>&nbsp;</td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>&nbsp;</td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td>&nbsp;</td>
+        <td><button type="button" class="btn btn-primary" style=" border: 1px solid black; padding: 5px; border-radius: 25px;"><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" style="cursor: pointer;" src="../../assets/resources/edit.jpg" width="10" height="10"/></button>&nbsp; &nbsp;<button type="button" class="btn btn-primary" style=" border: 1px solid black; padding: 5px; border-radius: 25px;"><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" style="cursor: pointer;" src="../../assets/resources/cancel.png" width="10" height="10"/></button></td>
+      </tr>
+    </table>
+
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">&raquo;</a>
+    </div>
+
+    <script>
+      function bigImg(x) {
+        x.style.height = "11px";
+        x.style.width = "11px";
+      }
+      
+      function normalImg(x) {
+        x.style.height = "10px";
+        x.style.width = "10px";
+      }
+      </script>
+  </body>
+</html>
