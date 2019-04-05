@@ -9,13 +9,15 @@ import { HeaderComponent } from './header/header.component';
 import { CreationNatureMissionComponent } from './creation-nature-mission/creation-nature-mission.component';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccueilComponent } from './accueil/accueil.component';
-import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
+
+import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
+import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { AuthInterceptor } from 'AuthInterceptor';
-
+import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { AuthInterceptor } from 'AuthInterceptor';
     CreationNatureMissionComponent,
     HeaderComponent,
     AccueilComponent,
-    UpdateNatureMissionComponent,
+    ModalDeleteUserComponent,
+    ModalUpdateUserComponent,
+    ListerNatureComponent,
     ConnectionUserComponent],
 
   imports: [
@@ -35,7 +39,6 @@ import { AuthInterceptor } from 'AuthInterceptor';
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
-    ReactiveFormsModule
   ],
 
   providers: [

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { tap, map } from 'rxjs/operators';
-import { User, Kind } from 'src/app/models';
+import { Kind } from 'src/app/models';
 
 const URL_BACKEND = environment.backendUrl;
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,21 +56,20 @@ export class KindService {
   }
 
   findAllKind(): Observable<Kind[]> {
-    return this.http.get<Kind[]>(URL_BACKEND + 'kind');
+    return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
+  }
+
+  getById(id: number): Observable<Kind> {
+    return this.http.get<Kind>(URL_BACKEND + 'kinds');
   }
 
   updateKind(kind: Kind): Observable<Kind> {
+    console.log(kind);
+    return this.http.patch<Kind>(URL_BACKEND + 'kinds', kind, this.httpOptions);
+  }
 
-    return this.http.put<Kind>(URL_BACKEND + 'kind', {
-
-      'name': kind.name,
-      'adr': kind.adr,
-      'bonusPercentage': kind.bonusPercentage,
-      'updatedAt': kind.updatedAt,
-      'invoiced': kind.invoiced,
-      'bonus': kind.bonus,
-      'dailyCharges': kind.dailyCharges,
-      'authorizationToExceed': kind.authorizationToExceed,
-    });
+  deleteKind(id: number): Observable<void> {
+    console.log(id);
+    return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
 }

@@ -13,29 +13,21 @@ import { Router } from '@angular/router';
 export class ListerUserComponent implements OnInit {
   listeUsers;
   oneUser: User;
-  titreModal: string;
-  messageModal: string;
-  closeResult: string;
   enumRole: Role[];
   role: string;
-
-  constructor(private data: UserService, private modSer: NgbModal, private router: Router) {
-    }
+  visible: boolean;
+  constructor(private data: UserService, private router: Router, private modSer: NgbModal) {
+  }
 
     ngOnInit() {
+      this.visible = false;
       this.enumRole = getEnum();
       this.data
           .finAllUser()
           .subscribe(arg => (this.listeUsers = arg));
       }
 
-  delete(user: User) {
-      this.modSer.dismissAll();
-      this.data
-        .deleteOneUser(user)
-        .subscribe(value => value,
-        error => console.log(`delete n'a pas fonctionee` + error.error));
-  }
+
   submit() {
     this.modSer.dismissAll();
     this.data
@@ -44,12 +36,7 @@ export class ListerUserComponent implements OnInit {
         error => console.log(`update n'a pas fonctionne ` + error.error));
   }
 
-  openDelete(content: string , user: User) {
-    this.titreModal = 'Voulez vous vraiment supprimer';
-    this.messageModal =  `L'utilisateur ${user.lastName} ${user.firstName}`;
-    this.oneUser = user;
-    this.modSer.open(content);
-  }
+
   openUpdate(content: string, user: User) {
     this.oneUser = user;
     this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
@@ -57,5 +44,9 @@ export class ListerUserComponent implements OnInit {
   }
   newUser(){
     this.router.navigate(['/creationUsers/']);
+  }
+  update(user) {
+    this.data.addOneUser(user);
+    this.router.navigate(['users/delete-user/']);
   }
 }
