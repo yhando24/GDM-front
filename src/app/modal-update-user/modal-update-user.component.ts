@@ -24,4 +24,11 @@ export class ModalUpdateUserComponent implements OnInit {
   close() {
    this.data.closeModal();
   }
+  submit() {
+    this.data.saveOneUser(this.oneUser).subscribe(
+      user => this.data.userUpdated(user),
+      error => console.log(error.error)
+      );
+    this.data.closeModal();
+  }
 }

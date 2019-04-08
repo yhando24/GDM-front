@@ -1,5 +1,8 @@
 <h2>liste des utilisateurs</h2>
 <button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
+<p [hidden]="alertVisible">
+  <ngb-alert [type]="alert.type">{{ alert.message }}</ngb-alert>
+</p>
 <table class="table table-striped">
   <thead>
     <tr>
