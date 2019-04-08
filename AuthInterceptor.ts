@@ -30,19 +30,19 @@ export class AuthInterceptor implements HttpInterceptor {
      if(isExpired){
        this.router.navigateByUrl('/login');
      }
-      console.log('j"ai quelque chose');
       const cloned = request.clone({
         headers: request.headers.set("Authorization",
           "Bearer " + idToken)
       });
       return next.handle(cloned)
     } else {
-      console.log('QUE DALLE');
+
       this.router.navigateByUrl('/login');
       return next.handle(request).pipe(catchError((error: HttpErrorResponse) => {
         // Auto logout if 401 response returned from api
         if (error.status === 401) {
           console.log('erreur 401');
+
         }
         return throwError(error);
       }));

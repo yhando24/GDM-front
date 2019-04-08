@@ -1,5 +1,8 @@
 <h2>liste des utilisateurs</h2>
 <button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
+<p>
+  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+</p>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -19,55 +22,13 @@
       <td>{{ user.lastName }}</td>
       <td>{{ user.role }}</td>
       <td>
-        <button type="button" class="btn btn-warning" (click)="openUpdate(modalUpdate, user)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="openDelete(modalDelete, user)">Supprimer</button>
+        <button type="button" class="btn btn-warning"   (click)="update(user)">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button>
       </td>
     </tr>
   </tbody>
 </table>
+<router-outlet></router-outlet>
 
-<!-- modal verif suppression -->
-<ng-template #modalDelete let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{titreModal}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-    <div class="modal-body">
-      <p>{{messageModal}}</p>
-    </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-danger" (click)="delete(oneUser)">confirmer</button>
-    <button type="button" class="btn btn-outline-dark" (click)="d('Save click')">Annuler</button>
-  </div>
-</ng-template>
 
-<!-- modal update-->
-<ng-template #modalUpdate let-modalUpdate>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modalUpdate.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
-      <div class="form-group">
-        <label>email:</label><input class="form-control form-control-lg" type="text" name="email" placeholder="{{oneUser.email}}" disabled>
-      </div>
-      <div class="form-group">
-        <label>Nom:</label><input class="form-control form-control-lg" type="text" name="lastName" placeholder="{{oneUser.lastName}}" [(ngModel)]="oneUser.lastName" required>
-      </div>
-      <div class="form-group">
-        <label>Prenom:</label><input class="form-control form-control-lg" type="text"  name="firstName" placeholder="{{oneUser.firstName}}" [(ngModel)]="oneUser.firstName" required>
-      </div>
-      <div class="form-group">
-        <label>Role:</label><select class="form-control form-control-lg" [(ngModel)]="oneUser.role" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let r of enumRole" [ngValue]="r">{{r}}</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-outline-dark">Save</button>
-    </form>
-  </div>
-</ng-template>
+
