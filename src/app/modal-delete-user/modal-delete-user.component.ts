@@ -38,9 +38,10 @@ export class ModalDeleteUserComponent implements OnInit {
 
   messageModal: string;
   closeResult: string;
-  constructor(private modSer: NgbModal, private data: UserService) { }
+  constructor(private modSer: NgbModal, private data: UserService,public modal: NgbActiveModal) { }
 
   ngOnInit() {
+    console.log('passe dans le init modaldeleteuser');
     this.data.user.subscribe(user => {
       const modalRef = this.modSer.open(NgbdModalContent);
       this.oneUser = user;

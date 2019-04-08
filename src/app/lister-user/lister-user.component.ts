@@ -3,7 +3,13 @@ import { UserService } from './../../services/user.service';
 import { User, Role, getEnum } from '../models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { ModalDeleteUserComponent } from '../modal-delete-user/modal-delete-user.component';
+import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
 
+const MODALS = {
+    annulerModule : ModalDeleteUserComponent,
+    modifModule : ModalUpdateUserComponent
+}
 
 @Component({
   selector: 'app-lister-user',
@@ -47,6 +53,7 @@ export class ListerUserComponent implements OnInit {
   newUser(){
     this.router.navigate(['/creationUsers/']);
   }
+
   delete(user: User) {
     console.log(user);
     this.data.addOneUser(user);

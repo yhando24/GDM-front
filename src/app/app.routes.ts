@@ -8,7 +8,7 @@ import { ConnectionUserComponent } from './connection-user/connection-user.compo
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
 import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
-
+import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 
 export const ROUTES: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -30,6 +30,7 @@ export const ROUTES: Routes = [
   { path: 'kinds', component: ListerNatureComponent },
   { path: 'creationUsers', component: FormusercreateComponent },
   { path: 'login', component: ConnectionUserComponent },
+  { path: 'historic/:id', component: ListerHistoriqueNatureComponent },
   { path: '', pathMatch: 'full', redirectTo: 'accueil' },
   { path: 'delete-user', component: ModalDeleteUserComponent}
 ];

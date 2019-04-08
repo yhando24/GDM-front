@@ -18,6 +18,7 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { AuthInterceptor } from 'AuthInterceptor';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
+import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ListerNatureComponent } from './lister-nature/lister-nature.component';
     ModalUpdateUserComponent,
     ListerNatureComponent,
     ConnectionUserComponent,
-    NgbdModalContent
+    NgbdModalContent,
+    ListerHistoriqueNatureComponent
   ],
 
   imports: [
