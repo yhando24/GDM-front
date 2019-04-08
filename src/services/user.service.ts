@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, AsyncSubject } from 'rxjs';
+import { Observable, AsyncSubject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { User } from 'src/app/models';
-import { catchError } from 'rxjs/operators';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-
 
 
 @Injectable({
@@ -29,24 +26,23 @@ export class UserService {
     })
   };
 
-  private user = new AsyncSubject<User>();
-  public checkUser = new AsyncSubject<string>();
+  private user = new BehaviorSubject<User>(null);
+  public checkUser = new BehaviorSubject<string[]>(null);
 
   userDeleted(user: User) {
-    this.checkUser.next(`l'utilistateur ${user.lastName} ${user.firstName}
-    à bien été supprimé`);
-    this.checkUser.complete();
+    this.checkUser.next(['success', `l'utilistateur ${user.lastName} ${user.firstName}
+    à bien été supprimé`]);
+  }
+  userNotDeleted(message: string) {
+    this.checkUser.next(['danger', message]);
   }
   userUpdated(user: User) {
-    this.checkUser.next(`l'utilistateur ${user.lastName} ${user.firstName}
-    à bien été modifié`);
-    this.checkUser.complete();
+    this.checkUser.next(['success', `l'utilistateur ${user.lastName} ${user.firstName}
+    à bien été modifié`]);
   }
-
 
   addUser(user: User) {
     this.user.next(user);
-    this.user.complete();
   }
   closeModal() {
     this.modalService.dismissAll();
@@ -87,11 +83,6 @@ export class UserService {
 
   deleteOneUser(user: User): Observable<User> {
     return this.http
-      .delete(this.URL_BACKEND + '/delete/' + user.id, this.httpOptions)
-      .pipe(
-        catchError(error => {
-          return error;
-        })
-      );
+      .delete(this.URL_BACKEND + '/delete/' + user.id, this.httpOptions);
   }
 }

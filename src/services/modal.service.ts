@@ -21,7 +21,7 @@ export class ModalService {
     deleteKind: ModalDeleteNatureComponent
   };
   openModal(name: string) {
-    this.modalService.open(this.MODALS[name]);
+    this.modalService.open(this.MODALS[name],{ size: 'lg' });
   }
 
   closeModal() {

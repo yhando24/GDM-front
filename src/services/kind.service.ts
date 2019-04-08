@@ -23,35 +23,14 @@ export class KindService {
   }
 
 
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
 
-
-  private kind = new AsyncSubject<Kind>();
-  public checkKind = new AsyncSubject<string>();
-
-  // kindDeleted(kind: Kind) {
-  //   this.checkKind.next(`la nature ${kind.name}
-  //   à bien été supprimé`);
-  //   this.checkKind.complete();
-  // }
-  // kindUpdated(kind: Kind) {
-  //   this.checkKind.next(`la nature ${kind.name}
-  //   à bien été modifiée`);
-  //   this.checkKind.complete();
-  // }
-
-  addKind(kind: Kind) {
-    this.kind.next(kind);
-    this.kind.complete();
-  }
-
-  closeModal() {
-    this.modalService.dismissAll();
-  }
+  private kind: Kind;
 
   createKind(nouvelleNature: Kind): Observable<Kind> {
 
@@ -107,5 +86,13 @@ export class KindService {
   deleteKind(id: number): Observable<void> {
     console.log(id);
     return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
+  }
+
+  getKind(): Kind {
+    return this.kind;
+  }
+
+  addKind(kind: Kind) {
+    this.kind = kind;
   }
 }

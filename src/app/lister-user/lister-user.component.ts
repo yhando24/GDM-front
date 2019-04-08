@@ -28,7 +28,6 @@ export class ListerUserComponent implements OnInit {
   oneUser: User;
   enumRole: Role[];
   role: string;
-  alertVisible;
   alert: Alert;
   constructor(private data: UserService, private router: Router, private modal: ModalService) {
   }
@@ -39,14 +38,17 @@ export class ListerUserComponent implements OnInit {
       this.data
           .finAllUser()
           .subscribe(arg => (this.listeUsers = arg));
+
       this.data.checkUser.subscribe(message => {
-        this.alert.message = message,
-        this.alert.type = 'success',
-        this.alertVisible = true,
+        if (message !== null) {
+          this.alert.message = message[1],
+          this.alert.type = message[0];
+        }
         setTimeout(() => {
-          this.alertVisible = false;
-        }, 3000),
-          this.data
+          this.alert.message = '',
+          this.alert.type = '';
+        }, 2000);
+        this.data
             .finAllUser()
             .subscribe(arg => (this.listeUsers = arg));
       });

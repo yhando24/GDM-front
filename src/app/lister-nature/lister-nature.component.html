@@ -1,6 +1,6 @@
 <h2>liste des natures</h2>
 
-<table class="table table-striped">
+<table class="table table-striped ">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -27,7 +27,7 @@
       <td>{{ kind.dailyCharges }}</td>
       <td>{{ kind.authorizationToExceed }}</td>
       <td>
-         <button type="button" class="btn btn-warning" (click)="goToHistoric(kind)">Historique</button>
+         <button type="button" class="btn btn-info" (click)="goToHistoric(kind)">Historique</button>
         <button type="button" class="btn btn-warning" (click)="openUpdate(kind)">Modifier</button>
         <button type="button" class="btn btn-danger" (click)="openDelete(kind)">Supprimer</button>
       </td>
