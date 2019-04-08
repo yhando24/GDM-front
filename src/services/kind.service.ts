@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, AsyncSubject } from 'rxjs';
+import { Observable, Subject, AsyncSubject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Kind } from 'src/app/models';
@@ -22,15 +22,34 @@ export class KindService {
     return this.kind.asObservable();
   }
 
-
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
 
-  private kind: Kind;
+  private kind = new BehaviorSubject<Kind>(null);
+  public checkUser = new BehaviorSubject<string[]>(null);
+
+  kindDeleted(kind: Kind) {
+    this.checkUser.next(['success', `la nature ${kind.name}
+    à bien été supprimée`]);
+  }
+  kindNotDeleted(message: string) {
+    this.checkUser.next(['danger', message]);
+  }
+  kindUpdated(kind: Kind) {
+    this.checkUser.next(['success', `la nature ${kind.name}
+    à bien été modifiée`]);
+  }
+
+  addKind(kind: Kind) {
+    this.kind.next(kind);
+  }
+
+  closeModal() {
+    this.modalService.dismissAll();
+  }
 
   createKind(nouvelleNature: Kind): Observable<Kind> {
 
@@ -88,11 +107,4 @@ export class KindService {
     return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
 
-  getKind(): Kind {
-    return this.kind;
-  }
-
-  addKind(kind: Kind) {
-    this.kind = kind;
-  }
 }
