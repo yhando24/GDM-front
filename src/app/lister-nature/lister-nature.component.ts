@@ -21,7 +21,7 @@ export class ListerNatureComponent implements OnInit {
   footerModal: string;
   closeResult: string;
 
-  constructor(private data: KindService, private modalService: ModalService, config: NgbModalConfig, private router: Router) {
+  constructor(private data: KindService, private modalService: ModalService, config: NgbModalConfig, private router: Router, private modal: ModalService) {
 
     config.backdrop = 'static';
     config.keyboard = false;
