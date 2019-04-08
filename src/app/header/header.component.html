@@ -1,4 +1,4 @@
-      <nav class="navbar navbar-expand-lg navbar-light navbar-GDM">
+      <nav class="navbar navbar-expand-lg navbar-light navbar-GDM" *ngIf="isAuthenticated()">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -25,8 +25,12 @@
 
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <a class="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
-            </form>
+
+          <div *ngIf="isAuthenticated()">Bonjour {{user.firstName}}</div>
+
+
+           <a *ngIf="!isAuthenticated()" lass="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
+           <a *ngIf="isAuthenticated()"  class="nav-link"><button class="btn btn-deconnecter" (click)="bye()">Deconnecter</button></a>
+
           </div>
         </nav>
