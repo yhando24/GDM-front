@@ -30,7 +30,7 @@ export const ROUTES: Routes = [
   { path: 'kinds', component: ListerNatureComponent },
   { path: 'creationUsers', component: FormusercreateComponent },
   { path: 'login', component: ConnectionUserComponent },
-  { path: 'historic/:id', component: ListerHistoriqueNatureComponent },
+  { path: 'kinds/historique/:id', component: ListerHistoriqueNatureComponent },
   { path: '', pathMatch: 'full', redirectTo: 'accueil' },
   { path: 'delete-user', component: ModalDeleteUserComponent}
 ];

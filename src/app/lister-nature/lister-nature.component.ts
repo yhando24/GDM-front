@@ -71,8 +71,8 @@ export class ListerNatureComponent implements OnInit {
     }
   }
 
-  goToHistoric(id: number){
-    this.router.navigateByUrl('historic/'+ id);
+  goToHistoric(kind: Kind){
+    this.router.navigateByUrl('kinds/historique/' + kind.id);
   }
 }
 

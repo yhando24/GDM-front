@@ -12,8 +12,7 @@
       <th scope="col">Bonus</th>
       <th scope="col">Plafond frais journalier</th>
       <th scope="col">Autorisation de dépassement</th>
-      <th scope="col">Action</th>
-    </tr>
+     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let kind of listeHistoricKinds; index as i">
@@ -26,7 +25,6 @@
       <td>{{ kind.bonus }}</td>
       <td>{{ kind.dailyCharges }}</td>
       <td>{{ kind.authorizationToExceed }}</td>
-      <td routerLink="/historic/{{kind.id}}"></td>
     </tr>
   </tbody>
 </table>
