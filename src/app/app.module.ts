@@ -4,7 +4,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { ListerUserComponent } from './lister-user/lister-user.component';
 
 import { HeaderComponent } from './header/header.component';
 import { CreationNatureMissionComponent } from './creation-nature-mission/creation-nature-mission.component';
@@ -20,15 +19,11 @@ import { ConnectionUserComponent } from './connection-user/connection-user.compo
 import { AuthInterceptor } from 'AuthInterceptor';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
+import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
+import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
 
 
 @NgModule({
-<<<<<<< HEAD
-  declarations: [AppComponent, ListerUserComponent],
-  imports: [BrowserModule, NgbModule,
-    RouterModule.forRoot(ROUTES)],
-  providers: [],
-=======
   declarations: [
     AppComponent,
     FormusercreateComponent,
@@ -40,7 +35,9 @@ import { ListerHistoriqueNatureComponent } from './lister-historique-nature/list
     ModalUpdateUserComponent,
     ListerNatureComponent,
     ConnectionUserComponent,
-    ListerHistoriqueNatureComponent
+    ListerHistoriqueNatureComponent,
+    ModalDeleteNatureComponent,
+    ModalUpdateNatureComponent
   ],
 
   imports: [
@@ -55,7 +52,6 @@ import { ListerHistoriqueNatureComponent } from './lister-historique-nature/list
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
->>>>>>> 87eeb7d98f4bde745450c878ae1667ba2d065dcc
   bootstrap: [AppComponent]
 })
 export class AppModule {}
