@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, AsyncSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Kind } from 'src/app/models';
+import { Kind, Historic } from 'src/app/models';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -62,8 +62,8 @@ export class KindService {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
   }
 
-  findKindHistoric(id: number): Observable<Kind[]> {
-    return this.http.get<Kind[]>(URL_BACKEND + 'kinds/historic/' + id);
+  findKindHistoric(id: number): Observable<Historic[]> {
+    return this.http.get<Historic[]>(URL_BACKEND + 'kinds/historic/' + id);
   }
 
   getById(id: number): Observable<Kind> {

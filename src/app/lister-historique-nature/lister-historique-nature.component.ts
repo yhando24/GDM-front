@@ -3,7 +3,7 @@ import { KindService } from 'src/services/kind.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ModalService } from 'src/services/modal.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Kind } from '../models';
+import { Kind, Historic } from '../models';
 
 @Component({
   selector: 'app-lister-historique-nature',
@@ -13,7 +13,7 @@ import { Kind } from '../models';
 export class ListerHistoriqueNatureComponent implements OnInit {
 
   erreur: string;
-  listeHistoricKinds;
+  listeHistoricKinds: Historic[];
 
   constructor(private service: KindService, private modalNgb: NgbModal) { }
 

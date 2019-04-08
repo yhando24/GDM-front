@@ -55,3 +55,8 @@ export interface Kind {
   dailyCharges?: number;
   authorizationToExceed?: boolean;
 }
+
+export interface Historic {
+  timestamp?: Date;
+  kind: Kind;
+}
