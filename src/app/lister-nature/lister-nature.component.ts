@@ -3,6 +3,7 @@ import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { ModalService } from 'src/services/modal.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ListerNatureComponent implements OnInit {
   footerModal: string;
   closeResult: string;
 
-  constructor(private data: KindService, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
+  constructor(private data: KindService, private modalService: NgbModal, config: NgbModalConfig, private router: Router, private modal: ModalService) {
 
     config.backdrop = 'static';
     config.keyboard = false;
@@ -71,8 +72,9 @@ export class ListerNatureComponent implements OnInit {
     }
   }
 
-  goToHistoric(kind: Kind){
-    this.router.navigateByUrl('kinds/historique/' + kind.id);
+  goToHistoric(kind: Kind) {
+    this.data.addKind(kind);
+    this.modal.openModal('historicKind');
   }
 }
 
