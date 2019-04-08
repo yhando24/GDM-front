@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { User, Role, getRolesEnum,  } from '../models';
 import { Router } from '@angular/router';
+import { ModalDeleteUserComponent } from '../modal-delete-user/modal-delete-user.component';
+import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
 import { ModalService } from './../../services/modal.service';
 
 interface Alert {
@@ -11,6 +13,11 @@ interface Alert {
   message: string;
 }
 >>>>>>> 87eeb7d98f4bde745450c878ae1667ba2d065dcc
+
+const MODALS = {
+    annulerModule : ModalDeleteUserComponent,
+    modifModule : ModalUpdateUserComponent
+}
 
 @Component({
   selector: 'app-lister-user',
@@ -66,6 +73,7 @@ export class ListerUserComponent implements OnInit {
   newUser() {
     this.router.navigate(['/creationUsers/']);
   }
+
   delete(user: User) {
     this.data.addUser(user);
     this.modal.openModal('deleteUser');

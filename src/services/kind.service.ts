@@ -59,6 +59,10 @@ export class KindService {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
   }
 
+  findKindHistoric(id: number): Observable<Kind[]> {
+    return this.http.get<Kind[]>(URL_BACKEND + 'kinds/historic/' + id);
+  }
+
   getById(id: number): Observable<Kind> {
     return this.http.get<Kind>(URL_BACKEND + 'kinds');
   }
