@@ -33,7 +33,7 @@ import { ListerHistoriqueNatureComponent } from './lister-historique-nature/list
     ModalUpdateUserComponent,
     ListerNatureComponent,
     ConnectionUserComponent,
-    NgbdModalContent,
+    NgbModalContent,
     ListerHistoriqueNatureComponent,
     ConnectionUserComponent
 
