@@ -45,13 +45,13 @@ export class ListerNatureComponent implements OnInit {
   }
 
   openUpdate(kind: Kind) {
-    this.data.addKind(kind);
+    this.data.ajoutKind(kind);
     this.modalService.openModal('updateKind');
 
   }
 
   openDelete(kind: Kind) {
-    this.data.addKind(kind);
+    this.data.ajoutKind(kind);
     this.modalService.openModal('deleteKind');
   }
 

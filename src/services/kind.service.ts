@@ -28,6 +28,7 @@ export class KindService {
     })
   };
 
+
   private kind = new BehaviorSubject<Kind>(null);
   public checkUser = new BehaviorSubject<string[]>(null);
 
@@ -43,7 +44,7 @@ export class KindService {
     à bien été modifiée`]);
   }
 
-  addKind(kind: Kind) {
+  ajoutKind(kind: Kind) {
     this.kind.next(kind);
   }
 
