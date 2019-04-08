@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
-import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/services/modal.service';
 
@@ -74,7 +74,7 @@ export class ListerNatureComponent implements OnInit {
 
   goToHistoric(kind: Kind) {
     this.data.addKind(kind);
-    this.modal.openModal('historicKind');
+    this.modal.openModal('historicKind', { size: 'lg' });
   }
 }
 
