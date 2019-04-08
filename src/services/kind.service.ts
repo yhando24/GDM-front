@@ -107,6 +107,4 @@ export class KindService {
     return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
 
-
-
 }

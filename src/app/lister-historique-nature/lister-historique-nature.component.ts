@@ -17,7 +17,7 @@ export class ListerHistoriqueNatureComponent implements OnInit {
 
   constructor(private service: KindService, private modalNgb: NgbModal) { }
 
-  ngOnInit() {
+  /* ngOnInit() {
     const kind: Kind = this.service.getKind();
 
     this.service.findKindHistoric(kind.id).subscribe(
@@ -25,7 +25,7 @@ export class ListerHistoriqueNatureComponent implements OnInit {
       error => this.erreur = error.error.message
     );
 
-  }
+  } */
 
   close() {
     this.modalNgb.dismissAll();
