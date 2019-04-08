@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
-import { NgbModal, NgbModalConfig, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/services/modal.service';
 
@@ -21,10 +21,8 @@ export class ListerNatureComponent implements OnInit {
   footerModal: string;
   closeResult: string;
 
-  constructor(private data: KindService, private modalService: ModalService, config: NgbModalConfig, private router: Router, private modal: ModalService) {
+  constructor(private data: KindService, private modalService: ModalService, private router: Router) {
 
-    config.backdrop = 'static';
-    config.keyboard = false;
   }
 
   ngOnInit() {
@@ -34,6 +32,7 @@ export class ListerNatureComponent implements OnInit {
 
   submit() {
    // this.modalService.dismissAll();
+
     this.data.updateKind(this.oneKind).subscribe(value => value,
       error => console.log(`l'update n'a pas eu lieu` + error.error));
   }
@@ -46,9 +45,8 @@ export class ListerNatureComponent implements OnInit {
   }
 
   openUpdate(kind: Kind) {
-
-     // this.data.addKind(kind);
-      this.modalService.openModal('update-kind');
+    this.data.addKind(kind);
+    this.modalService.openModal('updateKind');
 
   }
 
@@ -70,7 +68,7 @@ export class ListerNatureComponent implements OnInit {
 
   goToHistoric(kind: Kind) {
     this.data.addKind(kind);
-    this.modal.openModal('historicKind', { size: 'lg' });
+    this.modalService.openModal('historicKind', { size: 'lg' });
   }
 }
 
