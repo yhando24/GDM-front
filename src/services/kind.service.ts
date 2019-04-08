@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, AsyncSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Kind } from 'src/app/models';
@@ -15,33 +15,36 @@ export class KindService {
 
   constructor(private http: HttpClient) { }
 
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
 
+  private kind: Kind;
+
   createKind(nouvelleNature: Kind): Observable<Kind> {
 
-    if ( nouvelleNature.invoiced == null) {
+    if (nouvelleNature.invoiced == null) {
       nouvelleNature.invoiced = false;
     }
 
-    if ( nouvelleNature.bonus == null ) {
+    if (nouvelleNature.bonus == null) {
       nouvelleNature.bonus = false;
     }
 
-    if ( nouvelleNature.authorizationToExceed == null ) {
+    if (nouvelleNature.authorizationToExceed == null) {
       nouvelleNature.authorizationToExceed = false;
     }
 
-    if ( nouvelleNature.bonusPercentage == null ) {
+    if (nouvelleNature.bonusPercentage == null) {
       nouvelleNature.bonusPercentage = 0;
     }
 
-    nouvelleNature.updatedAt = new Date() ;
+    nouvelleNature.updatedAt = new Date();
     console.log(nouvelleNature);
-    return this.http.post<Kind>(URL_BACKEND + 'kinds',  {
+    return this.http.post<Kind>(URL_BACKEND + 'kinds', {
       name: nouvelleNature.name,
       adr: nouvelleNature.adr,
       bonusPercentage: nouvelleNature.bonusPercentage,
@@ -52,7 +55,7 @@ export class KindService {
       authorizationToExceed: nouvelleNature.authorizationToExceed,
 
     },
-    this.httpOptions);
+      this.httpOptions);
   }
 
   findAllKind(): Observable<Kind[]> {
@@ -75,5 +78,13 @@ export class KindService {
   deleteKind(id: number): Observable<void> {
     console.log(id);
     return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
+  }
+
+  getKind(): Kind {
+    return this.kind;
+  }
+
+  addKind(kind: Kind) {
+    this.kind = kind;
   }
 }
