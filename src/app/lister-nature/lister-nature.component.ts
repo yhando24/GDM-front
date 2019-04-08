@@ -67,7 +67,8 @@ export class ListerNatureComponent implements OnInit {
   }
 
   goToHistoric(kind: Kind) {
-    this.data.addKind(kind);
+    //this.data.addKind(kind);
+    this.data.ajoutKind(kind);
     this.modalService.openModal('historicKind', { size: 'lg' });
   }
 }

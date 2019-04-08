@@ -28,6 +28,7 @@ export class KindService {
     })
   };
 
+  private kindd: Kind;
 
   private kind = new BehaviorSubject<Kind>(null);
   public checkUser = new BehaviorSubject<string[]>(null);
@@ -106,6 +107,15 @@ export class KindService {
   deleteKind(id: number): Observable<Kind> {
     console.log(id);
     return this.http.delete(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
+  }
+
+
+  getKind(): Kind {
+    return this.kindd;
+  }
+
+  addKind(kindd: Kind) {
+    this.kindd = kindd;
   }
 
 }
