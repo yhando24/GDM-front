@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
-import { User, Role, getEnum } from '../models';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User, Role, getRolesEnum,  } from '../models';
 import { Router } from '@angular/router';
 import { ModalDeleteUserComponent } from '../modal-delete-user/modal-delete-user.component';
 import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
+import { ModalService } from './../../services/modal.service';
+
 
 const MODALS = {
     annulerModule : ModalDeleteUserComponent,
@@ -24,39 +25,27 @@ export class ListerUserComponent implements OnInit {
   enumRole: Role[];
   role: string;
   visible: boolean;
-  constructor(private data: UserService, private router: Router, private modSer: NgbModal) {
+  constructor(private data: UserService, private router: Router, private modal:ModalService) {
   }
 
     ngOnInit() {
       this.visible = false;
-      this.enumRole = getEnum();
+      this.enumRole = getRolesEnum();
       this.data
           .finAllUser()
           .subscribe(arg => (this.listeUsers = arg));
       }
 
-
-  submit() {
-    this.modSer.dismissAll();
-    this.data
-      .saveOneUser(this.oneUser)
-      .subscribe(value => value,
-        error => console.log(`update n'a pas fonctionne ` + error.error));
+  update(user) {
+    this.data.addUser(user);
+    this.modal.openModal('updateUser');
   }
-
-
-  openUpdate(content: string, user: User) {
-    this.oneUser = user;
-    this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
-    });
-  }
-  newUser(){
+  newUser() {
     this.router.navigate(['/creationUsers/']);
   }
 
   delete(user: User) {
-    console.log(user);
-    this.data.addOneUser(user);
-    this.router.navigate(['users/delete-user/']);
+    this.data.addUser(user);
+    this.modal.openModal('deleteUser');
   }
 }

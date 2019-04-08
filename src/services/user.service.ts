@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, AsyncSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { User } from 'src/app/models';
 import { catchError } from 'rxjs/operators';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  URL_BACKEND = environment.backendUrl + 'users';
+  constructor(private http: HttpClient, private modalService: NgbModal) {}
 
-  constructor(private http: HttpClient) {}
+  get oneUser(): Observable<User> {
+    return this.user.asObservable();
+  }
+
+
+  URL_BACKEND = environment.backendUrl + 'users';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,14 +29,17 @@ export class UserService {
     })
   };
 
-  private oneUser = new Subject<User>();
+  private user = new AsyncSubject<User>();
 
-  get user(): Observable<User> {
-    return this.oneUser.asObservable();
+
+
+
+  addUser(user: User) {
+    this.user.next(user);
+    this.user.complete();
   }
-
-  addOneUser(user: User) {
-    this.oneUser.next(user);
+  closeModal() {
+    this.modalService.dismissAll();
   }
 
   finAllUser(): Observable<User[]> {
@@ -64,12 +76,12 @@ export class UserService {
   }
 
   deleteOneUser(user: User): Observable<User> {
-    return this.http.delete(
-      this.URL_BACKEND + '/delete/' + user.id,
-      this.httpOptions
-    ).pipe(
-      catchError(error =>{
-        return error;
-      }));
+    return this.http
+      .delete(this.URL_BACKEND + '/delete/' + user.id, this.httpOptions)
+      .pipe(
+        catchError(error => {
+          return error;
+        })
+      );
   }
 }
