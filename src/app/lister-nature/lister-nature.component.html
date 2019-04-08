@@ -27,6 +27,7 @@
       <td>{{ kind.dailyCharges }}</td>
       <td>{{ kind.authorizationToExceed }}</td>
       <td>
+         <button type="button" class="btn btn-warning" (click)="goToHistoric(kind)">Historique</button>
         <button type="button" class="btn btn-warning" (click)="openUpdate(ModalUpdate, kind)">Modifier</button>
         <button type="button" class="btn btn-danger" (click)="openDelete(ModalDelete, kind)">Supprimer</button>
       </td>
