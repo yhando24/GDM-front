@@ -28,14 +28,14 @@
       <td>{{ kind.authorizationToExceed }}</td>
       <td>
          <button type="button" class="btn btn-info" (click)="goToHistoric(kind)">Historique</button>
-        <button type="button" class="btn btn-warning" (click)="openUpdate(ModalUpdate, kind)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="openDelete(ModalDelete, kind)">Supprimer</button>
+        <button type="button" class="btn btn-warning" (click)="openUpdate(kind)">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="openDelete(kind)">Supprimer</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<!-- Modal Update Nature -->
+<!-- Modal Update Nature
 <ng-template #ModalUpdate let-modalUpdate>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Modification de la Nature</h4>
@@ -85,9 +85,9 @@
     <button type="submit" class="btn btn-outline-primary" (click)="submit()">Valider</button>
     <button type="button" class="btn btn-outline-dark" (click)="modalUpdate.close('Close click')">Annuler</button>
   </div>
-</ng-template>
+</ng-template> -->
 
-<!-- Modal Delete Nature -->
+<!-- Modal Delete Nature
 <ng-template #ModalDelete let-modalDelete>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-title">Suppression d'une nature</h4>
@@ -107,4 +107,4 @@
       (click)="modalDelete.dismiss('cancel click')">Annuler</button>
     <button type="button" class="btn btn-danger" (click)="delete(oneKind)">Confirmer</button>
   </div>
-</ng-template>
+</ng-template> -->

@@ -19,6 +19,8 @@ import { ConnectionUserComponent } from './connection-user/connection-user.compo
 import { AuthInterceptor } from 'AuthInterceptor';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
+import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
+import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { ListerHistoriqueNatureComponent } from './lister-historique-nature/list
     ModalUpdateUserComponent,
     ListerNatureComponent,
     ConnectionUserComponent,
-    ListerHistoriqueNatureComponent
+    ListerHistoriqueNatureComponent,
+    ModalDeleteNatureComponent,
+    ModalUpdateNatureComponent
   ],
 
   imports: [
@@ -44,7 +48,7 @@ import { ListerHistoriqueNatureComponent } from './lister-historique-nature/list
     RouterModule.forRoot(ROUTES)
   ],
   entryComponents: [ModalUpdateUserComponent,
-    ModalDeleteUserComponent],
+    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

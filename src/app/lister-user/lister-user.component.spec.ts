@@ -8,9 +8,15 @@ describe('ListerUserComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+<<<<<<< HEAD
+      declarations: [ ListerUserComponent ]
+    })
+    .compileComponents();
+=======
       declarations: [ListerUserComponent]
     })
       .compileComponents();
+>>>>>>> 87eeb7d98f4bde745450c878ae1667ba2d065dcc
   }));
 
   beforeEach(() => {
