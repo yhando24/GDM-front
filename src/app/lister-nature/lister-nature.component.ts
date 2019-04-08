@@ -3,6 +3,7 @@ import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
 import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { ModalService } from 'src/services/modal.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ListerNatureComponent implements OnInit {
   footerModal: string;
   closeResult: string;
 
-  constructor(private data: KindService, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
+  constructor(private data: KindService, private modalService: ModalService, config: NgbModalConfig, private router: Router) {
 
     config.backdrop = 'static';
     config.keyboard = false;
@@ -32,28 +33,28 @@ export class ListerNatureComponent implements OnInit {
   }
 
   submit() {
-    this.modalService.dismissAll();
+   // this.modalService.dismissAll();
     this.data.updateKind(this.oneKind).subscribe(value => value,
       error => console.log(`l'update n'a pas eu lieu` + error.error));
   }
 
   delete(kind: Kind) {
     console.log(kind);
-    this.modalService.dismissAll();
+   // this.modalService.dismissAll();
     this.data.deleteKind(kind.id).subscribe(value => this.ngOnInit(),
       error => console.log(`la suppression a échoué` + error.error));
   }
 
   openUpdate(kind: Kind) {
 
-      this.data.addUser(kind);
-      this.modalService.open('updateKind');
+     // this.data.addKind(kind);
+      this.modalService.openModal('update-kind');
 
   }
 
   openDelete(kind: Kind) {
-    this.modalService.open('deleteKind');
-    //this.data.deleteKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
+    this.data.addKind(kind);
+    this.modalService.openModal('deleteKind');
   }
 
 

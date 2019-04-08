@@ -48,7 +48,7 @@ import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-n
     RouterModule.forRoot(ROUTES)
   ],
   entryComponents: [ModalUpdateUserComponent,
-    ModalDeleteUserComponent],
+    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

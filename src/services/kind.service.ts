@@ -14,9 +14,14 @@ const URL_BACKEND = environment.backendUrl;
 })
 
 export class KindService {
-  oneKind: any;
+
 
   constructor(private http: HttpClient, private modalService: NgbModal) { }
+
+  get oneKind(): Observable<Kind> {
+    return this.kind.asObservable();
+  }
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,23 +29,24 @@ export class KindService {
     })
   };
 
-  private user = new AsyncSubject<Kind>();
+
+  private kind = new AsyncSubject<Kind>();
   public checkKind = new AsyncSubject<string>();
 
-  kindDeleted(kind: Kind) {
-    this.checkKind.next(`la nature ${kind.name}
-    à bien été supprimé`);
-    this.checkKind.complete();
-  }
-  kindUpdated(kind: Kind) {
-    this.checkKind.next(`la nature ${kind.name}
-    à bien été modifiée`);
-    this.checkKind.complete();
-  }
+  // kindDeleted(kind: Kind) {
+  //   this.checkKind.next(`la nature ${kind.name}
+  //   à bien été supprimé`);
+  //   this.checkKind.complete();
+  // }
+  // kindUpdated(kind: Kind) {
+  //   this.checkKind.next(`la nature ${kind.name}
+  //   à bien été modifiée`);
+  //   this.checkKind.complete();
+  // }
 
-  addUser(kind: Kind) {
-    this.user.next(kind);
-    this.user.complete();
+  addKind(kind: Kind) {
+    this.kind.next(kind);
+    this.kind.complete();
   }
 
   closeModal() {

@@ -1,8 +1,7 @@
 <!-- Modal Delete Nature -->
-<ng-template #ModalDelete let-modalDelete>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-title">Suppression d'une nature</h4>
-    <button type="button" class="close" aria-describedby="modal-title" (click)="modalDelete.dismiss('Cross click')">
+    <button type="button" class="close" aria-describedby="modal-title">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -14,8 +13,6 @@
     </p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary"
-      (click)="modalDelete.dismiss('cancel click')">Annuler</button>
+    <button type="button" class="btn btn-outline-secondary">Annuler</button>
     <button type="button" class="btn btn-danger" (click)="delete()">Confirmer</button>
   </div>
-</ng-template>
