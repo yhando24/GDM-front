@@ -14,7 +14,7 @@ interface Alert {
 const MODALS = {
     annulerModule : ModalDeleteUserComponent,
     modifModule : ModalUpdateUserComponent
-}
+};
 
 @Component({
   selector: 'app-lister-user',
