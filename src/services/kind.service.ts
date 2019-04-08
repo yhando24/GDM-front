@@ -30,17 +30,17 @@ export class KindService {
 
 
   private kind = new BehaviorSubject<Kind>(null);
-  public checkUser = new BehaviorSubject<string[]>(null);
+  public checkKind = new BehaviorSubject<string[]>(null);
 
   kindDeleted(kind: Kind) {
-    this.checkUser.next(['success', `la nature ${kind.name}
+    this.checkKind.next(['success', `la nature ${kind.name}
     à bien été supprimée`]);
   }
   kindNotDeleted(message: string) {
-    this.checkUser.next(['danger', message]);
+    this.checkKind.next(['danger', message]);
   }
   kindUpdated(kind: Kind) {
-    this.checkUser.next(['success', `la nature ${kind.name}
+    this.checkKind.next(['success', `la nature ${kind.name}
     à bien été modifiée`]);
   }
 
@@ -103,9 +103,9 @@ export class KindService {
     return this.http.patch<Kind>(URL_BACKEND + 'kinds', kind, this.httpOptions);
   }
 
-  deleteKind(id: number): Observable<Kind> {
+  deleteKind(id: number): Observable<void> {
     console.log(id);
-    return this.http.delete(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
+    return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
 
 }
