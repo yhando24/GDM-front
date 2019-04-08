@@ -102,9 +102,9 @@ export class KindService {
     return this.http.patch<Kind>(URL_BACKEND + 'kinds', kind, this.httpOptions);
   }
 
-  deleteKind(id: number): Observable<void> {
+  deleteKind(id: number): Observable<Kind> {
     console.log(id);
-    return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
+    return this.http.delete(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
 
 }

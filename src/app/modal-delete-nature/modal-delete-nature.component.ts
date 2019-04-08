@@ -27,8 +27,8 @@ export class ModalDeleteNatureComponent implements OnInit {
 
   delete() {
     this.data.deleteKind(this.oneKind.id).subscribe(
-      () => this.data.deleteKind(this.oneKind.id),
-      error => console.log(error.error)
+      () => this.data.kindDeleted(this.oneKind),
+      error => this.data.kindNotDeleted(error.error)
     );
     this.data.closeModal();
 
