@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { UserService } from 'src/services/user.service';
-import { ModalService } from 'src/services/modal.service';
 import { Router } from '@angular/router';
+
 
 
 
@@ -37,7 +37,11 @@ export class ModalDeleteUserComponent implements OnInit {
       this.data.closeModal();
   }
   delete() {
-    this.data.deleteOneUser(this.oneUser).subscribe();
+    this.data.deleteOneUser(this.oneUser).subscribe(
+      () => this.data.userDeleted(this.oneUser),
+      error => console.log(error.error)
+    );
+    this.data.closeModal();
 
   }
 }

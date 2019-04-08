@@ -6,6 +6,10 @@ import { ModalDeleteUserComponent } from '../modal-delete-user/modal-delete-user
 import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
 import { ModalService } from './../../services/modal.service';
 
+interface Alert {
+  type: string;
+  message: string;
+}
 
 const MODALS = {
     annulerModule : ModalDeleteUserComponent,
@@ -24,17 +28,29 @@ export class ListerUserComponent implements OnInit {
   oneUser: User;
   enumRole: Role[];
   role: string;
-  visible: boolean;
-  constructor(private data: UserService, private router: Router, private modal:ModalService) {
+  alertVisible;
+  alert: Alert;
+  constructor(private data: UserService, private router: Router, private modal: ModalService) {
   }
 
     ngOnInit() {
-      this.visible = false;
+      this.alert = {type: '' , message: ''};
       this.enumRole = getRolesEnum();
       this.data
           .finAllUser()
           .subscribe(arg => (this.listeUsers = arg));
-      }
+      this.data.checkUser.subscribe(message => {
+        this.alert.message = message,
+        this.alert.type = 'success',
+        this.alertVisible = true,
+        setTimeout(() => {
+          this.alertVisible = false;
+        }, 3000),
+          this.data
+            .finAllUser()
+            .subscribe(arg => (this.listeUsers = arg));
+      });
+    }
 
   update(user) {
     this.data.addUser(user);

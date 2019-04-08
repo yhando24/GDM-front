@@ -30,8 +30,18 @@ export class UserService {
   };
 
   private user = new AsyncSubject<User>();
+  public checkUser = new AsyncSubject<string>();
 
-
+  userDeleted(user: User) {
+    this.checkUser.next(`l'utilistateur ${user.lastName} ${user.firstName}
+    à bien été supprimé`);
+    this.checkUser.complete();
+  }
+  userUpdated(user: User) {
+    this.checkUser.next(`l'utilistateur ${user.lastName} ${user.firstName}
+    à bien été modifié`);
+    this.checkUser.complete();
+  }
 
 
   addUser(user: User) {
