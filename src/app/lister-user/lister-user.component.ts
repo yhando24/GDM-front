@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { UserService } from './../../services/user.service';
 import { User, Role, getRolesEnum,  } from '../models';
 import { Router } from '@angular/router';
@@ -12,7 +10,6 @@ interface Alert {
   type: string;
   message: string;
 }
->>>>>>> 87eeb7d98f4bde745450c878ae1667ba2d065dcc
 
 const MODALS = {
     annulerModule : ModalDeleteUserComponent,
@@ -22,17 +19,6 @@ const MODALS = {
 @Component({
   selector: 'app-lister-user',
   templateUrl: './lister-user.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./lister-user.component.css']
-})
-export class ListerUserComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-=======
   styleUrls: ['./lister-user.component.css'],
 
 })
@@ -78,5 +64,4 @@ export class ListerUserComponent implements OnInit {
     this.data.addUser(user);
     this.modal.openModal('deleteUser');
   }
->>>>>>> 87eeb7d98f4bde745450c878ae1667ba2d065dcc
 }

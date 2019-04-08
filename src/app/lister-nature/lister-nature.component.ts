@@ -44,22 +44,18 @@ export class ListerNatureComponent implements OnInit {
       error => console.log(`la suppression a échoué` + error.error));
   }
 
-  openUpdate(content: string, kind: Kind) {
-    this.oneKind = kind;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(() => {
-        this.data.updateKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
-        console.log(this.oneKind);
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+  openUpdate(kind: Kind) {
+
+      this.data.addUser(kind);
+      this.modalService.open('updateKind');
+
   }
 
-  openDelete(content: string, kind: Kind) {
-    this.oneKind = kind;
-    this.modalService.open(content);
+  openDelete(kind: Kind) {
+    this.modalService.open('deleteKind');
     //this.data.deleteKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
   }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
