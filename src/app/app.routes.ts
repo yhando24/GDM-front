@@ -3,7 +3,8 @@ import { CreationNatureMissionComponent } from './creation-nature-mission/creati
 import { ListerUserComponent } from './lister-user/lister-user.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
-
+import { AppComponent } from './app.component';
+import { ConnexionGuard } from 'src/guards/connexionGuard';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
@@ -13,7 +14,7 @@ import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-n
 import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
 
 export const ROUTES: Routes = [
-  { path: 'accueil', component: AccueilComponent },
+
   { path: 'creationNature', component: CreationNatureMissionComponent },
   {
     path: 'users',
@@ -43,6 +44,13 @@ export const ROUTES: Routes = [
   },
   { path: 'creationUsers', component: FormusercreateComponent },
   { path: 'login', component: ConnectionUserComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  {
+    path: 'accueil',
+    component: AccueilComponent,
+    canActivate: [ConnexionGuard],
+
+  },
   { path: 'kinds/historique/:id', component: ListerHistoriqueNatureComponent },
   { path: '', pathMatch: 'full', redirectTo: 'accueil' },
   { path: 'delete-user', component: ModalDeleteUserComponent }

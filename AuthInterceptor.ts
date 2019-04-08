@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
       const cloned = request.clone({
         headers: request.headers.set("Authorization",
-          "Bearer " + idToken)
+          'Bearer ' + idToken)
       });
 
       return next.handle(cloned);
@@ -30,10 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
       this.router.navigateByUrl('/login');
       return next.handle(request).pipe(catchError((error: HttpErrorResponse) => {
         // Auto logout if 401 response returned from api
-        if (error.status === 401) {
 
-          this.auth.isLoggedOut();
-        }
         return throwError(error);
       }));
     }
