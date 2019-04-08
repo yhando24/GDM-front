@@ -29,7 +29,7 @@ export class ModalDeleteUserComponent implements OnInit {
   delete() {
     this.data.deleteOneUser(this.oneUser).subscribe(
       () => this.data.userDeleted(this.oneUser),
-      error => console.log(error.error)
+      error => this.data.userNotDeleted(error.error)
     );
     this.data.closeModal();
 
