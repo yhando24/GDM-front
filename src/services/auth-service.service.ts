@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import * as moment from "moment";
 import { tap } from 'rxjs/operators';
 import { Logeur } from 'src/app/connection-user/connection-user.component';
-import { Observable, of, from, Subject } from 'rxjs';
+import { Observable, of, from, Subject, AsyncSubject, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -15,10 +15,10 @@ import { Router } from '@angular/router';
 })
 export class AuthServiceService {
 
-  private subject = new Subject<any>();
+
 
   authenticated: boolean = false;
-  current_User: User;
+  public current_User = new BehaviorSubject <User>(null);
 
   constructor(private http: HttpClient, private router: Router) { }
   login(email: string, password: string) : Observable<token> {
@@ -38,31 +38,37 @@ export class AuthServiceService {
   logout() {
     localStorage.removeItem("id_token");
     this.current_User =null;
-    this.router.navigateByUrl('/login');
+
     this.authenticated = false;
 
   }
   get isAuthenticated(): boolean{
-    return this.authenticated;
-  }
-  get currentUser() :Observable<User> | null{
     const helper = new JwtHelperService();
     const idToken = localStorage.getItem("id_token");
-    if (idToken != null) {
-    const email = helper.decodeToken(idToken).sub;
-    this.authenticated = true;
-    const URL_BACKEND = environment.backendUrl;
-    if (this.current_User === null || this.current_User === undefined){
 
+    if (!helper.isTokenExpired(idToken)){
 
-      return this.http.get<User>(URL_BACKEND + 'login/?email=' + email)
-
+       return true;
     }else{
-      return of(this.current_User);
+      return false;
     }
+  }
 
-    } else {
-      return null;
+   currentUser(){
+      const helper = new JwtHelperService();
+      const idToken = localStorage.getItem("id_token");
+      if (idToken != null) {
+        const email = helper.decodeToken(idToken).sub;
+        this.authenticated = true;
+        const URL_BACKEND = environment.backendUrl;
+
+
+
+        this.http.get<User>(URL_BACKEND + 'login/?email=' + email).subscribe(user =>{
+        this.current_User.next(user)
+
+      });
     }
   }
 }
+

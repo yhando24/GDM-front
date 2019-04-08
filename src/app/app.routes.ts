@@ -6,15 +6,23 @@ import { UpdateNatureMissionComponent } from './update-nature-mission/update-nat
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { AppComponent } from './app.component';
+import { ConnexionGuard } from 'src/guards/connexionGuard';
 
 
 
 export const ROUTES: Routes = [
-  { path: 'accueil', component: AccueilComponent },
+
   { path: 'creationNature', component: CreationNatureMissionComponent },
   { path: 'users', component: ListerUserComponent },
   { path: 'updateNature', component: UpdateNatureMissionComponent},
   { path: 'creationUsers', component: FormusercreateComponent },
   { path: 'login', component: ConnectionUserComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'accueil' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  {
+    path: 'accueil',
+    component: AccueilComponent,
+    canActivate: [ConnexionGuard],
+
+  }
+
 ];
