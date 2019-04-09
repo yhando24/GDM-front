@@ -18,7 +18,7 @@ export function getRolesEnum() {
 }
 
 export interface Mission {
-
+  id?: number;
   kind?: Kind;
   startDate?: Date;
   endDate?: Date;

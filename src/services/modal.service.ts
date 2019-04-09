@@ -5,6 +5,7 @@ import { ModalUpdateNatureComponent } from 'src/app/modal-update-nature/modal-up
 import { ModalDeleteNatureComponent } from 'src/app/modal-delete-nature/modal-delete-nature.component';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ListerHistoriqueNatureComponent } from 'src/app/lister-historique-nature/lister-historique-nature.component';
+import { ModalDeleteMissionComponent } from 'src/app/modal-delete-mission/modal-delete-mission.component';
 
 
 
@@ -19,7 +20,8 @@ export class ModalService {
     deleteUser: ModalDeleteUserComponent,
     historicKind: ListerHistoriqueNatureComponent,
     updateKind: ModalUpdateNatureComponent,
-    deleteKind: ModalDeleteNatureComponent
+    deleteKind: ModalDeleteNatureComponent,
+    deleteMission: ModalDeleteMissionComponent
   };
   openModal(name: string, sizeP?: NgbModalOptions) {
     if (sizeP !== undefined && sizeP !== null) {
