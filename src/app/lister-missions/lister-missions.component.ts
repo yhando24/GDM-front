@@ -15,7 +15,7 @@ export class ListerMissionsComponent implements OnInit {
 
   constructor(private data: MissionService, private route: Router) { }
   newMission(){
-    this.route.navigate(['/create-mission']);
+    this.route.navigate(['/createMission']);
   }
 
   ngOnInit() {
