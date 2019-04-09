@@ -1,18 +1,19 @@
-export interface User {
-  id?: number;
-  firstName?: string;
-  lastName?: string;
-  password?: string;
-  email?: string;
-  role?: Role;
-}
+  export interface User {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    password?: string;
+    email?: string;
+    role?: Role;
+  }
 
-export enum Role {
-  USER = 'User',
-  ADMIN = 'Admin',
-  MANAGER = 'Manager'
-}
+  export enum Role {
+    USER = 'User',
+    ADMIN = 'Admin',
+    MANAGER = 'Manager'
+  }
 
+<<<<<<< HEAD
 export function getEnum() {
   return [Role.USER, Role.ADMIN, Role.MANAGER];
 }
@@ -20,6 +21,14 @@ export function getEnum() {
 export function getRolesEnum() {
   return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
+=======
+  export function getEnum() {
+    return [Role.USER, Role.ADMIN, Role.MANAGER];
+  }
+  export function getRolesEnum() {
+      return [Role.MANAGER, Role.USER, Role.ADMIN];
+  }
+>>>>>>> ee600752e572c86a83fdfcbe56cb32567bb7fb32
 
 export interface Mission {
 

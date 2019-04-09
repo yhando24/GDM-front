@@ -59,7 +59,7 @@ export class ListerUserComponent implements OnInit {
     this.modal.openModal('updateUser');
   }
   newUser() {
-    this.router.navigate(['/creationUsers/']);
+    this.router.navigate(['/creation-users/']);
   }
 
   delete(user: User) {

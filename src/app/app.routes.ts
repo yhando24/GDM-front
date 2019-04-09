@@ -10,16 +10,22 @@ import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { KindsResolver } from './lister-nature/lister-nature.route';
+import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
+import { CreateMissionComponent } from './create-mission/create-mission.component';
 
 
 export const ROUTES: Routes = [
 
-  { path: 'creationNature', component: CreationNatureMissionComponent, canActivate: [AdminGuard] },
-  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard] },
-  { path: 'kinds', component: ListerNatureComponent },
-  { path: 'creationUsers', component: FormusercreateComponent, canActivate: [AdminGuard] },
+  { path: 'creation-nature', component: CreationNatureMissionComponent, canActivate: [AdminGuard]},
+  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
+  { path: 'kinds', component: ListerNatureComponent},
+  { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'missions', component: ListerMissionsComponent },
+  { path: 'createMission', component: CreateMissionComponent },
+
+
   {
     path: 'kinds/lister',
     component: ListerNatureComponent,
