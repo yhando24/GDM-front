@@ -34,19 +34,9 @@ export class ConnectionUserComponent implements OnInit {
     this.authService.login(this.user.email, this.user.password ).subscribe(
       (r) => {
         localStorage.setItem('id_token', r.id_token);
-        console.log("User is logged in");
-
-      }
-    );
-
-
+        this.authService.currentUser();
+        this.router.navigateByUrl('/accueil');
+      });
     }
-setTimeout(() => {
-  this.authService.currentUser();
-
-  this.router.navigateByUrl('/accueil');
-}, 600);
-
-
   }
 }

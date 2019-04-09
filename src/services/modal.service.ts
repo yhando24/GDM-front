@@ -25,7 +25,7 @@ export class ModalService {
     if (sizeP !== undefined && sizeP !== null) {
       this.modalService.open(this.MODALS[name], sizeP);
     } else {
-      this.modalService.open(this.MODALS[name], { size: 'sm' });
+      this.modalService.open(this.MODALS[name]);
     }
   }
 

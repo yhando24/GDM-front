@@ -21,7 +21,7 @@ export class ListerHistoriqueNatureComponent implements OnInit {
   ngOnInit() {
     /*const kind: Kind = this.service.getKind();
 
-    this.service.findKindHistoric(kind.id).subscribe(
+    /* this.service.findKindHistoric(kind.id).subscribe(
       values => this.listeHistoricKinds = values,
       error => this.erreur = error.error.message
     );*/
