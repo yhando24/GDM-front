@@ -1,5 +1,8 @@
 <h2>liste des missions</h2>
 <button type="button" class="btn btn-outline-dark" (click)=newMission()>Créer mission</button>
+  <p>
+    <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+  </p>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -35,10 +38,11 @@
 
       <td>
         <button type="button" class="btn btn-warning btn-sm" (click)="z">Modifier</button>
-        <button type="button" class="btn btn-danger btn-sm" (click)="z">Supprimer</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="delete(mission)">Supprimer</button>
         <button type="button" class="btn btn-danger btn-sm" (click)="z">Note de frais</button>
 
       </td>
+
     </tr>
   </tbody>
 </table>
