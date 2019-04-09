@@ -64,5 +64,5 @@ export interface Kind {
 
 export interface Historic {
   timestamp?: Date;
-  kind: Kind;
+  kind?: Kind;
 }
