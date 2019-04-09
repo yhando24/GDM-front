@@ -66,7 +66,6 @@ export interface Historic {
   timestamp?: Date;
   kind: Kind;
 }
-<<<<<<< HEAD
 
 export enum ExpenseAccountStatusEnum {
   EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
@@ -76,8 +75,7 @@ export interface ExpenseAccount {
   id?: number;
   date?: Date;
   type?: string;
-  montant?: number;
+  amount?: number;
   status?: ExpenseAccountStatusEnum;
 }
-=======
->>>>>>> c7465490bff7a57b08711634829790b6b486dc3e
+
