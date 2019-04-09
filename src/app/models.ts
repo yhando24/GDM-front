@@ -15,11 +15,13 @@ export enum Role {
 
 export function getEnum() {
   return [Role.USER, Role.ADMIN, Role.MANAGER];
-  export function getRolesEnum() {
+}
+
+export function getRolesEnum() {
     return [Role.MANAGER, Role.USER, Role.ADMIN];
   }
 
-  export interface Mission {
+export interface Mission {
 
     kind?: Kind;
     startDate?: Date;
@@ -33,20 +35,20 @@ export function getEnum() {
   }
 
 
-  export interface token {
+export interface token {
 
     id_token: string;
   }
 
-  export enum MissionStatusEnum {
+export enum MissionStatusEnum {
     EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
   }
 
-  export enum TransportEnum {
+export enum TransportEnum {
     TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
   }
 
-  export interface Kind {
+export interface Kind {
 
     id?: number;
     name?: string;
@@ -59,7 +61,7 @@ export function getEnum() {
     authorizationToExceed?: boolean;
   }
 
-  export interface Historic {
+export interface Historic {
     timestamp?: Date;
     kind: Kind;
   }
