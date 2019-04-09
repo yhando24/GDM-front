@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/services/user.service';
-import { User, Role, getEnum } from '../models';
+import { User, Role, getRolesEnum,  } from '../models';
 import { Router } from '@angular/router';
 
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormusercreateComponent implements OnInit {
 
-  listEnum: Role[] = getEnum();
+  listEnum: Role[] = getRolesEnum();
   user: User = {};
   messageErreur: string = '';
 
