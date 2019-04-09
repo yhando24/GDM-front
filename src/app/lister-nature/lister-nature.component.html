@@ -16,6 +16,7 @@
       <th scope="col">Bonus</th>
       <th scope="col">Plafond frais journalier</th>
       <th scope="col">Autorisation de dépassement</th>
+      <th scope="col">Activée?</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -29,10 +30,10 @@
       <td>{{ kind.invoiced }}</td>
       <td>{{ kind.bonus }}</td>
       <td>{{ kind.dailyCharges }}</td>
-
       <td>{{ kind.authorizationToExceed }}</td>
+      <td>{{ kind.active }}</td>
       <td>
-         <button type="button" class="btn btn-info" (click)="goToHistoric(kind)">Historique</button>
+        <button type="button" class="btn btn-info" (click)="goToHistoric(kind)">Historique</button>
         <button type="button" class="btn btn-warning" (click)="openUpdate(kind)">Modifier</button>
         <button type="button" class="btn btn-danger" (click)="openDelete(kind)">Supprimer</button>
       </td>
