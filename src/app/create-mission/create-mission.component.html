@@ -9,6 +9,7 @@
           <label for="formGroupExampleInput">Nature :</label>
           <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.name" name="name"
             #name="ngModel" required>
+            <option *ngFor="let nature of natures | keys" value="nature.key">{{nature.value}}</option>
           <p *ngIf="name.dirty && name.invalid">
             Entrez le nom de votre nouvelle nature de mission
           </p>
