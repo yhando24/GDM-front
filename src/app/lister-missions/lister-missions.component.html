@@ -1,0 +1,48 @@
+<h2>liste des missions</h2>
+<button type="button" class="btn btn-outline-dark" (click)=newMission()>Créer mission</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nature de la mission</th>
+      <th scope="col">Date de début</th>
+      <th scope="col">Date de fin</th>
+      <!-- // adresse l'employé -->
+      <th scope="col">Ville de départ</th>
+      <th scope="col">Ville d'arrivée</th>
+      <th scope="col">Bonus</th>
+      <th scope="col">Transport</th>
+      <th scope="col">Montant de la facture</th>
+      <th scope="col">Status de la mission</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mission of listeMission; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ mission.kind.name}}</td>
+      <td>{{ mission.startDate }}</td>
+      <td>{{ mission.endDate }}</td>
+      <td>{{ mission.departureCity }}</td>
+      <td>{{ mission.arrivalCity }}</td>
+      <!-- //prime = facture toal * % de prime -> disponible dans nature -->
+      <td>{{ mission.prime }}</td>
+      <td>{{ mission.transportEnum }}</td>
+      <!-- calcul date fin - date début * le TJM -->
+      <td>0 €</td>
+      <td>{{ mission.missionStatus }}</td>
+
+      <td>
+        <button type="button" class="btn btn-warning btn-sm" (click)="z">Modifier</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="z">Supprimer</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="z">Note de frais</button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<router-outlet></router-outlet>
+
+
+

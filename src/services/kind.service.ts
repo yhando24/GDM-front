@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, AsyncSubject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Kind } from 'src/app/models';
+import { Kind, Historic } from 'src/app/models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -28,6 +28,7 @@ export class KindService {
     })
   };
 
+  private kindd: Kind;
 
   private kind = new BehaviorSubject<Kind>(null);
   public checkKind = new BehaviorSubject<string[]>(null);
@@ -90,8 +91,8 @@ export class KindService {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
   }
 
-  findKindHistoric(id: number): Observable<Kind[]> {
-    return this.http.get<Kind[]>(URL_BACKEND + 'kinds/historic/' + id);
+  findKindHistoric(id: number): Observable<Historic[]> {
+    return this.http.get<Historic[]>(URL_BACKEND + 'kinds/historic/' + id);
   }
 
   getById(id: number): Observable<Kind> {
@@ -106,6 +107,15 @@ export class KindService {
   deleteKind(id: number): Observable<void> {
     console.log(id);
     return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
+  }
+
+
+  getKind(): Kind {
+    return this.kindd;
+  }
+
+  addKind(kindd: Kind) {
+    this.kindd = kindd;
   }
 
 }

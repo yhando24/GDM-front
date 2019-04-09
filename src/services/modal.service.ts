@@ -17,7 +17,7 @@ export class ModalService {
   MODALS = {
     updateUser: ModalUpdateUserComponent,
     deleteUser: ModalDeleteUserComponent,
-
+    historicKind: ListerHistoriqueNatureComponent,
     updateKind: ModalUpdateNatureComponent,
     deleteKind: ModalDeleteNatureComponent
   };
