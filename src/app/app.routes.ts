@@ -9,16 +9,23 @@ import { ConnectionUserComponent } from './connection-user/connection-user.compo
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 import { AdminGuard } from 'src/guards/admin.guard';
+import { KindsResolver } from './lister-nature/lister-nature.route';
 
 
 export const ROUTES: Routes = [
 
-  { path: 'creationNature', component: CreationNatureMissionComponent, canActivate: [AdminGuard]},
-  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
-  { path: 'kinds', component: ListerNatureComponent},
-  { path: 'creationUsers', component: FormusercreateComponent, canActivate: [AdminGuard]},
+  { path: 'creationNature', component: CreationNatureMissionComponent, canActivate: [AdminGuard] },
+  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard] },
+  { path: 'kinds', component: ListerNatureComponent },
+  { path: 'creationUsers', component: FormusercreateComponent, canActivate: [AdminGuard] },
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  {
+    path: 'kinds/lister',
+    component: ListerNatureComponent,
+    resolve: {
+      kinds: KindsResolver
+    }},
   {
     path: 'accueil',
     component: AccueilComponent,
@@ -28,3 +35,4 @@ export const ROUTES: Routes = [
   { path: 'kinds/historique/:id', component: ListerHistoriqueNatureComponent },
   { path: '', pathMatch: 'full', redirectTo: 'accueil' },
 ];
+
