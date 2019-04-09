@@ -24,6 +24,9 @@ import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-n
 import { KeysPipe } from './pipe/key-pipe-enum';
 import { KindsResolver } from './lister-nature/lister-nature.route';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
+import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { CreationExpenseAccountComponent } from './creation-expense-account/crea
     ModalUpdateNatureComponent,
     KeysPipe,
     KindsResolver,
-    CreationExpenseAccountComponent
+    CreationExpenseAccountComponent,
+    ModalDeleteMissionComponent,
+
   ],
 
   imports: [
@@ -55,7 +60,7 @@ import { CreationExpenseAccountComponent } from './creation-expense-account/crea
     RouterModule.forRoot(ROUTES)
   ],
   entryComponents: [ModalUpdateUserComponent,
-    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent],
+    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent, ModalDeleteMissionComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

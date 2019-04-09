@@ -17,10 +17,10 @@ import { CreationExpenseAccountComponent } from './creation-expense-account/crea
 
 export const ROUTES: Routes = [
 
-  { path: 'creationNature', component: CreationNatureMissionComponent, canActivate: [AdminGuard] },
-  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard] },
-  { path: 'kinds', component: ListerNatureComponent },
-  { path: 'creationUsers', component: FormusercreateComponent, canActivate: [AdminGuard] },
+  { path: 'creation-nature', component: CreationNatureMissionComponent, canActivate: [AdminGuard]},
+  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
+  { path: 'kinds', component: ListerNatureComponent},
+  { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'missions', component: ListerMissionsComponent },
