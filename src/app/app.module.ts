@@ -16,6 +16,8 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { AuthInterceptor } from 'AuthInterceptor';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
+import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
+import { CreateMissionComponent } from './create-mission/create-mission.component';
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
 import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
@@ -34,7 +36,8 @@ import { KindsResolver } from './lister-nature/lister-nature.route';
     ModalUpdateUserComponent,
     ListerNatureComponent,
     ConnectionUserComponent,
-
+    ListerMissionsComponent,
+    CreateMissionComponent,
     ListerHistoriqueNatureComponent,
     ModalDeleteNatureComponent,
     ModalUpdateNatureComponent,

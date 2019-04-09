@@ -43,21 +43,16 @@
         <input class="form-control form-control-lg" type="checkbox" name="Autorisation de dépassement"
           placeholder={{oneKind.authorizationToExceed}} [(ngModel)]="oneKind.authorizationToExceed" />
       </div>
-      <label>Désactiver?</label>
+      <label>Etat d'activation</label>
       <div class="input-group"></div>
-      <input class="form-control form-control-lg" type="checkbox" name="Niveau d'activation" placeholder={{oneKind.active}} [(ngModel)]="oneKind.active">
+      <input class="form-control form-control-lg" type="checkbox" name="Niveau d'activation"
+        [(ngModel)]="oneKind.active"/>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-primary" (click)="submit()">
-    Valider
-  </button>
-  <button
-    type="button"
-    class="btn btn-outline-dark"
-    (click)="close()"
-  >
+  <button type="submit" class="btn btn-outline-primary" (click)="submit()">Valider</button>
+  <button type="button" class="btn btn-outline-dark" (click)="close()">
     Annuler
   </button>
 </div>
