@@ -1,0 +1,18 @@
+<!-- Modal Delete Nature -->
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Suppression d'une nature</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>Etes-vous certain de vouloir supprimer<span class="text-primary"> {{ oneKind.name }} </span> ?</strong>
+    </p>
+    <p>Toutes les informations associées a cette nature seront supprimées.
+      <span class="text-danger">Cette operation est irreversible.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary"(click)="close()">Annuler</button>
+    <button type="button" class="btn btn-danger" (click)="delete()">Confirmer</button>
+  </div>

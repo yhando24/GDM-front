@@ -20,8 +20,12 @@ export class CreationNatureMissionComponent implements OnInit {
 
   submit(){
     this.serviceKind.createKind(this.nouvelleNature).subscribe(
-      value => this.router.navigateByUrl('accueil'),
+      value => this.router.navigateByUrl('kinds'),
       error => this.error = error
     );
+  }
+
+  cancel(){
+    this.router.navigateByUrl('kinds');
   }
 }

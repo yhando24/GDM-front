@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ROUTES } from './app.routes';
 
 import { HeaderComponent } from './header/header.component';
@@ -20,7 +20,10 @@ import { AuthInterceptor } from 'AuthInterceptor';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
 import { CreateMissionComponent } from './create-mission/create-mission.component';
-
+import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
+import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
+import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
+import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
 
 @NgModule({
   declarations: [
@@ -35,16 +38,22 @@ import { CreateMissionComponent } from './create-mission/create-mission.componen
     ListerNatureComponent,
     ConnectionUserComponent,
     ListerMissionsComponent,
-    CreateMissionComponent],
+    CreateMissionComponent,
+    ListerHistoriqueNatureComponent,
+    ModalDeleteNatureComponent,
+    ModalUpdateNatureComponent,
+    UpdateNatureMissionComponent
+  ],
 
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES),
     FormsModule,
+    RouterModule.forRoot(ROUTES)
   ],
-
+  entryComponents: [ModalUpdateUserComponent,
+    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

@@ -1,5 +1,8 @@
 <h2>liste des utilisateurs</h2>
 <button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
+<p>
+  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+</p>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -19,8 +22,8 @@
       <td>{{ user.lastName }}</td>
       <td>{{ user.role }}</td>
       <td>
-        <button type="button" class="btn btn-warning" (click)="openUpdate(modalUpdate, user)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="openDelete(modalDelete, user)">Supprimer</button>
+        <button type="button" class="btn btn-warning"   (click)="update(user)">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button>
       </td>
     </tr>
   </tbody>

@@ -1,7 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KindService } from 'src/services/kind.service';
 import { Kind } from '../models';
-import { NgbModal, NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { ModalService } from 'src/services/modal.service';
+
+interface Alert {
+  type: string;
+  message: string;
+}
 
 
 @Component({
@@ -18,47 +25,60 @@ export class ListerNatureComponent implements OnInit {
   messageModal: string;
   footerModal: string;
   closeResult: string;
+  alert: Alert;
 
-  constructor(private data: KindService, private modalService: NgbModal, config: NgbModalConfig) {
+  constructor(private data: KindService, private modalService: ModalService, private router: Router) {
 
-    config.backdrop = 'static';
-    config.keyboard = false;
   }
 
   ngOnInit() {
-    this.data.findAllKind()
+
+    this.alert = { type: '', message: '' };
+    this.data
+      .findAllKind()
       .subscribe(arg => (this.listeKinds = arg));
+
+    this.data.checkKind.subscribe(message => {
+      if (message !== null) {
+        this.alert.message = message[1],
+          this.alert.type = message[0];
+      }
+      setTimeout(() => {
+        this.alert.message = '',
+          this.alert.type = '';
+      }, 2000);
+      this.data
+        .findAllKind()
+        .subscribe(arg => (this.listeKinds = arg));
+    });
+
   }
 
   submit() {
-    this.modalService.dismissAll();
-    this.data.updateKind(this.oneKind).subscribe(value => value,
+    // this.modalService.dismissAll();
+
+    this.data.updateKind(this.oneKind).subscribe(() => this.data.findAllKind()
+      .subscribe(arg => (this.listeKinds = arg)),
       error => console.log(`l'update n'a pas eu lieu` + error.error));
   }
 
   delete(kind: Kind) {
     console.log(kind);
-    this.modalService.dismissAll();
-    this.data.deleteKind(kind.id).subscribe(value => value,
-      error => console.log(`la suppression a échoué` + error.error));
+    // this.modalService.dismissAll();
+    this.data.deleteKind(kind.id).subscribe();
   }
 
-  openUpdate(content: string, kind: Kind) {
-    this.oneKind = kind;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(() => {
-        this.data.updateKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
-        console.log(this.oneKind);
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+  openUpdate(kind: Kind) {
+    this.data.ajoutKind(kind);
+    this.modalService.openModal('updateKind');
+
   }
 
-  openDelete(content: string, kind: Kind) {
-    this.oneKind = kind;
-    this.modalService.open(content);
-    //this.data.deleteKind(this.oneKind).subscribe(arg => (this.oneKind = arg));
+  openDelete(kind: Kind) {
+    this.data.ajoutKind(kind);
+    this.modalService.openModal('deleteKind');
   }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -68,6 +88,12 @@ export class ListerNatureComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  goToHistoric(kind: Kind) {
+    //this.data.addKind(kind);
+    this.data.ajoutKind(kind);
+    this.modalService.openModal('historicKind', { size: 'lg' });
   }
 }
 

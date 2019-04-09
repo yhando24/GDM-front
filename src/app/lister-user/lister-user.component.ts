@@ -1,13 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
-import { User, Role, getEnum } from '../models';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { User, Role, getRolesEnum,  } from '../models';
 import { Router } from '@angular/router';
+import { ModalDeleteUserComponent } from '../modal-delete-user/modal-delete-user.component';
+import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
+import { ModalService } from './../../services/modal.service';
+
+interface Alert {
+  type: string;
+  message: string;
+}
+
+const MODALS = {
+    annulerModule : ModalDeleteUserComponent,
+    modifModule : ModalUpdateUserComponent
+}
 
 @Component({
   selector: 'app-lister-user',
   templateUrl: './lister-user.component.html',
-  styleUrls: ['./lister-user.component.css']
+  styleUrls: ['./lister-user.component.css'],
+
 })
 
 export class ListerUserComponent implements OnInit {
@@ -15,38 +28,42 @@ export class ListerUserComponent implements OnInit {
   oneUser: User;
   enumRole: Role[];
   role: string;
-  visible: boolean;
-  constructor(private data: UserService, private router: Router, private modSer: NgbModal) {
+  alert: Alert;
+  constructor(private data: UserService, private router: Router, private modal: ModalService) {
   }
 
     ngOnInit() {
-      this.visible = false;
-      this.enumRole = getEnum();
+      this.alert = {type: '' , message: ''};
+      this.enumRole = getRolesEnum();
       this.data
           .finAllUser()
           .subscribe(arg => (this.listeUsers = arg));
-      }
 
+      this.data.checkUser.subscribe(message => {
+        if (message !== null) {
+          this.alert.message = message[1],
+          this.alert.type = message[0];
+        }
+        setTimeout(() => {
+          this.alert.message = '',
+          this.alert.type = '';
+        }, 2000);
+        this.data
+            .finAllUser()
+            .subscribe(arg => (this.listeUsers = arg));
+      });
+    }
 
-  submit() {
-    this.modSer.dismissAll();
-    this.data
-      .saveOneUser(this.oneUser)
-      .subscribe(value => value,
-        error => console.log(`update n'a pas fonctionne ` + error.error));
+  update(user) {
+    this.data.addUser(user);
+    this.modal.openModal('updateUser');
   }
-
-
-  openUpdate(content: string, user: User) {
-    this.oneUser = user;
-    this.modSer.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
-    });
-  }
-  newUser(){
+  newUser() {
     this.router.navigate(['/creationUsers/']);
   }
-  update(user) {
-    this.data.addOneUser(user);
-    this.router.navigate(['users/delete-user/']);
+
+  delete(user: User) {
+    this.data.addUser(user);
+    this.modal.openModal('deleteUser');
   }
 }
