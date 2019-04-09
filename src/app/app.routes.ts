@@ -15,15 +15,18 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
 import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
+import { KindsResolver } from './lister-nature/lister-nature.route';
 
 export const ROUTES: Routes = [
 
   { path: 'creationNature', component: CreationNatureMissionComponent },
-  { path: 'missions', component: ListerMissionsComponent},
-  { path: 'users', component: ListerUserComponent, children: [
-    { path: 'update-user', component: ModalUpdateUserComponent },
-    { path: 'delete-user', component: ModalDeleteUserComponent },
-  ] },
+  { path: 'missions', component: ListerMissionsComponent },
+  {
+    path: 'users', component: ListerUserComponent, children: [
+      { path: 'update-user', component: ModalUpdateUserComponent },
+      { path: 'delete-user', component: ModalDeleteUserComponent },
+    ]
+  },
   { path: 'create-mission', component: CreateMissionComponent },
   { path: 'users', component: ListerUserComponent },
   { path: 'kinds', component: ListerNatureComponent },
@@ -50,9 +53,17 @@ export const ROUTES: Routes = [
       },
       {
         path: 'update-kind', component: ModalUpdateNatureComponent
-      }
+      },
     ]
   },
+  {
+    path: 'kinds/lister',
+    component: ListerNatureComponent,
+    resolve: {
+      kinds: KindsResolver
+    }
+  },
+
   { path: 'creationUsers', component: FormusercreateComponent },
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
