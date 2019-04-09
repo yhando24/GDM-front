@@ -5,6 +5,11 @@ import { NgbModalConfig, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
 import { Router } from '@angular/router';
 import { ModalService } from 'src/services/modal.service';
 
+interface Alert {
+  type: string;
+  message: string;
+}
+
 
 @Component({
   selector: 'app-lister-nature',
@@ -20,38 +25,57 @@ export class ListerNatureComponent implements OnInit {
   messageModal: string;
   footerModal: string;
   closeResult: string;
+  alert: Alert;
 
   constructor(private data: KindService, private modalService: ModalService, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.data.findAllKind()
+
+    this.alert = { type: '', message: '' };
+    this.data
+      .findAllKind()
       .subscribe(arg => (this.listeKinds = arg));
+
+    this.data.checkKind.subscribe(message => {
+      if (message !== null) {
+        this.alert.message = message[1],
+          this.alert.type = message[0];
+      }
+      setTimeout(() => {
+        this.alert.message = '',
+          this.alert.type = '';
+      }, 2000);
+      this.data
+        .findAllKind()
+        .subscribe(arg => (this.listeKinds = arg));
+    });
+
   }
 
   submit() {
-   // this.modalService.dismissAll();
+    // this.modalService.dismissAll();
 
-    this.data.updateKind(this.oneKind).subscribe(value => value,
+    this.data.updateKind(this.oneKind).subscribe(() => this.data.findAllKind()
+      .subscribe(arg => (this.listeKinds = arg)),
       error => console.log(`l'update n'a pas eu lieu` + error.error));
   }
 
   delete(kind: Kind) {
     console.log(kind);
-   // this.modalService.dismissAll();
-    this.data.deleteKind(kind.id).subscribe(value => this.ngOnInit(),
-      error => console.log(`la suppression a échoué` + error.error));
+    // this.modalService.dismissAll();
+    this.data.deleteKind(kind.id).subscribe();
   }
 
   openUpdate(kind: Kind) {
-    this.data.addKind(kind);
+    this.data.ajoutKind(kind);
     this.modalService.openModal('updateKind');
 
   }
 
   openDelete(kind: Kind) {
-    this.data.addKind(kind);
+    this.data.ajoutKind(kind);
     this.modalService.openModal('deleteKind');
   }
 
@@ -67,7 +91,8 @@ export class ListerNatureComponent implements OnInit {
   }
 
   goToHistoric(kind: Kind) {
-    this.data.addKind(kind);
+    //this.data.addKind(kind);
+    this.data.ajoutKind(kind);
     this.modalService.openModal('historicKind', { size: 'lg' });
   }
 }

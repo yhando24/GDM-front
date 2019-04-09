@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/services/user.service';
-import { User } from '../models';
+import { User, Role, getEnum } from '../models';
 import { Router } from '@angular/router';
 
 
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormusercreateComponent implements OnInit {
 
+  listEnum: Role[] = getEnum();
   user: User = {};
   messageErreur: string = '';
 
@@ -22,6 +23,7 @@ export class FormusercreateComponent implements OnInit {
   }
   submit() {
     this.userService.createUser(this.user).subscribe(() => {
+      console.log(this.user);
       this.user +' //Envoyé avec succès'
       this.router.navigate(['/accueil']);
     },

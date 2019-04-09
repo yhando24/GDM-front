@@ -24,4 +24,8 @@ export class CreationNatureMissionComponent implements OnInit {
       error => this.error = error
     );
   }
+
+  cancel(){
+    this.router.navigateByUrl('kinds');
+  }
 }

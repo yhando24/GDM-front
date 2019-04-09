@@ -64,7 +64,7 @@
 
         <div class="form-group center-boutons-formulaire">
           <button class="btn btn-primary bouton-formulaire" type="submit" [disabled]="!monForm.valid">Valider</button>
-          <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
+          <button class="btn btn-danger bouton-formulaire" type="cancel" (click)="cancel()">Annuler</button>
           <p *ngIf="error && error.length>0">
               {{error}}
             </p>
