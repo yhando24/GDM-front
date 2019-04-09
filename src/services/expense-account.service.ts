@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExpenseAccount } from 'src/app/models';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -54,8 +54,7 @@ export class ExpenseAccountService {
     return this.http.post<ExpenseAccount>(URL_BACKEND + 'expense-accounts', {
       date: newExpenseAccount.date,
       type: newExpenseAccount.type,
-      montant: newExpenseAccount.montant,
-      status: newExpenseAccount.status,
+      amount: newExpenseAccount.amount,
     },
       this.httpOptions);
   }
@@ -78,11 +77,11 @@ export class ExpenseAccountService {
     return this.http.delete<void>(URL_BACKEND + 'expense-accounts/delete-expense-account/' + id, this.httpOptions);
   }
 
-  getKind(): ExpenseAccount {
+  getExpenseAccount(): ExpenseAccount {
     return this.expenseAccountt;
   }
 
-  addKind(expenseAccountt: ExpenseAccount) {
+  addExpenseAccount(expenseAccountt: ExpenseAccount) {
     this.expenseAccountt = expenseAccountt;
   }
 
