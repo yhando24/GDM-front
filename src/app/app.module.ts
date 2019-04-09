@@ -23,6 +23,7 @@ import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-n
 import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
 import { KeysPipe } from './pipe/key-pipe-enum';
 import { KindsResolver } from './lister-nature/lister-nature.route';
+import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { KindsResolver } from './lister-nature/lister-nature.route';
     ModalDeleteNatureComponent,
     ModalUpdateNatureComponent,
     KeysPipe,
-    KindsResolver
+    KindsResolver,
+    CreationExpenseAccountComponent
   ],
 
   imports: [
