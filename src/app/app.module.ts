@@ -21,7 +21,6 @@ import { ListerNatureComponent } from './lister-nature/lister-nature.component';
 import { ListerHistoriqueNatureComponent } from './lister-historique-nature/lister-historique-nature.component';
 import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-nature.component';
 import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
-import { UpdateNatureMissionComponent } from './update-nature-mission/update-nature-mission.component';
 
 
 @NgModule({
@@ -39,7 +38,6 @@ import { UpdateNatureMissionComponent } from './update-nature-mission/update-nat
     ListerHistoriqueNatureComponent,
     ModalDeleteNatureComponent,
     ModalUpdateNatureComponent,
-    UpdateNatureMissionComponent
   ],
 
   imports: [

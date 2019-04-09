@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, UrlTree, Router } from '@angular/router';
 
 import { CanActivate } from '@angular/router/src/utils/preactivation';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,14 @@ import { CanActivate } from '@angular/router/src/utils/preactivation';
 export class AdminGuard implements CanActivate {
   path: ActivatedRouteSnapshot[];
   route: ActivatedRouteSnapshot;
-  constructor(private router: Router) { }
+  role;
+  constructor(private router: Router) {
+    const helper = new JwtHelperService();
+    const idToken = localStorage.getItem('id_token');
+    this.role = helper.decodeToken(idToken).auth;
+   }
 
   canActivate(): boolean | UrlTree {
-    // retourne `true` si l'utilisateur est connecté ou redirige vers la page de /login
-    return false || this.router.parseUrl('/accueil');
+    return this.role.toUpperCase() === 'ADMIN' || this.router.parseUrl('/accueil');
   }
 }

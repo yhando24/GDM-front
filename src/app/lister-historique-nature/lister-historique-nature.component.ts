@@ -18,22 +18,13 @@ export class ListerHistoriqueNatureComponent implements OnInit {
   constructor(private service: KindService, private modalNgb: NgbModal) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-    //const kind: Kind = this.service.getKind();
-=======
  /*    const kind: Kind = this.service.getKind();
->>>>>>> c97ffe3a9d35fa7a561e186c5c11929639b23810
 
     /* this.service.findKindHistoric(kind.id).subscribe(
       values => this.listeHistoricKinds = values,
       error => this.erreur = error.error.message
-<<<<<<< HEAD
-    );
- */
-=======
     ); */
 
->>>>>>> c97ffe3a9d35fa7a561e186c5c11929639b23810
   }
 
   close() {
