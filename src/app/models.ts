@@ -20,47 +20,48 @@
       return [Role.MANAGER, Role.USER, Role.ADMIN];
   }
 
-  export interface Mission {
+export interface Mission {
 
-    kind?: Kind;
-    startDate?: Date;
-    endDate?: Date;
-    departureCity?: string;
-    arrivalCity?: string;
-    prime?: number;
-    missionStatus?: MissionStatusEnum;
-    transportEnum?: TransportEnum;
+  kind?: Kind;
+  startDate?: Date;
+  endDate?: Date;
+  departureCity?: string;
+  arrivalCity?: string;
+  prime?: number;
+  missionStatus?: MissionStatusEnum;
+  transportEnum?: TransportEnum;
 
-  }
+}
 
 
-  export interface token {
+export interface token {
 
-    id_token: string;
-  }
+  id_token: string;
+}
 
-  export enum MissionStatusEnum {
-    EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
-  }
+export enum MissionStatusEnum {
+  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+}
 
-  export enum TransportEnum {
-    TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
-  }
+export enum TransportEnum {
+  TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
+}
 
-  export interface Kind {
+export interface Kind {
 
-    id?: number;
-    name?: string;
-    adr?: number;
-    bonusPercentage?: number;
-    updatedAt?: Date;
-    invoiced?: boolean;
-    bonus?: boolean;
-    dailyCharges?: number;
-    authorizationToExceed?: boolean;
-  }
+  id?: number;
+  name?: string;
+  adr?: number;
+  bonusPercentage?: number;
+  updatedAt?: Date;
+  invoiced?: boolean;
+  bonus?: boolean;
+  dailyCharges?: number;
+  authorizationToExceed?: boolean;
+}
 
-  export interface Historic {
-    timestamp?: Date;
-    kind: Kind;
-  }
+export interface Historic {
+  timestamp?: Date;
+  kind: Kind;
+}
+
