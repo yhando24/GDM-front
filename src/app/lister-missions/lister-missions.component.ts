@@ -3,25 +3,53 @@ import { Mission } from '../models';
 import { MissionService } from 'src/services/mission.service';
 import { Route, Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { ModalService } from 'src/services/modal.service';
+
+interface Alert {
+  type: string;
+  message: string;
+}
 
 @Component({
   selector: 'app-lister-missions',
   templateUrl: './lister-missions.component.html',
   styleUrls: ['./lister-missions.component.css']
 })
+
+
 export class ListerMissionsComponent implements OnInit {
 
   listeMission: Mission[];
-
-  constructor(private data: MissionService, private route: Router) { }
+  alert: Alert;
+  constructor(private data: MissionService, private route: Router, private modal: ModalService) { }
   newMission(){
     this.route.navigate(['/createMission']);
   }
 
   ngOnInit() {
+    this.alert = { type: '', message: '' };
     this.data.finAllMission().subscribe(arg => (
       this.listeMission = arg
     ));
+
+    this.data.checkMission.subscribe(message => {
+      if (message !== null) {
+        this.alert.message = message[1],
+          this.alert.type = message[0];
+      }
+      setTimeout(() => {
+        this.alert.message = '',
+          this.alert.type = '';
+      }, 2000);
+      this.data
+        .finAllMission()
+        .subscribe(arg => (this.listeMission = arg));
+    });
+  }
+
+  delete(m : Mission){
+    this.data.addMission(m);
+    this.modal.openModal('deleteMission');
 
   }
 

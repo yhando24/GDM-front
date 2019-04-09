@@ -1,27 +1,28 @@
-  export interface User {
-    id?: number;
-    firstName?: string;
-    lastName?: string;
-    password?: string;
-    email?: string;
-    role?: Role;
-  }
+export interface User {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  password?: string;
+  email?: string;
+  role?: Role;
+}
 
-  export enum Role {
-    USER = 'User',
-    ADMIN = 'Admin',
-    MANAGER = 'Manager'
-  }
+export enum Role {
+  USER = 'User',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager'
+}
 
-  export function getEnum() {
-    return [Role.USER, Role.ADMIN, Role.MANAGER];
-  }
-  export function getRolesEnum() {
-      return [Role.MANAGER, Role.USER, Role.ADMIN];
-  }
+export function getEnum() {
+  return [Role.USER, Role.ADMIN, Role.MANAGER];
+}
+
+export function getRolesEnum() {
+  return [Role.MANAGER, Role.USER, Role.ADMIN];
+}
 
 export interface Mission {
-
+  id?: number;
   kind?: Kind;
   startDate?: Date;
   endDate?: Date;
@@ -58,10 +59,10 @@ export interface Kind {
   bonus?: boolean;
   dailyCharges?: number;
   authorizationToExceed?: boolean;
+  active?: boolean;
 }
 
 export interface Historic {
   timestamp?: Date;
   kind?: Kind;
 }
-
