@@ -7,15 +7,19 @@ import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.
 import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
+import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
+import { CreateMissionComponent } from './create-mission/create-mission.component';
 
 
 export const ROUTES: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'creationNature', component: CreationNatureMissionComponent },
+  { path: 'missions', component: ListerMissionsComponent},
   { path: 'users', component: ListerUserComponent, children: [
     { path: 'update-user', component: ModalUpdateUserComponent },
     { path: 'delete-user', component: ModalDeleteUserComponent },
   ] },
+  { path: 'create-mission', component: CreateMissionComponent },
   { path: 'users', component: ListerUserComponent },
   { path: 'kinds', component: ListerNatureComponent },
   { path: 'creationUsers', component: FormusercreateComponent },

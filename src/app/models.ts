@@ -8,17 +8,18 @@ export interface User {
 }
 
 export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-  MANAGER = 'MANAGER'
+  USER = 'User',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager'
 }
 
 export function getEnum() {
-  return [Role.MANAGER, Role.USER, Role.ADMIN];
+  return [Role.USER, Role.ADMIN, Role.MANAGER];
 }
 
 export interface Mission {
 
+  kind?: Kind;
   startDate?: Date;
   endDate?: Date;
   departureCity?: string;

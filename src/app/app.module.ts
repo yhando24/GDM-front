@@ -18,6 +18,8 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { AuthInterceptor } from 'AuthInterceptor';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
+import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
+import { CreateMissionComponent } from './create-mission/create-mission.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ListerNatureComponent } from './lister-nature/lister-nature.component';
     ModalDeleteUserComponent,
     ModalUpdateUserComponent,
     ListerNatureComponent,
-    ConnectionUserComponent],
+    ConnectionUserComponent,
+    ListerMissionsComponent,
+    CreateMissionComponent],
 
   imports: [
     BrowserModule,
