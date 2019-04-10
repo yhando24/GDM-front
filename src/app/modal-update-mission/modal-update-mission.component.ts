@@ -9,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./modal-update-mission.component.css']
 })
 export class ModalUpdateMissionComponent implements OnInit {
-  kinds: Kind;
-  oneMission: Mission;
+  kinds: Kind[] = [];
+  oneMission: Mission ;
   listEnum: TransportEnum[] = getTransportEnum();
 
   constructor(private data: MissionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.data.oneMission.subscribe(mission => this.oneMission = mission);
-    this.route.data.subscribe((data: { kinds: Kind }) => this.kinds = data.kinds);
+    this.route.data.subscribe(({ kinds }) => { this.kinds = kinds; });
   }
 
   close() {

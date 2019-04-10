@@ -7,13 +7,12 @@
 </div>
 
 <div class="modal-body">
-  <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
+  <form (ngSubmit)="submit()"  #form="ngForm">
 
 
     <label>Nature de la mission</label>
     <div class="form-group">
-      <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="oneMission.kind" name="kind"
-        #kind="ngModel" required>
+      <select class="form-control" placeholder="oneMission.kind" [(ngModel)]="oneMission.kind.name" name="kind">
         <option *ngFor="let kind of kinds" value="kind">{{kind.name}}</option>
       </select>
     </div>
