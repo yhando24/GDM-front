@@ -27,6 +27,7 @@ import { ApproveMissionComponent } from './approve-mission/approve-mission.compo
 import { ModalUpdateMissionComponent } from './modal-update-mission/modal-update-mission.component';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
+import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
 
 
 
