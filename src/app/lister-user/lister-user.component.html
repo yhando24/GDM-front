@@ -1,29 +1,29 @@
-<h2>liste des utilisateurs</h2>
-<button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
+<h2>Liste des utilisateurs</h2>
+<button type="button" class="btn btn-success" (click)=newUser()>Creer un utilisateur</button>
 <p>
   <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
 </p>
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Prenom</th>
-      <th scope="col">Roles</th>
-      <th scope="col">Action</th>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Nom</th>
+      <th class="align-middle" scope="col">Prenom</th>
+      <th class="align-middle" scope="col">Roles</th>
+      <th class="align-middle" scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of listeUsers; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td (click)=update(user)>
+    <tr class="text-center" *ngFor="let user of listeUsers; index as i">
+      <th class="align-middle" scope="row">{{ i + 1 }}</th>
+      <td class="align-middle" (click)=update(user)>
         {{ user.firstName }}
       </td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.role }}</td>
-      <td>
-        <button type="button" class="btn btn-warning"   (click)="update(user)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button>
+      <td class="align-middle">{{ user.lastName }}</td>
+      <td class="align-middle">{{ user.role }}</td>
+      <td class="align-middle">
+        <button type="button" class="btn-liste btn btn-modifier"   (click)="update(user)">Modifier</button>
+        <button type="button" class="btn-liste btn btn-danger" (click)="delete(user)">Supprimer</button>
       </td>
     </tr>
   </tbody>

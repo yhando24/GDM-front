@@ -1,28 +1,36 @@
-      <nav class="navbar navbar-expand-lg navbar-light navbar-GDM" *ngIf="isAuthenticated()">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <img class="logo navbar-brand" src="../../assets/resources/logo-GDM.png" routerLink="/accueil"  alt="logo-GDM">
+<nav class="fond-nav-barre navbar navbar-expand-lg navbar-light navbar-GDM" *ngIf="isAuthenticated()">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <img class="logo navbar-brand hvr-bob" src="../../assets/resources/logo-GDM.png" routerLink="/accueil" alt="logo-GDM">
 
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item" *ngIf="role ==='ADMIN'">
-                    <a class="nav-link" [routerLink]="['/users']" routerLinkActive="router-link-active" >Users</a>
-                  </li>
-                <li class="nav-item">
-                      <a class="nav-link" [routerLink]="['/missions']" routerLinkActive="router-link-active" >Missions</a>
-                  </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/kinds']" routerLinkActive="router-link-active" *ngIf="role ==='ADMIN'">Natures</a>
-                </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/createExpenseAccount']">Création Note de Frais</a>
-                </li>
-                    <li class="nav-item">
-                </li>
-            </ul>
-          <div *ngIf="user">Bonjour {{user.firstName}} </div>
-           <a *ngIf="!isAuthenticated()" lass="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
-           <a *ngIf="isAuthenticated()"  class="nav-link"><button class="btn btn-deconnecter" (click)="bye()">Deconnecter</button></a>
-          </div>
-        </nav>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item hvr-underline-from-center" *ngIf="role ==='ADMIN'">
+        <a class="nav-link" [routerLink]="['/users']" routerLinkActive="router-link-active">Utilisateurs</a>
+      </li>
+      <li class="nav-item hvr-underline-from-center">
+        <a class="nav-link" [routerLink]="['/missions']" routerLinkActive="router-link-active">Missions</a>
+      </li>
+      <li class="nav-item hvr-underline-from-center">
+        <a class="nav-link " [routerLink]="['/kinds']" routerLinkActive="router-link-active"
+          *ngIf="role ==='ADMIN'">Natures</a>
+      </li>
+      <li class="nav-item hvr-underline-from-center">
+        <a class="nav-link" [routerLink]="['/listExpenseAccount']">Notes de Frais</a>
+      </li>
+      <li class="nav-item">
+      </li>
+    </ul>
+    <div *ngIf="user">
+      <h4 class="bjr-user">Bonjour {{user.firstName}} !</h4>
+    </div>
+    <a *ngIf="!isAuthenticated()" lass="nav-link" routerLink="/login"><button
+        class="btn btn-deconnecter hvr-wobble-vertical">Login</button></a>
+    <a *ngIf="isAuthenticated()" class="nav-link"><button class=" hvr-wobble-vertical btn btn-deconnecter"
+        (click)="bye()">Déconnecter</button></a>
+  </div>
+</nav>
+
+
