@@ -34,9 +34,10 @@ export class HeaderComponent implements  OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+  }
 
-
-
+  public get connectedUser(){
+    return this.user;
   }
 
 

@@ -1,5 +1,5 @@
 <h2>liste des natures</h2>
-
+<button type="button" class="btn btn-outline-dark" (click)=newKind()>Creer une nouvelle nature</button>
 <p>
   <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
 </p>
@@ -16,6 +16,7 @@
       <th scope="col">Bonus</th>
       <th scope="col">Plafond frais journalier</th>
       <th scope="col">Autorisation de dépassement</th>
+      <th scope="col">Activée?</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -30,10 +31,11 @@
       <td>{{ kind.bonus }}</td>
       <td>{{ kind.dailyCharges }}</td>
       <td>{{ kind.authorizationToExceed }}</td>
+      <td>{{ kind.active }}</td>
       <td>
-         <button type="button" class="btn btn-info" (click)="goToHistoric(kind)">Historique</button>
-        <button type="button" class="btn btn-warning" (click)="openUpdate(kind)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="openDelete(kind)">Supprimer</button>
+        <button type="button" class="btn btn-info btn-sm" (click)="goToHistoric(kind)">Historique</button>
+        <button type="button" class="btn btn-warning btn-sm" (click)="openUpdate(kind)">Modifier</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="openDelete(kind)">Supprimer</button>
       </td>
     </tr>
   </tbody>

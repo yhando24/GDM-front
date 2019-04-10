@@ -56,7 +56,7 @@
 
         <div class="form-group">
           <label for="formGroupExampleInput">Transport :</label>
-          <select class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.transport" name="transport"
+          <select class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.transportEnum" name="transport"
             #transport="ngModel" required>
           <option *ngFor="let transp of transport; let i = index">{{i}} + {{transp}}</option>
           </select>
@@ -68,9 +68,7 @@
         <div class="form-group center-boutons-formulaire">
           <button class="btn btn-primary bouton-formulaire" type="submit()" [disabled]="!monForm.valid">Valider</button>
           <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
-          <p *ngIf="error && error.length>0">
-            {{error}}
-          </p>
+
         </div>
       </form>
     </div>

@@ -1,0 +1,54 @@
+/* CSS titre h2*/
+h2{
+  text-align: center;
+}
+
+
+/* CSS CHECKBOX FORMULAIRE */
+/* Customize the label (the container) */
+.checked-GDM {
+display: block;
+position: relative;
+padding-left: 35px;
+margin-bottom: 12px;
+cursor: pointer;
+
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checked-GDM input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 25px;
+width: 25px;
+background-color: #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+.checked-GDM:hover input ~ .checkmark {
+background-color: #ccc;
+}
+
+
+
+.center-boutons-formulaire{
+text-align: center;
+}
+
+.bouton-formulaire{
+  margin:15px;
+}

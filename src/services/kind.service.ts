@@ -71,6 +71,10 @@ export class KindService {
       nouvelleNature.bonusPercentage = 0;
     }
 
+    if (nouvelleNature.active == null) {
+      nouvelleNature.active = false;
+    }
+
     nouvelleNature.updatedAt = new Date();
     console.log(nouvelleNature);
     return this.http.post<Kind>(URL_BACKEND + 'kinds', {
@@ -82,7 +86,7 @@ export class KindService {
       bonus: nouvelleNature.bonus,
       dailyCharges: nouvelleNature.dailyCharges,
       authorizationToExceed: nouvelleNature.authorizationToExceed,
-
+      active: nouvelleNature.active
     },
       this.httpOptions);
   }

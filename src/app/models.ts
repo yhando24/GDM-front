@@ -13,12 +13,16 @@ export enum Role {
   MANAGER = 'Manager'
 }
 
+export function getEnum() {
+  return [Role.USER, Role.ADMIN, Role.MANAGER];
+}
+
 export function getRolesEnum() {
   return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
 export interface Mission {
-
+  id?: number;
   kind?: Kind;
   startDate?: Date;
   endDate?: Date;
@@ -60,10 +64,23 @@ export interface Kind {
   bonus?: boolean;
   dailyCharges?: number;
   authorizationToExceed?: boolean;
+  active?: boolean;
 }
 
 export interface Historic {
   timestamp?: Date;
-  kind: Kind;
+  kind?: Kind;
+}
+
+export enum ExpenseAccountStatusEnum {
+  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+}
+
+export interface ExpenseAccount {
+  id?: number;
+  date?: Date;
+  type?: string;
+  amount?: number;
+  status?: ExpenseAccountStatusEnum;
 }
 
