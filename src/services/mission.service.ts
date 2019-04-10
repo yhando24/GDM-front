@@ -13,7 +13,7 @@ export class MissionService {
 
   constructor(private http: HttpClient, private modalService: NgbModal) {}
 
-  get oneMission(): Observable <Mission>{
+  get oneMission(): Observable<Mission> {
     return this.mission.asObservable();
   }
 
@@ -35,6 +35,11 @@ export class MissionService {
   missionNotDeleted(message: string) {
     this.checkMission.next(['danger', message]);
   }
+  missionUpdated(mission: Mission) {
+    this.checkMission.next(['success', `la mission ${mission.kind.name} du ${mission.startDate}
+    à bien été modifiée`]);
+  }
+
   closeModal() {
     this.modalService.dismissAll();
   }
@@ -43,14 +48,8 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 
-  finAllMissionToApprove(): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.URL_BACKEND + '/waiting');
-  }
-  approveOneMission(m: Mission): Observable<Mission> {
-    return this.http.patch<Mission>(this.URL_BACKEND, m, this.httpOptions);
-  }
-  addMission(m: Mission) {
-    this.mission.next(m);
+  addMission(mission: Mission) {
+    this.mission.next(mission);
   }
 
   deleteOneMission(m: Mission): Observable<Mission> {
@@ -61,4 +60,10 @@ export class MissionService {
     return this.http
       .post(this.URL_BACKEND, m, this.httpOptions);
   }
+
+  updateMission(mission: Mission): Observable<Mission> {
+    console.log(mission);
+    return this.http.patch<Mission>(this.URL_BACKEND + '/update/' + mission, this.httpOptions);
+  }
+
 }

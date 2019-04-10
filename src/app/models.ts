@@ -33,7 +33,6 @@ export interface Mission {
     user?: User;
 }
 
-
 export interface token {
   id_token: string;
 }
