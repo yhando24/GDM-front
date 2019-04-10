@@ -47,10 +47,15 @@ export class ListerMissionsComponent implements OnInit {
     });
   }
 
-  delete(m : Mission){
+  delete(m : Mission) {
     this.data.addMission(m);
     this.modal.openModal('deleteMission');
 
+  }
+
+  openUpdate(mission: Mission) {
+    this.data.addMission(mission);
+    this.modal.openModal('updateMission');
   }
 
 }

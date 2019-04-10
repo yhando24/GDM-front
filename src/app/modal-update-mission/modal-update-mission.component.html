@@ -1,0 +1,56 @@
+<!-- Modal Update Mission -->
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Modification de la Mission</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
+    <div class="form-group">
+      <label>Nature de la mission</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Nom" placeholder={{oneMission.kind.name}}
+          [(ngModel)]="oneMission.kind.name" />
+      </div>
+      <label>Date de début</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Date de début"
+          placeholder={{oneMission.startDate}} [(ngModel)]="oneMission.startDate" />
+      </div>
+      <label>Date de fin</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Date de fin" placeholder={{oneMission.endDate}}
+          [(ngModel)]="oneMission.endDate" />
+      </div>
+      <label>Ville de départ</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Ville de départ"
+          placeholder={{oneMission.departureCity}} [(ngModel)]="oneMission.departureCity" />
+      </div>
+      <label>Ville d'arrivée</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
+          placeholder={{oneMission.arrivalCity}} [(ngModel)]="oneMission.arrivalCity" />
+      </div>
+      <label>Bonus</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Bonus" placeholder={{oneMission.prime}}
+          [(ngModel)]="oneMission.prime" />
+      </div>
+      <label>Transport</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Transport"
+          placeholder={{oneMission.transportEnum}} [(ngModel)]="oneMission.transportEnum" />
+      </div>
+      <!-- <label>Montant de la facture</label>
+      <div class="input-group"></div>
+      <input class="form-control form-control-lg" type="text" name="Montant de la facture"
+        [(ngModel)]="oneMission.facture" /> -->
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-primary">Valider</button>
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Annuler</button>
+</div>
