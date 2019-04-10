@@ -47,7 +47,7 @@ export enum TransportEnum {
   TAXI = 'taxi',
   BUS = 'bus',
   BATEAU = 'bateau',
-  NAVETTE_SPATIALE = 'navette_spaviale',
+  NAVETTE_SPATIALE = 'navette_spatiale',
   VOITURE = 'voiture',
   VELO = 'velo',
   HELICOPTERE = 'helicoptere'
