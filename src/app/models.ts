@@ -1,4 +1,5 @@
 export interface User {
+<<<<<<< HEAD
     id?: number;
     firstName?: string;
     lastName?: string;
@@ -31,6 +32,41 @@ export interface Mission {
     missionStatus?: MissionStatusEnum;
     transportEnum?: TransportEnum;
     user?: User;
+=======
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  password?: string;
+  email?: string;
+  role?: Role;
+}
+
+export enum Role {
+  USER = 'User',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager'
+}
+
+export function getEnum() {
+  return [Role.USER, Role.ADMIN, Role.MANAGER];
+}
+
+export function getRolesEnum() {
+  return [Role.MANAGER, Role.USER, Role.ADMIN];
+}
+
+export interface Mission {
+  id?: number;
+  kind?: Kind;
+  startDate?: Date;
+  endDate?: Date;
+  departureCity?: string;
+  arrivalCity?: string;
+  prime?: number;
+  missionStatus?: MissionStatusEnum;
+  transportEnum?: TransportEnum;
+
+>>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
 }
 
 
@@ -65,10 +101,23 @@ export interface Kind {
   bonus?: boolean;
   dailyCharges?: number;
   authorizationToExceed?: boolean;
+  active?: boolean;
 }
 
 export interface Historic {
   timestamp?: Date;
-  kind: Kind;
+  kind?: Kind;
+}
+
+export enum ExpenseAccountStatusEnum {
+  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+}
+
+export interface ExpenseAccount {
+  id?: number;
+  date?: Date;
+  type?: string;
+  amount?: number;
+  status?: ExpenseAccountStatusEnum;
 }
 
