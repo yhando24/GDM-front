@@ -44,7 +44,8 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
+  TRAIN = 'Train', AVION = 'Avion', TAXI = 'Taxi', BUS = 'Bus', BATEAU = 'Bateau',
+  NAVETTE_SPATIALE = 'Navette_Spatiale', VOITURE = 'Voiture', VELO = 'Velo', HELICOPTERE = 'Helicoptère'
 }
 
 export function getTransportEnum() {
@@ -70,3 +71,16 @@ export interface Historic {
   timestamp?: Date;
   kind?: Kind;
 }
+
+export enum ExpenseAccountStatusEnum {
+  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+}
+
+export interface ExpenseAccount {
+  id?: number;
+  date?: Date;
+  type?: string;
+  amount?: number;
+  status?: ExpenseAccountStatusEnum;
+}
+

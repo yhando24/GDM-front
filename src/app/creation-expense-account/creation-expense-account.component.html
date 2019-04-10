@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2>Création d'une note de frais</h2>
+
+      <form (ngSubmit)="submit()" #monForm="ngForm">
+        <div class="input-group date">
+         <label for="formGroupExampleInput">Date :</label>
+          <div class="input-group date">
+              <input type="date" class="form-control" [(ngModel)]="newExpenseAccount.date" name="date" #date="ngModel">
+            <p *ngIf="date.dirty && date.invalid">
+              Indiquez une date
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput">Type :</label>
+          <input type="text" class="form-control" placeholder="Entrez le type de la note de frais"
+            [(ngModel)]="newExpenseAccount.type" name="type" #type="ngModel" required>
+          <p *ngIf="type.dirty && type.invalid">
+            Entrez le type de note de frais
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput">Montant :</label>
+          <input type="text" class="form-control" placeholder="Entrez le montant de la note de frais"
+            [(ngModel)]="newExpenseAccount.amount" name="amount" #amount="ngModel" required>
+          <p *ngIf="amount.dirty && amount.invalid">
+            Entrez le type de note de frais
+          </p>
+        </div>
+
+        <div class="form-group center-boutons-formulaire">
+          <button class="btn btn-primary bouton-formulaire" type="submit" [disabled]="!monForm.valid">Valider</button>
+          <button class="btn btn-danger bouton-formulaire" type="cancel" (click)="cancel()">Annuler</button>
+          <p *ngIf="error && error.length>0">
+            {{error}}
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
