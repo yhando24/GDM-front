@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Kind, Mission, getTransportEnum, TransportEnum } from '../models';
+import { Kind, Mission, TransportEnum, getTransportEnum } from '../models';
 import { environment } from 'src/environments/environment';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { KindsResolver } from '../lister-nature/lister-nature.route';
+import { HttpHeaders } from '@angular/common/http';
 import { MissionService } from 'src/services/mission.service';
 
 @Component({
@@ -13,10 +11,11 @@ import { MissionService } from 'src/services/mission.service';
   styleUrls: ['./create-mission.component.css']
 })
 export class CreateMissionComponent implements OnInit {
-  kinds: Kind;
-  mission: Mission;
+  kinds: Kind[] = [];
+  mission: Mission = {};
+  transport: TransportEnum[] = [] ;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private dataMission: MissionService) { }
+  constructor(private route: ActivatedRoute, private missionServ: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
 
   httpOptions = {
@@ -26,12 +25,11 @@ export class CreateMissionComponent implements OnInit {
   };
 
   ngOnInit() {
-    console.log("Je suis dans le TS de base !!!")
-    this.route.data.subscribe(({ kinds }) => this.kinds = kinds);
+    this.route.data.subscribe(({kinds}) => { this.kinds = kinds,
+      this.transport = getTransportEnum(); });
   }
-
-  submit() {
-    // this.dataMission.createMission(this.mission);
-  }
+submit() {
+  this.missionServ.createOneMission(this.mission).subscribe();
+}
 
 }

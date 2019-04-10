@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MissionService {
 
-  constructor(private http: HttpClient, private modalService: NgbModal) { }
+  constructor(private http: HttpClient, private modalService: NgbModal) {}
 
   get oneMission(): Observable<Mission> {
     return this.mission.asObservable();
@@ -23,7 +23,7 @@ export class MissionService {
   public checkMission = new BehaviorSubject<string[]>(null);
 
   httpOptions = {
-    headers: new HttpHeaders ({
+    headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
@@ -55,6 +55,10 @@ export class MissionService {
   deleteOneMission(m: Mission): Observable<Mission> {
     return this.http
       .delete(this.URL_BACKEND + '/delete/' + m.id, this.httpOptions);
+  }
+  createOneMission(m: Mission): Observable<Mission> {
+    return this.http
+      .post(this.URL_BACKEND, m, this.httpOptions);
   }
 
   updateMission(mission: Mission): Observable<Mission> {
