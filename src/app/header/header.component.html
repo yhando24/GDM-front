@@ -16,16 +16,13 @@
                     <a class="nav-link" [routerLink]="['/kinds']" routerLinkActive="router-link-active" *ngIf="role ==='ADMIN'">Natures</a>
                 </li>
               <li class="nav-item">
-<<<<<<< HEAD
                 <a class="nav-link" [routerLink]="['/approve-mission']" routerLinkActive="router-link-active"
                   *ngIf="role === 'MANAGER'">Valider mission</a>
               </li>
-=======
                   <a class="nav-link" [routerLink]="['/createExpenseAccount']">Création Note de Frais</a>
                 </li>
                     <li class="nav-item">
                 </li>
->>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
             </ul>
           <div *ngIf="user">Bonjour {{user.firstName}} </div>
            <a *ngIf="!isAuthenticated()" lass="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>

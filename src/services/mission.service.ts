@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { Observable } from 'rxjs';
-=======
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
->>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Mission } from 'src/app/models';
@@ -47,12 +43,15 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   finAllMissionToApprove(): Observable<Mission[]> {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/waiting');
   }
   approveOneMission(m: Mission): Observable<Mission> {
     return this.http.patch<Mission>(this.URL_BACKEND, m, this.httpOptions);
 =======
+=======
+>>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
 
   addMission(m: Mission) {
     this.mission.next(m);
@@ -61,6 +60,9 @@ export class MissionService {
   deleteOneMission(m: Mission): Observable<Mission> {
     return this.http
       .delete(this.URL_BACKEND + '/delete/' + m.id, this.httpOptions);
+<<<<<<< HEAD
+>>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
+=======
 >>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
   }
 }

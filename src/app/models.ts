@@ -1,5 +1,6 @@
 export interface User {
 <<<<<<< HEAD
+<<<<<<< HEAD
     id?: number;
     firstName?: string;
     lastName?: string;
@@ -41,6 +42,16 @@ export interface Mission {
   role?: Role;
 }
 
+=======
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  password?: string;
+  email?: string;
+  role?: Role;
+}
+
+>>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
 export enum Role {
   USER = 'User',
   ADMIN = 'Admin',
