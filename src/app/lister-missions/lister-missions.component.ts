@@ -32,6 +32,10 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
     this.route.navigate(['/createMission']);
   }
 
+  listExpenseAccount() {
+    this.route.navigate(['/listExpenseAccount']);
+  }
+
   ngOnInit() {
     this.alert = { type: '', message: '' };
     this.data.finAllMission().subscribe(arg => (
@@ -67,5 +71,15 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.data.checkMission.next([]);
+  }
+
+  modifer() {
+    console.log("Je me modifie")
+  }
+  supprimer() {
+    console.log("Je me supprime")
+  }
+  noteDeFrais() {
+    console.log("Je suis une note de frais!")
   }
 }
