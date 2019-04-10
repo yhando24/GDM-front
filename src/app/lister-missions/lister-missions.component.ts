@@ -20,6 +20,7 @@ interface Alert {
 
 export class ListerMissionsComponent implements OnInit, OnDestroy {
 
+
   alertSubscribe: Subscription;
 
 
@@ -63,10 +64,15 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
 
   }
 
+  openUpdate(mission: Mission) {
+    this.data.addMission(mission);
+    this.modal.openModal('updateMission');
+  }
+
   ngOnDestroy(): void {
     this.data.checkMission.next([]);
-
   }
+
   modifer() {
     console.log("Je me modifie")
   }

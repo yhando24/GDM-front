@@ -34,7 +34,6 @@ export interface Mission {
 
 }
 
-
 export interface token {
 
   id_token: string;
@@ -45,12 +44,13 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN = 'Train', AVION = 'Avion', TAXI = 'Taxi', BUS = 'Bus', BATEAU = 'Bateau', NAVETTE_SPATIALE = 'Navette_Spatiale', VOITURE = 'Voiture', VELO = 'Velo', HELICOPTERE = 'Helicoptère'
+  TRAIN = 'Train', AVION = 'Avion', TAXI = 'Taxi', BUS = 'Bus', BATEAU = 'Bateau',
+  NAVETTE_SPATIALE = 'Navette_Spatiale', VOITURE = 'Voiture', VELO = 'Velo', HELICOPTERE = 'Helicoptère'
 }
 
 export function getTransportEnum() {
-  return [TransportEnum.TRAIN, TransportEnum.AVION, TransportEnum.TAXI, TransportEnum.BUS, TransportEnum.BATEAU, TransportEnum.NAVETTE_SPATIALE, TransportEnum.VOITURE, TransportEnum.VELO, TransportEnum.HELICOPTERE
-  ]
+  return [TransportEnum.AVION, TransportEnum.BATEAU, TransportEnum.BUS, TransportEnum.HELICOPTERE,
+  TransportEnum.TAXI, TransportEnum.TRAIN, TransportEnum.VELO, TransportEnum.VOITURE];
 }
 
 export interface Kind {

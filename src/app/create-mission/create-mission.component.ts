@@ -13,9 +13,8 @@ import { MissionService } from 'src/services/mission.service';
   styleUrls: ['./create-mission.component.css']
 })
 export class CreateMissionComponent implements OnInit {
-  kinds: Kind[] = [];
-  mission: Mission = {};
-  transport: TransportEnum[] = getTransportEnum();
+  kinds: Kind;
+  mission: Mission;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private dataMission: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
@@ -28,10 +27,11 @@ export class CreateMissionComponent implements OnInit {
 
   ngOnInit() {
     console.log("Je suis dans le TS de base !!!")
-    this.route.data.subscribe(({kinds}) => this.kinds = kinds);
-    }
-submit(){
-  //this.dataMission.createMission(this.mission);
-}
+    this.route.data.subscribe(({ kinds }) => this.kinds = kinds);
+  }
+
+  submit() {
+    // this.dataMission.createMission(this.mission);
+  }
 
 }

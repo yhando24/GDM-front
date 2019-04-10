@@ -23,9 +23,11 @@ import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-n
 import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
 import { KeysPipe } from './pipe/key-pipe-enum';
 import { KindsResolver } from './lister-nature/lister-nature.route';
-import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
+import { ModalUpdateMissionComponent } from './modal-update-mission/modal-update-mission.component';
+import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
+
 
 
 
@@ -48,10 +50,10 @@ import { ListExpenseAccountComponent } from './list-expense-account/list-expense
     ModalUpdateNatureComponent,
     KeysPipe,
     KindsResolver,
-    CreationExpenseAccountComponent,
     ModalDeleteMissionComponent,
-    ListExpenseAccountComponent,
-
+    ModalUpdateMissionComponent,
+    CreationExpenseAccountComponent,
+    ListExpenseAccountComponent
   ],
 
   imports: [
@@ -62,10 +64,11 @@ import { ListExpenseAccountComponent } from './list-expense-account/list-expense
     RouterModule.forRoot(ROUTES)
   ],
   entryComponents: [ModalUpdateUserComponent,
-    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent, ModalDeleteMissionComponent],
+    ModalDeleteUserComponent, ModalDeleteNatureComponent, ModalUpdateNatureComponent,
+    ModalDeleteMissionComponent, ModalUpdateMissionComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
