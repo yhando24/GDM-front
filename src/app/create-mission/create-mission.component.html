@@ -11,18 +11,18 @@
             <option *ngFor="let kind of kinds" value="kind">{{kind.name}}</option>
           </select>
         </div>
-        <div class="input-group">
+        <div class="input-group form-group">
           <label class="startDate">Date de début</label>
-          <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel" ngbDatepicker>
+          <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel" ngbDatepicker #dd="ngbDatepicker">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            <button class="btn btn-outline-secondary calendar" (click)="dd.toggle()" type="button"></button>
           </div>
         </div>
-        <div class="input-group">
+        <div class="input-group form-group">
           <label class="startDate">Date de fin</label>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel" ngbDatepicker>
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel" ngbDatepicker #de="ngbDatepicker">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            <button class="btn btn-outline-secondary calendar" (click)="de.toggle()" type="button"></button>
           </div>
         </div>
         <div class="form-group">
@@ -36,9 +36,8 @@
             name="arrival" #name="ngModel" required>
         </div>
         <div class="form-group">
-          <label for="formGroupExampleInput">Transport :</label>
-          <select class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.transportEnum" name="transport"
-            #transport="ngModel" [ngModelOptions]="{standalone: true}" required>
+          <label>Tranport:</label><select class="form-control" [(ngModel)]="mission.transportEnum" name="transport" required
+            [ngModelOptions]="{standalone: true}">
             <option *ngFor="let t of transport" [ngValue]="t">{{t}}</option>
           </select>
         </div>

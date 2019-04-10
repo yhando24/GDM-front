@@ -27,12 +27,13 @@ export class CreateMissionComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.route.data.subscribe(({kinds}) => this.kinds = kinds);
-    this.transport = getTransportEnum();
+    this.route.data.subscribe(({kinds}) => { this.kinds = kinds,
+      this.transport = getTransportEnum(); });
+
 
     }
-submit(){
-  //this.dataMission.createMission(this.mission);
+submit() {
+  this.missionServ.createOneMission(this.mission).subscribe();
 }
 
 }

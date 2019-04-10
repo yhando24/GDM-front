@@ -57,4 +57,8 @@ export class MissionService {
     return this.http
       .delete(this.URL_BACKEND + '/delete/' + m.id, this.httpOptions);
   }
+  createOneMission(m: Mission): Observable<Mission> {
+    return this.http
+      .post(this.URL_BACKEND, m, this.httpOptions);
+  }
 }

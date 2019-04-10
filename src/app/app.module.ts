@@ -26,7 +26,7 @@ import { KindsResolver } from './lister-nature/lister-nature.route';
 import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
 import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
-
+import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 
 
 
@@ -52,6 +52,7 @@ import { CreationExpenseAccountComponent } from './creation-expense-account/crea
     ApproveMissionComponent,
     CreationExpenseAccountComponent,
     ModalDeleteMissionComponent,
+    ListExpenseAccountComponent,
 
   ],
 
