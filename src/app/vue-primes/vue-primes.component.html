@@ -1,0 +1,20 @@
+<h2>Récapitulatif des primes</h2>
+
+<table class="table table-striped ">
+  <thead>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">Date de début</th>
+      <th class="align-middle" scope="col">Date de fin</th>
+      <th class="align-middle" scope="col">Nature </th>
+      <th class="align-middle" scope="col">Prime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center" *ngFor="let mission of listeMissions">
+      <td class="align-middle">{{ mission.startDate }}</td>
+      <td class="align-middle">{{ mission.endDate }}</td>
+      <td class="align-middle">{{ mission.kind.name }}</td>
+      <td class="align-middle">{{ mission.prime }}</td>
+    </tr>
+  </tbody>
+</table>
