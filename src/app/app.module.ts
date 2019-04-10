@@ -25,6 +25,7 @@ import { KeysPipe } from './pipe/key-pipe-enum';
 import { KindsResolver } from './lister-nature/lister-nature.route';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
+import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 
 
 
@@ -49,6 +50,7 @@ import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete
     KindsResolver,
     CreationExpenseAccountComponent,
     ModalDeleteMissionComponent,
+    ListExpenseAccountComponent,
 
   ],
 
