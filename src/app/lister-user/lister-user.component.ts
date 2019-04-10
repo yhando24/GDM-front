@@ -66,4 +66,5 @@ export class ListerUserComponent implements OnInit {
     this.data.addUser(user);
     this.modal.openModal('deleteUser');
   }
+
 }

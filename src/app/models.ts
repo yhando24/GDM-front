@@ -1,41 +1,40 @@
-  export interface User {
+export interface User {
     id?: number;
     firstName?: string;
     lastName?: string;
     password?: string;
     email?: string;
     role?: Role;
-  }
+}
 
-  export enum Role {
-    USER = 'User',
-    ADMIN = 'Admin',
-    MANAGER = 'Manager'
-  }
+export enum Role {
+  USER = 'User',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager'
+}
 
-  export function getEnum() {
-    return [Role.USER, Role.ADMIN, Role.MANAGER];
-  }
-  export function getRolesEnum() {
-      return [Role.MANAGER, Role.USER, Role.ADMIN];
-  }
+export function getEnum() {
+  return [Role.USER, Role.ADMIN, Role.MANAGER];
+}
+export function getRolesEnum() {
+  return [Role.MANAGER, Role.USER, Role.ADMIN];
+}
 
 export interface Mission {
-
-  kind?: Kind;
-  startDate?: Date;
-  endDate?: Date;
-  departureCity?: string;
-  arrivalCity?: string;
-  prime?: number;
-  missionStatus?: MissionStatusEnum;
-  transportEnum?: TransportEnum;
-
+    id?: number;
+    kind?: Kind;
+    startDate?: Date;
+    endDate?: Date;
+    departureCity?: string;
+    arrivalCity?: string;
+    prime?: number;
+    missionStatus?: MissionStatusEnum;
+    transportEnum?: TransportEnum;
+    user?: User;
 }
 
 
 export interface token {
-
   id_token: string;
 }
 
@@ -44,7 +43,15 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
+  TRAIN,
+  AVION,
+  TAXI,
+  BUS,
+  BATEAU,
+  NAVETTE_SPATIALE,
+  VOITURE,
+  VELO,
+  HELICOPTERE
 }
 
 export interface Kind {

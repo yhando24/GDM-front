@@ -12,6 +12,7 @@ import { AdminGuard } from 'src/guards/admin.guard';
 import { KindsResolver } from './lister-nature/lister-nature.route';
 import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
 import { CreateMissionComponent } from './create-mission/create-mission.component';
+import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
 
 
 export const ROUTES: Routes = [
@@ -24,7 +25,7 @@ export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'missions', component: ListerMissionsComponent },
   { path: 'createMission', component: CreateMissionComponent },
-
+  { path: 'approve-mission', component: ApproveMissionComponent },
 
   {
     path: 'kinds/lister',

@@ -24,5 +24,4 @@ export class ListerMissionsComponent implements OnInit {
     ));
 
   }
-
 }

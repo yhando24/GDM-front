@@ -16,10 +16,9 @@
                     <a class="nav-link" [routerLink]="['/kinds']" routerLinkActive="router-link-active" *ngIf="role ==='ADMIN'">Natures</a>
                 </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
-                    <li class="nav-item">
-                </li>
+                <a class="nav-link" [routerLink]="['/approve-mission']" routerLinkActive="router-link-active"
+                  *ngIf="role === 'MANAGER'">Valider mission</a>
+              </li>
             </ul>
           <div *ngIf="user">Bonjour {{user.firstName}} </div>
            <a *ngIf="!isAuthenticated()" lass="nav-link" routerLink="/login"><button class="btn btn-deconnecter">Login</button></a>
