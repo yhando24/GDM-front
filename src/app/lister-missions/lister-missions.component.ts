@@ -66,6 +66,6 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
+    this.data.checkMission.next([]);
   }
 }
