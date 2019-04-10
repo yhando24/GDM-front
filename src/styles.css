@@ -36,3 +36,11 @@
 .show > .btn-modifier.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
+
+.center-boutons-formulaire{
+  text-align: center;
+  }
+
+  .bouton-formulaire{
+    margin:15px;
+  }
