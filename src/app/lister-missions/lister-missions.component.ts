@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Mission } from '../models';
 import { MissionService } from 'src/services/mission.service';
 import { Route, Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { ModalService } from 'src/services/modal.service';
+import { Subscription } from 'rxjs';
 
 interface Alert {
   type: string;
@@ -17,7 +18,11 @@ interface Alert {
 })
 
 
-export class ListerMissionsComponent implements OnInit {
+export class ListerMissionsComponent implements OnInit, OnDestroy {
+
+  alertSubscribe: Subscription;
+
+
 
   listeMission: Mission[];
   alert: Alert;
@@ -32,7 +37,7 @@ export class ListerMissionsComponent implements OnInit {
       this.listeMission = arg
     ));
 
-    this.data.checkMission.subscribe(message => {
+    this.alertSubscribe = this.data.checkMission.subscribe(message => {
       if (message !== null) {
         this.alert.message = message[1],
           this.alert.type = message[0];
@@ -40,6 +45,7 @@ export class ListerMissionsComponent implements OnInit {
       setTimeout(() => {
         this.alert.message = '',
           this.alert.type = '';
+
       }, 2000);
       this.data
         .finAllMission()
@@ -53,4 +59,17 @@ export class ListerMissionsComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    this.data.checkMission.next([]);
+
+  }
+  modifer(){
+  console.log("Je me modifie")
+}
+supprimer(){
+  console.log("Je me supprime")
+}
+noteDeFrais(){
+  console.log("Je suis une note de frais!")
+}
 }

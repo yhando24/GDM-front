@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Kind, Mission } from '../models';
+import { Kind, Mission, getTransportEnum, TransportEnum } from '../models';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { KindsResolver } from '../lister-nature/lister-nature.route';
+import { MissionService } from 'src/services/mission.service';
 
 @Component({
   selector: 'app-create-mission',
@@ -11,10 +13,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./create-mission.component.css']
 })
 export class CreateMissionComponent implements OnInit {
-  kinds: Kind;
-  mission : Mission;
+  kinds: Kind[] = [];
+  mission: Mission = {};
+  transport: TransportEnum[] = getTransportEnum();
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private dataMission: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
 
   httpOptions = {
@@ -22,23 +25,13 @@ export class CreateMissionComponent implements OnInit {
       'Content-Type': 'application/json'
     })
   };
-  ngOnInit() {
-    this.route.data.subscribe((data: { kinds: Kind }) => this.kinds = data.kinds);
-  }
 
-  createUser(mission: Mission): Observable<Mission> {
-    return this.http.post<Mission>(
-      this.URL_BACKEND,
-      {
-        startDate: mission.startDate,
-        endDate: mission.endDate,
-        departureCity: mission.departureCity,
-        arrivalCity: mission.arrivalCity,
-        prime: mission.prime,
-        transportEnum: mission.transportEnum,
-        kind: mission.kind,
-      },
-      this.httpOptions
-    );
-  }
+  ngOnInit() {
+    console.log("Je suis dans le TS de base !!!")
+    this.route.data.subscribe(({kinds}) => this.kinds = kinds);
+    }
+submit(){
+  this.dataMission.createMission(this.mission);
+}
+
 }

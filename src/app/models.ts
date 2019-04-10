@@ -45,7 +45,12 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
+  TRAIN = 'Train', AVION = 'Avion', TAXI = 'Taxi', BUS = 'Bus', BATEAU = 'Bateau', NAVETTE_SPATIALE = 'Navette_Spatiale', VOITURE = 'Voiture', VELO = 'Velo', HELICOPTERE = 'Helicoptère'
+}
+
+export function getTransportEnum() {
+  return [TransportEnum.TRAIN, TransportEnum.AVION, TransportEnum.TAXI, TransportEnum.BUS, TransportEnum.BATEAU, TransportEnum.NAVETTE_SPATIALE, TransportEnum.VOITURE, TransportEnum.VELO, TransportEnum.HELICOPTERE
+  ]
 }
 
 export interface Kind {
