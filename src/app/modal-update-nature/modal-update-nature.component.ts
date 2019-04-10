@@ -18,14 +18,14 @@ export class ModalUpdateNatureComponent implements OnInit {
   }
 
   close() {
-   this.data.closeModal();
+    this.data.closeModal();
   }
 
   submit() {
     this.data.updateKind(this.oneKind).subscribe(
       kind => this.data.kindUpdated(kind),
       error => console.log(error.error)
-      );
+    );
     this.data.closeModal();
   }
 }

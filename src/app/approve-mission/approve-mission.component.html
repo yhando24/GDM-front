@@ -1,0 +1,32 @@
+<h2>liste des mission à valider</h2>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date de debut</th>
+      <th scope="col">Date de fin</th>
+      <th scope="col">Natures</th>
+      <th scope="col">Départ</th>
+      <th scope="col">Arrivée</th>
+      <th scope="col">Transport</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of missions; index as i">
+      <td scope="row">{{ i + 1 }}</td>
+    <td>{{m.startDate}}</td>
+      <td>{{m.endDate}}</td>
+      <td> {{m.kind.name}} </td>
+      <td> {{m.departureCity}} </td>
+      <td> {{m.arrivalCity}} </td>
+      <td> {{m.transportEnum}} </td>
+      <td>
+        <button type="button" class="btn btn-success" (click)="valider(m)">valider</button>
+        <button type="button" class="btn btn-danger" (click)="rejeter(m)">rejeter</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -8,70 +8,44 @@
         <div class="form-group">
           <label for="kind">Nature :</label>
           <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="mission.kind" name="kind" #kind="ngModel" required>
-          <option *ngFor="let kind of kinds" value="kind">{{kind.name}}</option>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
+            <option *ngFor="let kind of kinds" value="kind">{{kind.name}}</option>
           </select>
         </div>
-<div class="d-flex justify-content-between">
-          <div class="form-group date">
-            <label class="startDate">Date de début</label>
-                <div class="input-group date">
-              <input type="date" class="form-control" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel">
-            </div>
+        <div class="input-group form-group">
+          <label class="startDate">Date de début</label>
+          <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel" ngbDatepicker #dd="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dd.toggle()" type="button"></button>
           </div>
-          <div class="form-group">
-            <label class="checked-GDM">Date de fin</label>
-            <div class="input-group date">
-              <input type="date" class="form-control" [(ngModel)]="mission.endDate" name="invoiced" #invoiced="ngModel">
-            </div>
+        </div>
+        <div class="input-group form-group">
+          <label class="startDate">Date de fin</label>
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel" ngbDatepicker #de="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="de.toggle()" type="button"></button>
           </div>
-</div>
-
+        </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Ville de départ :</label>
           <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.departureCity"
             name="depart" #name="ngModel" required>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Ville d'arrivé :</label>
           <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.arrivalCity"
             name="arrival" #name="ngModel" required>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
         </div>
-
         <div class="form-group">
-          <label for="formGroupExampleInput">Pourcentage de la prime :</label>
-          <input type="text" class="form-control" placeholder="Entrez le pourcentage de la prime"
-            [(ngModel)]="mission.prime" name="prime" #prime="ngModel" required>
-          <p *ngIf="prime.dirty && prime.invalid">
-            Entrez le pourcentage du bonus
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label for="formGroupExampleInput">Transport :</label>
-          <select class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.transportEnum" name="transport"
-            #transport="ngModel" required>
-          <option *ngFor="let transp of transport; let i = index">{{i}} + {{transp}}</option>
+          <label>Tranport:</label><select class="form-control" [(ngModel)]="mission.transportEnum" name="transport" required
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let t of transport" [ngValue]="t">{{t}}</option>
           </select>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
         </div>
-
         <div class="form-group center-boutons-formulaire">
           <button class="btn btn-primary bouton-formulaire" type="submit()" [disabled]="!monForm.valid">Valider</button>
           <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
-
         </div>
       </form>
     </div>
-  </div>
+    </div>
 </div>

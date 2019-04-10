@@ -13,19 +13,19 @@ export class CreationExpenseAccountComponent implements OnInit {
   error: string;
   newExpenseAccount: ExpenseAccount = {};
 
-  constructor(private expenseAccountService : ExpenseAccountService, private router: Router) { }
+  constructor(private expenseAccountService: ExpenseAccountService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  submit(){
+  submit() {
     this.expenseAccountService.createExpenseAccount(this.newExpenseAccount).subscribe(
       value => this.router.navigateByUrl('expense-accounts'),
       error => this.error = error
     );
   }
 
-  cancel(){
+  cancel() {
     this.router.navigateByUrl('expense-accounts');
   }
 
