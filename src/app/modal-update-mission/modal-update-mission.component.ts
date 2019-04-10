@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Mission } from '../models';
+import { Mission, Kind, TransportEnum, getTransportEnum } from '../models';
 import { MissionService } from 'src/services/mission.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modal-update-mission',
@@ -8,13 +9,15 @@ import { MissionService } from 'src/services/mission.service';
   styleUrls: ['./modal-update-mission.component.css']
 })
 export class ModalUpdateMissionComponent implements OnInit {
-
+  kinds: Kind;
   oneMission: Mission;
+  listEnum: TransportEnum[] = getTransportEnum();
 
-  constructor(private data: MissionService) { }
+  constructor(private data: MissionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.data.oneMission.subscribe(mission => this.oneMission = mission);
+    this.route.data.subscribe((data: { kinds: Kind }) => this.kinds = data.kinds);
   }
 
   close() {

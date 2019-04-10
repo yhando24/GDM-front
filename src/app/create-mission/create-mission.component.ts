@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class CreateMissionComponent implements OnInit {
   kinds: Kind;
-  mission : Mission;
+  mission: Mission;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
   URL_BACKEND = environment.backendUrl + 'users';

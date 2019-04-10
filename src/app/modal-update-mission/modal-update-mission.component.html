@@ -7,12 +7,13 @@
 </div>
 <div class="modal-body">
   <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
+
     <div class="form-group">
       <label>Nature de la mission</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Nom" placeholder={{oneMission.kind.name}}
-          [(ngModel)]="oneMission.kind.name" />
-      </div>
+      <select id="inputState" class="form-control" [(ngModel)]="oneMission.kind.name" #champRole="ngModel"
+        name="nature">
+        <option *ngFor="let kind of kinds | keys"> {{kind.name}} </option>
+      </select>
       <label>Date de début</label>
       <div class="input-group">
         <input class="form-control form-control-lg" type="text" name="Date de début"
@@ -33,23 +34,22 @@
         <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
           placeholder={{oneMission.arrivalCity}} [(ngModel)]="oneMission.arrivalCity" />
       </div>
-      <label>Bonus</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Bonus" placeholder={{oneMission.prime}}
-          [(ngModel)]="oneMission.prime" />
-      </div>
-      <label>Transport</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Transport"
-          placeholder={{oneMission.transportEnum}} [(ngModel)]="oneMission.transportEnum" />
-      </div>
+
+      <label for="inputState">Transport</label>
+      <select id="inputState" class="form-control" [(ngModel)]="oneMission.transportEnum" #champRole="ngModel"
+        name="transport">
+        <option *ngFor="let transportEnum of listEnum"> {{transportEnum}} </option>
+      </select>
+
       <!-- <label>Montant de la facture</label>
       <div class="input-group"></div>
       <input class="form-control form-control-lg" type="text" name="Montant de la facture"
         [(ngModel)]="oneMission.facture" /> -->
+
     </div>
   </form>
 </div>
+
 <div class="modal-footer">
   <button type="submit" class="btn btn-outline-primary">Valider</button>
   <button type="button" class="btn btn-outline-dark" (click)="close()">Annuler</button>
