@@ -27,7 +27,7 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   listeMission: Mission[];
   alert: Alert;
   constructor(private data: MissionService, private route: Router, private modal: ModalService) { }
-  newMission(){
+  newMission() {
     this.route.navigate(['/createMission']);
   }
 
@@ -63,4 +63,13 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
     this.data.checkMission.next([]);
 
   }
+  modifer(){
+  console.log('Je me modifie')
+}
+supprimer(){
+  console.log('Je me supprime')
+}
+noteDeFrais(){
+  console.log('Je suis une note de frais!')
+}
 }

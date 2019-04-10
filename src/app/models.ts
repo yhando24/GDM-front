@@ -1,6 +1,4 @@
 export interface User {
-<<<<<<< HEAD
-<<<<<<< HEAD
     id?: number;
     firstName?: string;
     lastName?: string;
@@ -33,51 +31,6 @@ export interface Mission {
     missionStatus?: MissionStatusEnum;
     transportEnum?: TransportEnum;
     user?: User;
-=======
-  id?: number;
-  firstName?: string;
-  lastName?: string;
-  password?: string;
-  email?: string;
-  role?: Role;
-}
-
-=======
-  id?: number;
-  firstName?: string;
-  lastName?: string;
-  password?: string;
-  email?: string;
-  role?: Role;
-}
-
->>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
-export enum Role {
-  USER = 'User',
-  ADMIN = 'Admin',
-  MANAGER = 'Manager'
-}
-
-export function getEnum() {
-  return [Role.USER, Role.ADMIN, Role.MANAGER];
-}
-
-export function getRolesEnum() {
-  return [Role.MANAGER, Role.USER, Role.ADMIN];
-}
-
-export interface Mission {
-  id?: number;
-  kind?: Kind;
-  startDate?: Date;
-  endDate?: Date;
-  departureCity?: string;
-  arrivalCity?: string;
-  prime?: number;
-  missionStatus?: MissionStatusEnum;
-  transportEnum?: TransportEnum;
-
->>>>>>> ed0e882f81441a56959982a34901d94bffcb4b24
 }
 
 
@@ -90,17 +43,29 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN,
-  AVION,
-  TAXI,
-  BUS,
-  BATEAU,
-  NAVETTE_SPATIALE,
-  VOITURE,
-  VELO,
-  HELICOPTERE
+  TRAIN = 'train',
+  AVION = 'avion',
+  TAXI = 'taxi',
+  BUS = 'bus',
+  BATEAU = 'bateau',
+  NAVETTE_SPATIALE = 'navette_spaviale',
+  VOITURE = 'voiture',
+  VELO = 'velo',
+  HELICOPTERE = 'helicoptere'
 }
-
+export function getTransportEnum() {
+  return [
+    TransportEnum.AVION,
+    TransportEnum.BATEAU,
+    TransportEnum.BUS,
+    TransportEnum.HELICOPTERE,
+    TransportEnum.NAVETTE_SPATIALE,
+    TransportEnum.TAXI,
+    TransportEnum.TRAIN,
+    TransportEnum.VELO,
+    TransportEnum.VOITURE
+  ];
+}
 export interface Kind {
 
   id?: number;
