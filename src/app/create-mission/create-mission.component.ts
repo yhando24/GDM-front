@@ -31,7 +31,7 @@ export class CreateMissionComponent implements OnInit {
   }
 
   submit() {
-    this.dataMission.createMission(this.mission);
+    // this.dataMission.createMission(this.mission);
   }
 
 }

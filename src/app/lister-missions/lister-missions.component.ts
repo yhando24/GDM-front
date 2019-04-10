@@ -20,6 +20,7 @@ interface Alert {
 
 export class ListerMissionsComponent implements OnInit, OnDestroy {
 
+
   alertSubscribe: Subscription;
 
 
@@ -27,7 +28,7 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   listeMission: Mission[];
   alert: Alert;
   constructor(private data: MissionService, private route: Router, private modal: ModalService) { }
-  newMission(){
+  newMission() {
     this.route.navigate(['/createMission']);
   }
 
@@ -53,31 +54,18 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  delete(m : Mission) {
+  delete(m: Mission) {
     this.data.addMission(m);
     this.modal.openModal('deleteMission');
 
   }
 
-<<<<<<< HEAD
   openUpdate(mission: Mission) {
     this.data.addMission(mission);
     this.modal.openModal('updateMission');
   }
 
-=======
   ngOnDestroy(): void {
-    this.data.checkMission.next([]);
-
+    throw new Error("Method not implemented.");
   }
-  modifer(){
-  console.log("Je me modifie")
-}
-supprimer(){
-  console.log("Je me supprime")
-}
-noteDeFrais(){
-  console.log("Je suis une note de frais!")
-}
->>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
 }

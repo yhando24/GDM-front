@@ -23,7 +23,6 @@ import { ModalUpdateNatureComponent } from './modal-update-nature/modal-update-n
 import { ModalDeleteNatureComponent } from './modal-delete-nature/modal-delete-nature.component';
 import { KeysPipe } from './pipe/key-pipe-enum';
 import { KindsResolver } from './lister-nature/lister-nature.route';
-import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
 import { ModalUpdateMissionComponent } from './modal-update-mission/modal-update-mission.component';
 
@@ -48,14 +47,8 @@ import { ModalUpdateMissionComponent } from './modal-update-mission/modal-update
     ModalUpdateNatureComponent,
     KeysPipe,
     KindsResolver,
-<<<<<<< HEAD
     ModalDeleteMissionComponent,
     ModalUpdateMissionComponent
-=======
-    CreationExpenseAccountComponent,
-    ModalDeleteMissionComponent,
-
->>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
   ],
 
   imports: [
