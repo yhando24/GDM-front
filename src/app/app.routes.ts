@@ -13,6 +13,7 @@ import { KindsResolver } from './lister-nature/lister-nature.route';
 import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
 import { CreateMissionComponent } from './create-mission/create-mission.component';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
+import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 
 
 export const ROUTES: Routes = [
@@ -26,6 +27,7 @@ export const ROUTES: Routes = [
   { path: 'missions', component: ListerMissionsComponent },
   { path: 'createMission', component: CreateMissionComponent },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent },
+  { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
 
 
   {
