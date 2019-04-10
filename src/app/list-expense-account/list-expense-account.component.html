@@ -1,0 +1,31 @@
+<h2>Liste des notes de frais</h2>
+<button type="button" class="btn btn-success" (click)=newExpenseAccount()>Creer une nouvelle nature</button>
+<p>
+  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+</p>
+
+<table class="table table-striped ">
+  <thead>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Date</th>
+      <th class="align-middle" scope="col">Type</th>
+      <th class="align-middle" scope="col">Montant</th>
+      <th class="align-middle" scope="col">Statut</th>
+      <th class="align-middle" scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center" *ngFor="let expenseAccount of listExpenseAccount; index as i">
+      <th class="align-middle" scope="row">{{ i + 1 }}</th>
+      <td class="align-middle">{{ expenseAccount.date }}</td>
+      <td class="align-middle">{{ expenseAccount.type }}</td>
+      <td class="align-middle">{{ expenseAccount.amount }}</td>
+      <td class="align-middle">{{ expenseAccount.status }}</td>
+      <td class="align-middle">
+        <button type="button" class="btn-liste btn btn-modifier btn-sm" (click)="openUpdate(expenseAccount)">Modifier</button>
+        <button type="button" class="btn-liste btn btn-danger btn-sm" (click)="openDelete(expenseAccount)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
