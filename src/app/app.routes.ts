@@ -14,12 +14,14 @@ import { ListerMissionsComponent } from './lister-missions/lister-missions.compo
 import { CreateMissionComponent } from './create-mission/create-mission.component';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
+import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
 
 
 export const ROUTES: Routes = [
 
   { path: 'creation-nature', component: CreationNatureMissionComponent, canActivate: [AdminGuard]},
   { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
+  { path: 'approve-mission', component: ApproveMissionComponent  },
   { path: 'kinds', component: ListerNatureComponent},
   { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
   { path: 'login', component: ConnectionUserComponent },
