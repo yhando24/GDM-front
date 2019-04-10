@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject, AsyncSubject, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Kind } from 'src/app/models';
+import { Kind, Historic } from 'src/app/models';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -13,7 +15,12 @@ const URL_BACKEND = environment.backendUrl;
 
 export class KindService {
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private modalService: NgbModal) { }
+
+  get oneKind(): Observable<Kind> {
+    return this.kind.asObservable();
+  }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,27 +28,56 @@ export class KindService {
     })
   };
 
+  private kindd: Kind;
+
+  private kind = new BehaviorSubject<Kind>(null);
+  public checkKind = new BehaviorSubject<string[]>(null);
+
+  kindDeleted(kind: Kind) {
+    this.checkKind.next(['success', `la nature ${kind.name}
+    à bien été supprimée`]);
+  }
+  kindNotDeleted(message: string) {
+    this.checkKind.next(['danger', message]);
+  }
+  kindUpdated(kind: Kind) {
+    this.checkKind.next(['success', `la nature ${kind.name}
+    à bien été modifiée`]);
+  }
+
+  ajoutKind(kind: Kind) {
+    this.kind.next(kind);
+  }
+
+  closeModal() {
+    this.modalService.dismissAll();
+  }
+
   createKind(nouvelleNature: Kind): Observable<Kind> {
 
-    if ( nouvelleNature.invoiced == null) {
+    if (nouvelleNature.invoiced == null) {
       nouvelleNature.invoiced = false;
     }
 
-    if ( nouvelleNature.bonus == null ) {
+    if (nouvelleNature.bonus == null) {
       nouvelleNature.bonus = false;
     }
 
-    if ( nouvelleNature.authorizationToExceed == null ) {
+    if (nouvelleNature.authorizationToExceed == null) {
       nouvelleNature.authorizationToExceed = false;
     }
 
-    if ( nouvelleNature.bonusPercentage == null ) {
+    if (nouvelleNature.bonusPercentage == null) {
       nouvelleNature.bonusPercentage = 0;
     }
 
-    nouvelleNature.updatedAt = new Date() ;
+    if (nouvelleNature.active == null) {
+      nouvelleNature.active = false;
+    }
+
+    nouvelleNature.updatedAt = new Date();
     console.log(nouvelleNature);
-    return this.http.post<Kind>(URL_BACKEND + 'kinds',  {
+    return this.http.post<Kind>(URL_BACKEND + 'kinds', {
       name: nouvelleNature.name,
       adr: nouvelleNature.adr,
       bonusPercentage: nouvelleNature.bonusPercentage,
@@ -50,13 +86,21 @@ export class KindService {
       bonus: nouvelleNature.bonus,
       dailyCharges: nouvelleNature.dailyCharges,
       authorizationToExceed: nouvelleNature.authorizationToExceed,
-
+      active: nouvelleNature.active
     },
-    this.httpOptions);
+      this.httpOptions);
   }
 
   findAllKind(): Observable<Kind[]> {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
+  }
+  findActive(): Observable<HttpResponse<Kind[]>> {
+    console.log("je afis la requete!!!!")
+    return this.http.get<Kind[]>(URL_BACKEND + 'kinds/active', { observe: 'response' });
+  }
+
+  findKindHistoric(id: number): Observable<Historic[]> {
+    return this.http.get<Historic[]>(URL_BACKEND + 'kinds/historic/' + id);
   }
 
   getById(id: number): Observable<Kind> {
@@ -72,4 +116,14 @@ export class KindService {
     console.log(id);
     return this.http.delete<void>(URL_BACKEND + 'kinds/deleteKind/' + id, this.httpOptions);
   }
+
+
+  getKind(): Kind {
+    return this.kindd;
+  }
+
+  addKind(kindd: Kind) {
+    this.kindd = kindd;
+  }
+
 }

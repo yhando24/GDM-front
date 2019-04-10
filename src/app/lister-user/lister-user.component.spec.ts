@@ -16,7 +16,11 @@ describe('ListerUserComponent', () => {
       declarations: [ListerUserComponent]
     })
       .compileComponents();
+<<<<<<< HEAD
 >>>>>>> f72cccf96aafbc7a60c270b9a8a12ae1d412b70a
+=======
+>>>>>>> 87eeb7d98f4bde745450c878ae1667ba2d065dcc
+>>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
   }));
 
   beforeEach(() => {

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { User, token } from 'src/app/models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import * as moment from "moment";
 import { tap } from 'rxjs/operators';
-import { Logeur } from 'src/app/connection-user/connection-user.component';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 
 @Injectable({
@@ -13,40 +13,57 @@ import { Observable } from 'rxjs';
 })
 export class AuthServiceService {
 
+
+  authenticated = false;
+  public current_User = new BehaviorSubject<User>({email: '', firstName: '', role: null, lastName: ''});
+  public current_Role = new BehaviorSubject<string>('');
+
   constructor(private http: HttpClient) { }
-  login(email: string, password: string) : Observable<token> {
+
+  login(email: string, password: string): Observable<token> {
 
     const URL_BACKEND = environment.backendUrl;
-    return this.http.post<token>(URL_BACKEND+'login', { email, password })
+    return this.http.post<token>(URL_BACKEND + 'login', { email, password })
       .pipe(tap(res => this.setSession(res)));
+
   }
 
   private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
-
     localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+    this.authenticated = true;
+
   }
 
   logout() {
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
+    localStorage.removeItem('id_token');
+    this.authenticated = false;
   }
 
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+  get isAuthenticated(): boolean{
+    const helper = new JwtHelperService();
+    const idToken = localStorage.getItem('id_token');
+
+    if (!helper.isTokenExpired(idToken)) {
+
+       return true;
+    } else {
+      return false;
+    }
   }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
+   currentUser() {
+      const helper = new JwtHelperService();
+      const idToken = localStorage.getItem('id_token');
+      if (idToken != null) {
+        const email = helper.decodeToken(idToken).sub;
+        const role = helper.decodeToken(idToken).auth;
+        this.current_Role.next(role.toUpperCase());
+        this.authenticated = true;
+        const URL_BACKEND = environment.backendUrl;
+        this.http.get<User>(URL_BACKEND + 'login/?email=' + email).subscribe(user => {
+        this.current_User.next(user);
+      });
+    }
   }
-
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
-
-
-
 }
+

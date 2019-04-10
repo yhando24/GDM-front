@@ -1,0 +1,58 @@
+<!-- Modal Update Nature -->
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Modification de la Nature</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
+    <div class="form-group">
+      <label>Nom</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Nom" placeholder={{oneKind.name}}
+          [(ngModel)]="oneKind.name" />
+      </div>
+      <label>Taux moyen journalier</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Taux moyen journalier" placeholder={{oneKind.adr}}
+          [(ngModel)]="oneKind.adr" />
+      </div>
+      <label>% Bonus</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="% Bonus" placeholder={{oneKind.bonusPercentage}}
+          [(ngModel)]="oneKind.bonusPercentage" />
+      </div>
+      <label>Facturable</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="checkbox" name="Facturable" placeholder={{oneKind.invoiced}}
+          [(ngModel)]="oneKind.invoiced" />
+      </div>
+      <label>Bonus</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="checkbox" name="Bonus" placeholder={{oneKind.bonus}}
+          [(ngModel)]="oneKind.bonus" />
+      </div>
+      <label>Plafond frais journalier</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="text" name="Plafond frais journalier"
+          placeholder={{oneKind.dailyCharges}} [(ngModel)]="oneKind.dailyCharges" />
+      </div>
+      <label>Autorisation de dépassement</label>
+      <div class="input-group">
+        <input class="form-control form-control-lg" type="checkbox" name="Autorisation de dépassement"
+          placeholder={{oneKind.authorizationToExceed}} [(ngModel)]="oneKind.authorizationToExceed" />
+      </div>
+      <label>Etat d'activation</label>
+      <div class="input-group"></div>
+      <input class="form-control form-control-lg" type="checkbox" name="Niveau d'activation"
+        [(ngModel)]="oneKind.active"/>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-primary" (click)="submit()">Valider</button>
+  <button type="button" class="btn btn-outline-dark" (click)="close()">
+    Annuler
+  </button>
+</div>

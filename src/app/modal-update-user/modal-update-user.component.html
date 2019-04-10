@@ -1,32 +1,29 @@
-<!-- modal update-->
-<ng-template #modalUpdate let-modalUpdate>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modalUpdate.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
-      <div class="form-group">
-        <label>email:</label><input class="form-control form-control-lg" type="text" name="email"
-          placeholder="{{oneUser.email}}" disabled>
-      </div>
-      <div class="form-group">
-        <label>Nom:</label><input class="form-control form-control-lg" type="text" name="lastName"
-          placeholder="{{oneUser.lastName}}" [(ngModel)]="oneUser.lastName" required>
-      </div>
-      <div class="form-group">
-        <label>Prenom:</label><input class="form-control form-control-lg" type="text" name="firstName"
-          placeholder="{{oneUser.firstName}}" [(ngModel)]="oneUser.firstName" required>
-      </div>
-      <div class="form-group">
-        <label>Role:</label><select class="form-control form-control-lg" [(ngModel)]="oneUser.role"
-          [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let r of enumRole" [ngValue]="r">{{r}}</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-outline-dark">Save</button>
-    </form>
-  </div>
-</ng-template>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
+    <div class="form-group">
+      <label>email:</label><input class="form-control form-control-lg" type="text" name="email"
+        placeholder="{{oneUser.email}}" disabled>
+    </div>
+    <div class="form-group">
+      <label>Nom:</label><input class="form-control form-control-lg" type="text" name="lastName"
+        placeholder="{{oneUser.lastName}}" [(ngModel)]="oneUser.lastName" required>
+    </div>
+    <div class="form-group">
+      <label>Prenom:</label><input class="form-control form-control-lg" type="text" name="firstName"
+        placeholder="{{oneUser.firstName}}" [(ngModel)]="oneUser.firstName" required>
+    </div>
+    <div class="form-group">
+      <label>Role:</label><select class="form-control form-control-lg" [(ngModel)]="oneUser.role"
+        [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let r of listeRole" [ngValue]="r">{{r}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-outline-dark">Save</button>
+  </form>
+</div>

@@ -1,16 +1,25 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <h2>liste des utilisteurs</h2>
 
 =======
 <h2>liste des utilisateurs</h2>
 <button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
 >>>>>>> f72cccf96aafbc7a60c270b9a8a12ae1d412b70a
+=======
+<h2>liste des utilisateurs</h2>
+<button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
+<p>
+  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+</p>
+>>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nom</th>
       <th scope="col">Prenom</th>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <th scope="col">Departement</th>
     </tr>
@@ -27,20 +36,20 @@
   </tbody>
 </table>
 =======
+=======
+>>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
       <th scope="col">Roles</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of listeUsers; index as i">
-
       <th scope="row">{{ i + 1 }}</th>
-      <td >
+      <td (click)=update(user)>
         {{ user.firstName }}
       </td>
       <td>{{ user.lastName }}</td>
-      <td>{{ user.role }}
-      </td>
+      <td>{{ user.role }}</td>
       <td>
         <button type="button" class="btn btn-warning"   (click)="update(user)">Modifier</button>
         <button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button>
@@ -48,8 +57,11 @@
     </tr>
   </tbody>
 </table>
-<router-outlet ></router-outlet>
+<router-outlet></router-outlet>
 
 
 
+<<<<<<< HEAD
 >>>>>>> f72cccf96aafbc7a60c270b9a8a12ae1d412b70a
+=======
+>>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83

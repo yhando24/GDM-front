@@ -8,17 +8,22 @@ export interface User {
 }
 
 export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-  MANAGER = 'MANAGER'
+  USER = 'User',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager'
 }
 
 export function getEnum() {
+  return [Role.USER, Role.ADMIN, Role.MANAGER];
+}
+
+export function getRolesEnum() {
   return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
 export interface Mission {
-
+  id?: number;
+  kind?: Kind;
   startDate?: Date;
   endDate?: Date;
   departureCity?: string;
@@ -32,15 +37,20 @@ export interface Mission {
 
 export interface token {
 
-id_token : string
+  id_token: string;
 }
 
 export enum MissionStatusEnum {
- EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
 }
 
 export enum TransportEnum {
-  TRAIN, AVION, TAXI, BUS, BATEAU, NAVETTE_SPATIALE, VOITURE, VELO, HELICOPTERE
+  TRAIN = 'Train', AVION = 'Avion', TAXI = 'Taxi', BUS = 'Bus', BATEAU = 'Bateau', NAVETTE_SPATIALE = 'Navette_Spatiale', VOITURE = 'Voiture', VELO = 'Velo', HELICOPTERE = 'Helicoptère'
+}
+
+export function getTransportEnum() {
+  return [TransportEnum.TRAIN, TransportEnum.AVION, TransportEnum.TAXI, TransportEnum.BUS, TransportEnum.BATEAU, TransportEnum.NAVETTE_SPATIALE, TransportEnum.VOITURE, TransportEnum.VELO, TransportEnum.HELICOPTERE
+  ]
 }
 
 export interface Kind {
@@ -54,4 +64,23 @@ export interface Kind {
   bonus?: boolean;
   dailyCharges?: number;
   authorizationToExceed?: boolean;
+  active?: boolean;
 }
+
+export interface Historic {
+  timestamp?: Date;
+  kind?: Kind;
+}
+
+export enum ExpenseAccountStatusEnum {
+  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+}
+
+export interface ExpenseAccount {
+  id?: number;
+  date?: Date;
+  type?: string;
+  amount?: number;
+  status?: ExpenseAccountStatusEnum;
+}
+

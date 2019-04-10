@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">liste des versions d'une nature</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <table class=" table-striped table-responsive{-sm|-md|-lg|-xl}" style="text-align: center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">date de modif</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Taux moyen journalier </th>
+            <th scope="col">% Bonus</th>
+            <th scope="col">Facturable</th>
+            <th scope="col">Bonus</th>
+            <th scope="col">Plafond frais journalier</th>
+            <th scope="col">Autorisation de dépassement</th>
+            <th scope="col">Etat d'activation</th>
+           </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let historic of listeHistoricKinds; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ historic.timestamp |date: 'dd/MM/yy - HH:mm' }} </td>
+            <td>{{ historic.kind.name }}</td>
+            <td>{{ historic.kind.adr }}</td>
+            <td>{{ historic.kind.bonusPercentage }}</td>
+            <td>{{ historic.kind.invoiced }}</td>
+            <td>{{ historic.kind.bonus }}</td>
+            <td>{{ historic.kind.dailyCharges }}</td>
+            <td>{{ historic.kind.authorizationToExceed }}</td>
+            <td>{{ historic.kind.active}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="erreur" style="color: red">
+        {{erreur}}
+      </p>
+
+</div>

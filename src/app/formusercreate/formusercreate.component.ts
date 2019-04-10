@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/services/user.service';
-import { User } from '../models';
+import { User, Role, getRolesEnum,  } from '../models';
 import { Router } from '@angular/router';
 
 
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormusercreateComponent implements OnInit {
 
+  listEnum: Role[] = getRolesEnum();
   user: User = {};
   messageErreur: string = '';
 
@@ -22,7 +23,9 @@ export class FormusercreateComponent implements OnInit {
   }
   submit() {
     this.userService.createUser(this.user).subscribe(() => {
-      this.user +' //Envoyé avec succès'
+      console.log(this.user),
+// tslint:disable-next-line: no-unused-expression
+      this.user + ' //Envoyé avec succès',
       this.router.navigate(['/accueil']);
     },
       error => {
