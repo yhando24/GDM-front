@@ -17,6 +17,9 @@
         <a class="nav-link " [routerLink]="['/kinds']" routerLinkActive="router-link-active"
           *ngIf="role ==='ADMIN'">Natures</a>
       </li>
+      <li class="nav-item hvr-underline-from-center">
+        <a class="nav-link " [routerLink]="['/approve-mission']" routerLinkActive="router-link-active">Valider mission</a>
+      </li>
     </ul>
     <div *ngIf="user">
       <h4 class="bjr-user">Bonjour {{user.firstName}} !</h4>

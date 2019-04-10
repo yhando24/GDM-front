@@ -62,8 +62,13 @@ export class MissionService {
   }
 
   updateMission(mission: Mission): Observable<Mission> {
-    console.log(mission);
+
     return this.http.patch<Mission>(this.URL_BACKEND + '/update/' + mission, this.httpOptions);
   }
-
+  finAllMissionToApprove(): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/waiting');
+  }
+  approveOneMission(m: Mission): Observable<Mission> {
+    return this.http.patch<Mission>(this.URL_BACKEND, m , this.httpOptions);
+  }
 }
