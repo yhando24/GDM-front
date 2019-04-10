@@ -23,11 +23,13 @@ export const ROUTES: Routes = [
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'missions', component: ListerMissionsComponent },
-  { path: 'createMission', component: CreateMissionComponent },
-
+  { path: 'createMission', component: CreateMissionComponent,
+  resolve: {
+    kinds: KindsResolver
+  }},
 
   {
-    path: 'kinds/lister',
+    path: 'kinds/createListe',
     component: ListerNatureComponent,
     resolve: {
       kinds: KindsResolver

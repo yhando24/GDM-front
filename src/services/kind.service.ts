@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, AsyncSubject, BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Kind, Historic } from 'src/app/models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -89,6 +89,10 @@ export class KindService {
 
   findAllKind(): Observable<Kind[]> {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
+  }
+  findActive(): Observable<HttpResponse<Kind[]>> {
+    console.log("je afis la requete!!!!")
+    return this.http.get<Kind[]>(URL_BACKEND + 'kinds/active', { observe: 'response' });
   }
 
   findKindHistoric(id: number): Observable<Historic[]> {

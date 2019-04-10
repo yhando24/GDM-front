@@ -6,13 +6,13 @@
       <form (ngSubmit)="submit()" #monForm="ngForm">
 
         <div class="form-group">
-          <label for="kind.mission">Nature :</label>
-          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.kind" name="kind"
-            #kind="ngModel" required>
-          <option *ngFor="let kind of kinds | keys" value="kind.key">{{kind.value}}</option>
+          <label for="kind">Nature :</label>
+          <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="mission.kind" name="kind" #kind="ngModel" required>
+          <option *ngFor="let kind of kinds" value="kind">{{kind.name}}</option>
           <p *ngIf="name.dirty && name.invalid">
             Entrez le nom de votre nouvelle nature de mission
           </p>
+          </select>
         </div>
         <div class="row">
           <div class="form-group md-6">
@@ -31,7 +31,7 @@
         <div class="form-group">
           <label for="formGroupExampleInput">Ville de départ :</label>
           <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.departureCity"
-            name="name" #name="ngModel" required>
+            name="depart" #name="ngModel" required>
           <p *ngIf="name.dirty && name.invalid">
             Entrez le nom de votre nouvelle nature de mission
           </p>
@@ -39,41 +39,34 @@
         <div class="form-group">
           <label for="formGroupExampleInput">Ville d'arrivé :</label>
           <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.arrivalCity"
-            name="name" #name="ngModel" required>
+            name="arrival" #name="ngModel" required>
           <p *ngIf="name.dirty && name.invalid">
             Entrez le nom de votre nouvelle nature de mission
           </p>
         </div>
 
-        <div class="form-group" *ngIf="bonus.value == !null">
+        <div class="form-group">
           <label for="formGroupExampleInput">Pourcentage de la prime :</label>
           <input type="text" class="form-control" placeholder="Entrez le pourcentage de la prime"
-            [(ngModel)]="mission.bonusPercentage" name="bonusPercentage" #bonusPercentage="ngModel" required>
-          <p *ngIf="bonusPercentage.dirty && bonusPercentage.invalid">
+            [(ngModel)]="mission.prime" name="prime" #prime="ngModel" required>
+          <p *ngIf="prime.dirty && prime.invalid">
             Entrez le pourcentage du bonus
           </p>
         </div>
 
         <div class="form-group">
-          <label class="checked-GDM">Autorisation de dépassement de frais
-            <input type="checkbox" [(ngModel)]="mission.authorizationToExceed" name="authorizationToExceed"
-              #authorizationToExceed="ngModel">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-
-        <div class="form-group">
           <label for="formGroupExampleInput">Transport :</label>
-          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.kind" name="name"
-            #name="ngModel" required>
-          <option *ngFor="let trasnp of transports | keys" value="trasnp.key">{{trasnp.value}}</option>
+          <select class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.transport" name="transport"
+            #transport="ngModel" required>
+          <option *ngFor="let transp of transport; let i = index">{{i}} + {{transp}}</option>
+          </select>
           <p *ngIf="name.dirty && name.invalid">
             Entrez le nom de votre nouvelle nature de mission
           </p>
         </div>
 
         <div class="form-group center-boutons-formulaire">
-          <button class="btn btn-primary bouton-formulaire" type="submit" [disabled]="!monForm.valid">Valider</button>
+          <button class="btn btn-primary bouton-formulaire" type="submit()" [disabled]="!monForm.valid">Valider</button>
           <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
           <p *ngIf="error && error.length>0">
             {{error}}

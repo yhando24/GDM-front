@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Mission } from '../models';
 import { MissionService } from 'src/services/mission.service';
-import { Route, Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lister-missions',
@@ -22,7 +21,14 @@ export class ListerMissionsComponent implements OnInit {
     this.data.finAllMission().subscribe(arg => (
       this.listeMission = arg
     ));
-
   }
-
+  modifer(){
+  console.log("Je me modifie")
+}
+supprimer(){
+  console.log("Je me supprime")
+}
+noteDeFrais(){
+  console.log("Je suis une note de frais!")
+}
 }

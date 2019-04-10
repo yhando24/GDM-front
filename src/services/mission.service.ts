@@ -22,4 +22,20 @@ export class MissionService {
   finAllMission(): Observable<Mission[]> {
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
+
+  createMission(mission: Mission): Observable<Mission> {
+    return this.http.post<Mission>(
+      this.URL_BACKEND,
+      {
+        startDate: mission.startDate,
+        endDate: mission.endDate,
+        departureCity: mission.departureCity,
+        arrivalCity: mission.arrivalCity,
+        prime: mission.prime,
+        transportEnum: mission.transportEnum,
+        kind: mission.kind,
+      },
+      this.httpOptions
+    );
+  }
 }
