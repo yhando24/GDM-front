@@ -33,6 +33,23 @@ export interface Mission {
     user?: User;
 }
 
+export interface IModelMissionCalendar {
+  id: number,
+  start: Date,
+  end: Date,
+  title: string
+}
+
+export class ModelMissionCalendar implements IModelMissionCalendar {
+  public constructor(public id: number, public start: Date, public end: Date, public title: string) {
+    this.id = id;
+    this.start = start;
+    this.end = end;
+    this.title = title;
+  }
+}
+
+
 export interface token {
   id_token: string;
 }
@@ -42,15 +59,15 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN = 'train',
-  AVION = 'avion',
-  TAXI = 'taxi',
-  BUS = 'bus',
-  BATEAU = 'bateau',
-  NAVETTE_SPATIALE = 'navette_spatiale',
-  VOITURE = 'voiture',
-  VELO = 'velo',
-  HELICOPTERE = 'helicoptere'
+  TRAIN = 'TRAIN',
+  AVION = 'AVION',
+  TAXI = 'TAXI',
+  BUS = 'BUS',
+  BATEAU = 'BATEAU',
+  NAVETTE_SPATIALE = 'NAVETTE_SPATIALE',
+  VOITURE = 'VOITURE',
+  VELO = 'VELO',
+  HELICOPTERE = 'HELICOPTERE'
 }
 export function getTransportEnum() {
   return [

@@ -5,52 +5,60 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
 <div class="modal-body">
   <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
 
-    <div class="form-group">
-      <label>Nature de la mission</label>
-      <select id="inputState" class="form-control" [(ngModel)]="oneMission.kind.name" #champRole="ngModel"
-        name="nature">
-        <option *ngFor="let kind of kinds | keys"> {{kind.name}} </option>
+
+      <div class="form-group">
+          <label for="kind">Nature :</label>
+          <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="oneMission.kind" name="kind" #kind="ngModel" required>
+            <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
+          </select>
+        </div>
+
+    <!-- <div class="form-group">
+      <label for="kind">Nature :</label>
+      <select class="form-control" [(ngModel)]="oneMission.kind" name="kind" #kind="ngModel" required>
+        <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
       </select>
-      <label>Date de début</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Date de début"
-          placeholder={{oneMission.startDate}} [(ngModel)]="oneMission.startDate" />
-      </div>
-      <label>Date de fin</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Date de fin" placeholder={{oneMission.endDate}}
-          [(ngModel)]="oneMission.endDate" />
-      </div>
-      <label>Ville de départ</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Ville de départ"
-          placeholder={{oneMission.departureCity}} [(ngModel)]="oneMission.departureCity" />
-      </div>
-      <label>Ville d'arrivée</label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
-          placeholder={{oneMission.arrivalCity}} [(ngModel)]="oneMission.arrivalCity" />
-      </div>
+    </div> -->
 
-      <label for="inputState">Transport</label>
-      <select id="inputState" class="form-control" [(ngModel)]="oneMission.transportEnum" #champRole="ngModel"
-        name="transport">
-        <option *ngFor="let transportEnum of listEnum"> {{transportEnum}} </option>
-      </select>
-
-      <!-- <label>Montant de la facture</label>
-      <div class="input-group"></div>
-      <input class="form-control form-control-lg" type="text" name="Montant de la facture"
-        [(ngModel)]="oneMission.facture" /> -->
-
+    <label>Date de début</label>
+    <div class="input-group">
+      <input class="form-control form-control-lg" type="date" name="Date de débgit put"
+        placeholder={{oneMission.startDate}} [(ngModel)]="oneMission.startDate" />
     </div>
+
+    <label>Date de fin</label>
+    <div class="input-group">
+      <input class="form-control form-control-lg" type="date" name="Date de fin" placeholder={{oneMission.endDate}}
+        [(ngModel)]="oneMission.endDate" />
+    </div>
+
+    <label>Ville de départ</label>
+    <div class="input-group">
+      <input class="form-control form-control-lg" type="text" name="Ville de départ"
+        placeholder={{oneMission.departureCity}} [(ngModel)]="oneMission.departureCity" />
+    </div>
+
+    <label>Ville d'arrivée</label>
+    <div class="input-group">
+      <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
+        placeholder={{oneMission.arrivalCity}} [(ngModel)]="oneMission.arrivalCity" />
+    </div>
+
+    <label for="inputState">Transport</label>
+    <select id="inputState" class="form-control" [(ngModel)]="oneMission.transportEnum" #champRole="ngModel"
+      name="transport">
+      <option *ngFor="let transportEnum of listEnum" [ngValue]="transportEnum.toUpperCase()"> {{transportEnum}}
+      </option>
+    </select>
+
   </form>
 </div>
 
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-primary">Valider</button>
+  <button type="submit" class="btn btn-outline-primary" (click)="submit()">Valider</button>
   <button type="button" class="btn btn-outline-dark" (click)="close()">Annuler</button>
 </div>

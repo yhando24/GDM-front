@@ -37,8 +37,8 @@
       <td class="align-middle">{{ mission.missionStatus }}</td>
 
       <td class="align-middle">
-        <button type="button" class="btn-liste btn btn-modifier btn-sm" (click)="modifer()">Modifier</button>
-        <button type="button" class="btn-liste btn btn-danger btn-sm" (click)="supprimer()">Supprimer</button>
+        <button type="button" class="btn-liste btn btn-modifier btn-sm" (click)="openUpdate(mission)">Modifier</button>
+        <button type="button" class="btn-liste btn btn-danger btn-sm" (click)="delete(mission)">Supprimer</button>
         <button type="button" class="btn-liste btn btn-info btn-sm" (click)="listExpenseAccount()">Note de frais</button>
       </td>
 
