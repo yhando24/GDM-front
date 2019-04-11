@@ -61,12 +61,12 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   delete(m: Mission) {
     this.data.addMission(m);
     this.modal.openModal('deleteMission');
-
   }
 
   openUpdate(mission: Mission) {
     this.data.addMission(mission);
     this.modal.openModal('updateMission');
+    this.route.navigateByUrl('updateMission');
   }
 
   ngOnDestroy(): void {
