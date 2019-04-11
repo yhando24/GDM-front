@@ -30,15 +30,13 @@ export const ROUTES: Routes = [
   { path: 'kinds', component: ListerNatureComponent, canActivate: [ConnexionGuard] },
   { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  {
-    path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard],
-    resolve: {
+  { path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard],
+  resolve: {
+    kinds: KindsResolver
+  }, children : [{
+      path: 'updateMission', component: ModalUpdateMissionComponent,resolve: {
       kinds: KindsResolver
-    }, children : [{
-      path: 'updateMission', component: ModalUpdateMissionComponent,
-      resolve: {
-        kinds: KindsResolver
-      }
+    }
     } ]
   },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
