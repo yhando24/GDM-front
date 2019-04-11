@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { OptionsInput } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
+import dayGrid from '@fullcalendar/daygrid';
+import timeGrid from '@fullcalendar/timegrid';
+import interaction from '@fullcalendar/interaction';
 import { ModelMissionCalendar, Mission } from '../models';
 import { Subscription } from 'rxjs';
 import { MissionService } from 'src/services/mission.service';
@@ -19,6 +21,14 @@ export class CalendarMissionComponent implements OnInit {
   mission: ModelMissionCalendar;
   missionsClassique: Mission[] = [];
   actionSub: Subscription;
+  headerOption ={
+      left: 'prevYear, prev',
+      center: 'title, today ',
+      right: ' next, nextYear',
+
+    };
+textOption ={ today:    "aujourd'hui",   color: "#52AEA0"}
+  
   ngOnInit() {
 
     this.route.data.subscribe(data => this.missionsClassique = data['missions']);
@@ -38,7 +48,7 @@ export class CalendarMissionComponent implements OnInit {
   }
   displayEvent: any;
   calendarOptions: OptionsInput;
-  calendarPlugins = [dayGridPlugin]
+  calendarPlugins = [interaction, dayGrid, timeGrid]
 
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 

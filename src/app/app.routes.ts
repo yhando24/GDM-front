@@ -5,6 +5,7 @@ import { ListerUserComponent } from './lister-user/lister-user.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 
+import { loginGuard } from 'src/guards/loginGuard';
 import { ConnexionGuard } from 'src/guards/connexionGuard';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
@@ -36,7 +37,7 @@ export const ROUTES: Routes = [
   { path: 'calendar-Mission', component: CalendarMissionComponent,
   resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
   { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
-  { path: 'login', component: ConnectionUserComponent },
+  { path: 'login', component: ConnectionUserComponent, canActivate: [loginGuard]  },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard] },
   { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],

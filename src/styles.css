@@ -4,6 +4,25 @@
   margin:7.5px;
 }
 
+.fc-today{
+  background-color:#C5114A !important;
+  color:white;
+  font-weight:bold;
+}
+.fc-event-container, .fc-event{
+  background-color:#524898 !important;
+  border:none;
+  color:white;
+  font-weight:bold;
+}
+
+.fc-button-primary {
+    color: #fff;
+    background-color: #C5114A !important;
+    border-color: #C5114A !important;
+}
+
+
 .btn{
   width: 100% !important;
   max-width: 150px;
