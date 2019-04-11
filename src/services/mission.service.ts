@@ -11,16 +11,22 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MissionService {
 
-  URL_BACKEND = environment.backendUrl + 'missions';
+  constructor(private http: HttpClient, private modalService: NgbModal) { }
 
-  constructor(private http: HttpClient, private modalService: NgbModal) {}
-
-  get oneMission(): Observable <Mission>{
+  get oneMission(): Observable<Mission> {
     return this.mission.asObservable();
   }
 
+  URL_BACKEND = environment.backendUrl + 'missions';
+
   private mission = new BehaviorSubject<Mission>(null);
   public checkMission = new BehaviorSubject<string[]>(null);
+
+  httpOptions = {
+    headers: new HttpHeaders ({
+      'Content-Type': 'application/json'
+    })
+  };
 
   missionDeleted(m: Mission) {
     this.checkMission.next(['success', `la mission ${m.kind.name} du ${m.startDate}
@@ -29,26 +35,31 @@ export class MissionService {
   missionNotDeleted(message: string) {
     this.checkMission.next(['danger', message]);
   }
+  missionUpdated(mission: Mission) {
+    this.checkMission.next(['success', `la mission ${mission.kind.name} du ${mission.startDate}
+    à bien été modifiée`]);
+  }
+
   closeModal() {
     this.modalService.dismissAll();
   }
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
 
   finAllMission(): Observable<Mission[]> {
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 
-  addMission(m: Mission) {
-    this.mission.next(m);
+  addMission(mission: Mission) {
+    this.mission.next(mission);
   }
 
   deleteOneMission(m: Mission): Observable<Mission> {
     return this.http
       .delete(this.URL_BACKEND + '/delete/' + m.id, this.httpOptions);
   }
+
+  updateMission(mission: Mission): Observable<Mission> {
+    console.log(mission);
+    return this.http.patch<Mission>(this.URL_BACKEND + '/update/' + mission, this.httpOptions);
+  }
+
 }

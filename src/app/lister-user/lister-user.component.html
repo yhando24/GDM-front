@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <h2>liste des utilisteurs</h2>
 
 =======
@@ -9,12 +10,17 @@
 =======
 <h2>liste des utilisateurs</h2>
 <button type="button" class="btn btn-outline-dark" (click)=newUser()>Creer un utilisateur</button>
+=======
+<h2>Liste des utilisateurs</h2>
+<button type="button" class="btn btn-success" (click)=newUser()>Creer un utilisateur</button>
+>>>>>>> 447df055b1344d47c292d1d87f1bdf98447c084e
 <p>
   <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
 </p>
 >>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
 <table class="table table-striped">
   <thead>
+<<<<<<< HEAD
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nom</th>
@@ -40,19 +46,27 @@
 >>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
       <th scope="col">Roles</th>
       <th scope="col">Action</th>
+=======
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Nom</th>
+      <th class="align-middle" scope="col">Prenom</th>
+      <th class="align-middle" scope="col">Roles</th>
+      <th class="align-middle" scope="col">Action</th>
+>>>>>>> 447df055b1344d47c292d1d87f1bdf98447c084e
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of listeUsers; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td (click)=update(user)>
+    <tr class="text-center" *ngFor="let user of listeUsers; index as i">
+      <th class="align-middle" scope="row">{{ i + 1 }}</th>
+      <td class="align-middle" (click)=update(user)>
         {{ user.firstName }}
       </td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.role }}</td>
-      <td>
-        <button type="button" class="btn btn-warning"   (click)="update(user)">Modifier</button>
-        <button type="button" class="btn btn-danger" (click)="delete(user)">Supprimer</button>
+      <td class="align-middle">{{ user.lastName }}</td>
+      <td class="align-middle">{{ user.role }}</td>
+      <td class="align-middle">
+        <button type="button" class="btn-liste btn btn-modifier"   (click)="update(user)">Modifier</button>
+        <button type="button" class="btn-liste btn btn-danger" (click)="delete(user)">Supprimer</button>
       </td>
     </tr>
   </tbody>
