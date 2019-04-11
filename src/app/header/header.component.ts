@@ -2,8 +2,8 @@
 import { User } from 'src/app/models';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthServiceService } from 'src/services/auth-service.service';
-import { Subscription, ReplaySubject, empty, AsyncSubject } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { Subscription } from 'rxjs';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements  OnDestroy, OnInit {
 
-
-
+  navbarOpen = false;
   role ;
   user: User;
   private subscription: Subscription;
@@ -39,7 +38,9 @@ export class HeaderComponent implements  OnDestroy, OnInit {
   public get connectedUser(){
     return this.user;
   }
-
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 
 
   isAuthenticated(): boolean{

@@ -16,9 +16,9 @@ interface Alert {
 export class CreateMissionComponent implements OnInit {
   kinds: Kind[] = [];
   mission: Mission = {};
-  transport: TransportEnum[] = [] ;
-  alert: Alert = {type : '', message: ''};
-  constructor(private route: ActivatedRoute, private router: Router , private missionServ: MissionService) { }
+  transport: TransportEnum[] = [];
+  alert: Alert = { type: '', message: '' };
+  constructor(private route: ActivatedRoute, private router: Router, private missionServ: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
 
   httpOptions = {
@@ -37,10 +37,9 @@ export class CreateMissionComponent implements OnInit {
     this.missionServ.createOneMission(this.mission).subscribe(
       () => this.router.navigateByUrl('missions'),
     error => {
-
       this.alert.type = 'danger';
       this.alert.message = error.error;
-      console.log(this.alert.message)});
+     });
   }
 
 }
