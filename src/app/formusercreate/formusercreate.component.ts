@@ -23,8 +23,8 @@ export class FormusercreateComponent implements OnInit {
   }
   submit() {
     this.userService.createUser(this.user).subscribe(() => {
-      console.log(this.user);
-      this.user;
+      console.log(this.user),
+      this.user,
       this.router.navigate(['/accueil']);
     },
       error => {
