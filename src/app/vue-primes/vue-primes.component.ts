@@ -21,7 +21,7 @@ export class VuePrimesComponent implements OnInit {
 
       this.idUser = Number(this.route.snapshot.paramMap.get('idUser'));
 
-      this.serviceMission.findMissionByUser(this.idUser).subscribe(
+      this.serviceMission.findPrimeMissionByUser(this.idUser).subscribe(
       values => this.listeMissions = values,
     );
 

@@ -13,6 +13,7 @@
       <li class="nav-item hvr-underline-from-center">
         <a class="nav-link" [routerLink]="['/missions']" routerLinkActive="router-link-active">Missions</a>
       </li>
+      <li class="nav-item hvr-underline-from-center" *ngIf="user">
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/calendar-Mission']" routerLinkActive="router-link-active">Calendrier-Mission</a>
       </li>

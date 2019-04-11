@@ -70,12 +70,16 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/waiting');
   }
 
+  finAllMissionForManager(): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/display-all');
+  }
+
   approveOneMission(m: Mission): Observable<Mission> {
     return this.http.patch<Mission>(this.URL_BACKEND, m , this.httpOptions);
   }
 
-  findMissionByUser(id: number): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.URL_BACKEND + '/' + id) ;
+  findPrimeMissionByUser(id: number): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id) ;
   }
 
 }

@@ -1,3 +1,35 @@
-<p>
-  display-all-mission works!
-</p>
+<h2>Liste des missions des collaborateurs</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Nature de la mission</th>
+      <th class="align-middle" scope="col">Date de début</th>
+      <th class="align-middle" scope="col">Date de fin</th>
+      <th class="align-middle" scope="col">Ville de départ</th>
+      <th class="align-middle" scope="col">Ville d'arrivée</th>
+      <th class="align-middle" scope="col">Bonus</th>
+      <th class="align-middle" scope="col">Transport</th>
+      <th class="align-middle" scope="col">Montant de la facture</th>
+      <th class="align-middle" scope="col">Status de la mission</th>
+      <th class="align-middle" scope="col">Collaborateur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center" *ngFor="let mission of listeMission; index as i">
+      <th class="align-middle" scope="row">{{ i + 1 }}</th>
+      <td class="align-middle">{{ mission.kind.name}}</td>
+      <td class="align-middle">{{ mission.startDate }}</td>
+      <td class="align-middle">{{ mission.endDate }}</td>
+      <td class="align-middle">{{ mission.departureCity }}</td>
+      <td class="align-middle">{{ mission.arrivalCity }}</td>
+      <td class="align-middle">{{ mission.prime }}</td>
+      <td class="align-middle">{{ mission.transportEnum }}</td>
+      <td class="align-middle">0 €</td>
+      <td class="align-middle">{{ mission.missionStatus }}</td>
+      <td class="align-middle">{{ mission.user.firstName }} {{ mission.user.lastName }}</td>
+
+    </tr>
+  </tbody>
+</table>

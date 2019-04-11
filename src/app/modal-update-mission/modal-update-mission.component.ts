@@ -11,16 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal-update-mission.component.css']
 })
 export class ModalUpdateMissionComponent implements OnInit {
-  kinds: Kind[] = [];
+  listKinds: Kind[] = [];
   oneMission: Mission;
   listEnum: TransportEnum[] = getTransportEnum();
 
   constructor(private data: MissionService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.data.oneMission.subscribe(mission => this.oneMission = mission, ({ kinds }) => {
-      this.kinds = kinds, this.listEnum = getTransportEnum();
-    });
+    this.route.data.subscribe(({kinds}) => this.listKinds = kinds);
+    console.log(this.listKinds);
+    this.data.oneMission.subscribe(mission => this.oneMission = mission);
   }
 
   close() {
