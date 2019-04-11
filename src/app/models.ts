@@ -42,15 +42,15 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN = 'train',
-  AVION = 'avion',
-  TAXI = 'taxi',
-  BUS = 'bus',
-  BATEAU = 'bateau',
-  NAVETTE_SPATIALE = 'navette_spatiale',
-  VOITURE = 'voiture',
-  VELO = 'velo',
-  HELICOPTERE = 'helicoptere'
+  TRAIN = 'TRAIN',
+  AVION = 'AVION',
+  TAXI = 'TAXI',
+  BUS = 'BUS',
+  BATEAU = 'BATEAU',
+  NAVETTE_SPATIALE = 'NAVETTE_SPATIALE',
+  VOITURE = 'VOITURE',
+  VELO = 'VELO',
+  HELICOPTERE = 'HELICOPTERE'
 }
 export function getTransportEnum() {
   return [

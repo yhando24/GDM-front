@@ -7,20 +7,27 @@
 </div>
 
 <div class="modal-body">
-  <form (ngSubmit)="submit()"  #form="ngForm">
+  <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
 
 
-    <label>Nature de la mission</label>
-    <div class="form-group">
-      <select class="form-control" placeholder="oneMission.kind" [(ngModel)]="oneMission.kind.name" name="kind">
-        <option *ngFor="let kind of kinds" value="kind">{{kind.name}}</option>
+      <div class="form-group">
+          <label for="kind">Nature :</label>
+          <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="oneMission.kind" name="kind" #kind="ngModel" required>
+            <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
+          </select>
+        </div>
+
+    <!-- <div class="form-group">
+      <label for="kind">Nature :</label>
+      <select class="form-control" [(ngModel)]="oneMission.kind" name="kind" #kind="ngModel" required>
+        <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
       </select>
-    </div>
+    </div> -->
 
     <label>Date de début</label>
     <div class="input-group">
-      <input class="form-control form-control-lg" type="date" name="Date de début" placeholder={{oneMission.startDate}}
-        [(ngModel)]="oneMission.startDate" />
+      <input class="form-control form-control-lg" type="date" name="Date de débgit put"
+        placeholder={{oneMission.startDate}} [(ngModel)]="oneMission.startDate" />
     </div>
 
     <label>Date de fin</label>
@@ -34,6 +41,7 @@
       <input class="form-control form-control-lg" type="text" name="Ville de départ"
         placeholder={{oneMission.departureCity}} [(ngModel)]="oneMission.departureCity" />
     </div>
+
     <label>Ville d'arrivée</label>
     <div class="input-group">
       <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
@@ -43,14 +51,9 @@
     <label for="inputState">Transport</label>
     <select id="inputState" class="form-control" [(ngModel)]="oneMission.transportEnum" #champRole="ngModel"
       name="transport">
-      <option *ngFor="let transportEnum of listEnum"> {{transportEnum}} </option>
+      <option *ngFor="let transportEnum of listEnum" [ngValue]="transportEnum.toUpperCase()"> {{transportEnum}}
+      </option>
     </select>
-
-    <!-- <label>Montant de la facture</label>
-      <div class="input-group"></div>
-      <input class="form-control form-control-lg" type="text" name="Montant de la facture"
-        [(ngModel)]="oneMission.facture" /> -->
-
 
   </form>
 </div>
