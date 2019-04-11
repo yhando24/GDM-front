@@ -18,8 +18,9 @@ export class ModalUpdateMissionComponent implements OnInit {
   constructor(private data: MissionService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.data.oneMission.subscribe(mission => this.oneMission = mission, ({ kinds }) => {
-      this.kinds = kinds, this.listEnum = getTransportEnum();
+    this.data.oneMission.subscribe(mission => {
+      this.oneMission = mission;
+      this.route.data.subscribe(({ kinds }) => this.kinds = kinds);
     });
   }
 

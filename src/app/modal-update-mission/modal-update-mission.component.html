@@ -12,7 +12,7 @@
 
       <div class="form-group">
           <label for="kind">Nature :</label>
-          <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="oneMission.kind" name="kind" #kind="ngModel" required>
+          <select class="form-control" [(ngModel)]="oneMission.kind.name" name="kind" #kind="ngModel" required>
             <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
           </select>
         </div>
