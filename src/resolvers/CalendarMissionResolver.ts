@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CalendarMissionResolver implements Resolve<Mission []> {
+export class CalendarMissionResolver implements Resolve<Mission[]> {
 
   URL_BACKEND = environment.backendUrl + 'missions';
   constructor(private ms: MissionService) {}

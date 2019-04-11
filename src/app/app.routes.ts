@@ -26,34 +26,22 @@ export const ROUTES: Routes = [
   { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
   { path: 'kinds', component: ListerNatureComponent, canActivate: [ConnexionGuard]},
   { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
-  { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard]},
-  { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard] },
+  { path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard],
+  resolve: {
+    kinds: KindsResolver}},
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
-  { path: 'calendar-Mission', component: CalendarMissionComponent, resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
+  { path: 'calendar-Mission', component: CalendarMissionComponent,
+  resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
   { path: 'approve-mission', component: ApproveMissionComponent  },
-  { path: 'kinds', component: ListerNatureComponent},
-  { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'missions', component: ListerMissionsComponent },
-  { path: 'createMission', component: CreateMissionComponent,
+  { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
   resolve: {
     kinds: KindsResolver
   }},
-  { path: 'createExpenseAccount', component: CreationExpenseAccountComponent },
   { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
   { path: 'primes/:idUser', component: VuePrimesComponent},
-
-
-  {
-    path: 'kinds/createListe',
-    component: ListerNatureComponent,
-    resolve: {
-      kinds: KindsResolver
-    }
-  },
   {
     path: 'accueil',
     component: AccueilComponent,
