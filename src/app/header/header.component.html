@@ -1,11 +1,11 @@
 <nav class="fond-nav-barre navbar navbar-expand-lg navbar-light navbar-GDM" *ngIf="isAuthenticated()">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
   <img class="logo navbar-brand hvr-bob" src="../../assets/resources/logo-GDM.png" routerLink="/accueil" alt="logo-GDM">
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+  <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item hvr-underline-from-center" *ngIf="role ==='ADMIN'">
         <a class="nav-link" [routerLink]="['/users']" >Utilisateurs</a>
@@ -17,7 +17,7 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/calendar-Mission']" routerLinkActive="router-link-active">Calendrier-Mission</a>
       </li>
-      <li class="nav-item hvr-underline-from-center">
+      <li class="nav-item hvr-underline-from-center" *ngIf="user">
         <a class="nav-link" [routerLink]="['/primes',user.id]" routerLinkActive="router-link-active">Primes</a>
       </li>
       <li class="nav-item hvr-underline-from-center">
@@ -40,5 +40,7 @@
     <a *ngIf="isAuthenticated()" class="nav-link"><button class=" hvr-wobble-vertical btn btn-deconnecter"
         (click)="bye()">Déconnecter</button></a>
   </div>
+
+
 </nav>
 

@@ -18,7 +18,6 @@ export class ModalDeleteUserComponent implements OnInit {
   constructor(private data: UserService , private router: Router) {}
 
   ngOnInit() {
-
       this.data.oneUser.subscribe(user => {
       this.oneUser = user;
       });

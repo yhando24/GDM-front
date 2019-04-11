@@ -7,23 +7,14 @@
 </div>
 
 <div class="modal-body">
-  <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
+  <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: '' }" #form="ngForm">
 
-
-      <div class="form-group">
-          <label for="kind">Nature :</label>
-          <select class="form-control" [(ngModel)]="oneMission.kind.name" name="kind" #kind="ngModel" required>
-            <option selected >{{oneMission.kind.name}}</option>
-            <option *ngFor="let kind of listKinds">{{kind.name}}</option>
-          </select>
-        </div>
-
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label for="kind">Nature :</label>
-      <select class="form-control" [(ngModel)]="oneMission.kind" name="kind" #kind="ngModel" required>
-        <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
+      <select class="form-control" [(ngModel)]="oneMission.kind.name" name="kind" #kind="ngModel" required>
+        <option *ngFor="let kind of listKinds" [ngValue]="kind.name">{{kind.name}}</option>
       </select>
-    </div> -->
+    </div>
 
     <label>Date de début</label>
     <div class="input-group">
@@ -42,7 +33,6 @@
       <input class="form-control form-control-lg" type="text" name="Ville de départ"
         placeholder={{oneMission.departureCity}} [(ngModel)]="oneMission.departureCity" />
     </div>
-
     <label>Ville d'arrivée</label>
     <div class="input-group">
       <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
@@ -56,10 +46,8 @@
       </option>
     </select>
 
+        <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-primary" >Valider</button>
+      <button type="button" class="btn btn-outline-dark" (click)="close()">Annuler</button>
+    </div>
   </form>
-</div>
-
-<div class="modal-footer">
-  <button type="submit" class="btn btn-outline-primary" (click)="submit()">Valider</button>
-  <button type="button" class="btn btn-outline-dark" (click)="close()">Annuler</button>
-</div>

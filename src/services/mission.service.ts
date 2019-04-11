@@ -10,8 +10,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   providedIn: 'root'
 })
 export class MissionService {
+  kinds(data: MissionService, arg1: { kinds: any; }, kinds: any): Observable<import("../app/models").Kind>[] {
+    throw new Error("Method not implemented.");
+  }
 
-  constructor(private http: HttpClient, private modalService: NgbModal) {}
+  constructor(private http: HttpClient, private modalService: NgbModal) { }
 
   get oneMission(): Observable<Mission> {
     return this.mission.asObservable();
@@ -20,7 +23,7 @@ export class MissionService {
   URL_BACKEND = environment.backendUrl + 'missions';
 
   private mission = new BehaviorSubject<Mission>(null);
-  public checkMission = new BehaviorSubject<string[]>(null);
+  public checkMission = new Subject<string[]>();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -45,8 +48,11 @@ export class MissionService {
   }
 
   finAllMission(): Observable<Mission[]> {
-    console.log('je cherche toute les missions')
     return this.http.get<Mission[]>(this.URL_BACKEND);
+  }
+
+  finAllMissionByUser(): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + "/perso");
   }
 
   addMission(mission: Mission) {
@@ -75,11 +81,11 @@ export class MissionService {
   }
 
   approveOneMission(m: Mission): Observable<Mission> {
-    return this.http.patch<Mission>(this.URL_BACKEND, m , this.httpOptions);
+    return this.http.patch<Mission>(this.URL_BACKEND, m, this.httpOptions);
   }
 
   findPrimeMissionByUser(id: number): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id) ;
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id);
   }
 
 }
