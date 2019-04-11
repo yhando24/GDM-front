@@ -69,7 +69,6 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   openUpdate(mission: Mission) {
     this.data.addMission(mission);
     this.modal.openModal('updateMission');
-    this.route.navigateByUrl('updateMission');
   }
 
   ngOnDestroy(): void {
@@ -77,6 +76,6 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   }
 
   noteDeFrais() {
-    console.log("Je suis une note de frais!")
+    console.log('Je suis une note de frais!')
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, AsyncSubject, BehaviorSubject } from 'rxjs';
+import { Observable, AsyncSubject, BehaviorSubject, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { User } from 'src/app/models';
@@ -27,7 +27,7 @@ export class UserService {
   };
 
   private user = new BehaviorSubject<User>(null);
-  public checkUser = new BehaviorSubject<string[]>(null);
+  public checkUser = new Subject<string[]>();
 
   userDeleted(user: User) {
     this.checkUser.next(['success', `l'utilistateur ${user.lastName} ${user.firstName}

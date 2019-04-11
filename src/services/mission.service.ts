@@ -23,7 +23,7 @@ export class MissionService {
   URL_BACKEND = environment.backendUrl + 'missions';
 
   private mission = new BehaviorSubject<Mission>(null);
-  public checkMission = new BehaviorSubject<string[]>(null);
+  public checkMission = new Subject<string[]>();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -48,7 +48,6 @@ export class MissionService {
   }
 
   finAllMission(): Observable<Mission[]> {
-    console.log('je cherche toute les missions')
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 
