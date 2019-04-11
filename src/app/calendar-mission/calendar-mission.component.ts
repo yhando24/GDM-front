@@ -30,7 +30,9 @@ export class CalendarMissionComponent implements OnInit {
       tmp.push(mission)
     });
     this.missions = tmp;
-
+    this.missions.forEach(m => {
+      console.log(m)
+    })
 
     //console.log(this.missions[0].id + 'hello')
   }
@@ -39,9 +41,11 @@ export class CalendarMissionComponent implements OnInit {
   calendarPlugins = [dayGridPlugin]
 
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
+
   constructor(private data: MissionService, private route: ActivatedRoute) {
 
   }
+
   handleDateClick(arg) { // handler method
     alert(arg.dateStr);
   }
