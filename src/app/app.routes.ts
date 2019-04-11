@@ -15,6 +15,7 @@ import { CreateMissionComponent } from './create-mission/create-mission.componen
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
+import { VuePrimesComponent } from './vue-primes/vue-primes.component';
 
 
 export const ROUTES: Routes = [
@@ -33,6 +34,7 @@ export const ROUTES: Routes = [
   }},
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent },
   { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
+  { path: 'primes/:idUser', component: VuePrimesComponent},
 
 
   {

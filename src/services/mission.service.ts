@@ -71,4 +71,9 @@ export class MissionService {
   approveOneMission(m: Mission): Observable<Mission> {
     return this.http.patch<Mission>(this.URL_BACKEND, m , this.httpOptions);
   }
+
+  findMissionByUser(id: number): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/' + id) ;
+  }
+
 }

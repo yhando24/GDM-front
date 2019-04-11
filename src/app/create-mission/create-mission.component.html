@@ -13,17 +13,11 @@
         </div>
         <div class="input-group form-group">
           <label class="startDate">Date de début</label>
-          <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel" ngbDatepicker #dd="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="dd.toggle()" type="button"></button>
-          </div>
+          <input type="date" class="form-control" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel">
         </div>
         <div class="input-group form-group">
           <label class="startDate">Date de fin</label>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel" ngbDatepicker #de="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="de.toggle()" type="button"></button>
-          </div>
+          <input type="date" class="form-control" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Ville de départ :</label>
@@ -38,7 +32,7 @@
         <div class="form-group">
           <label>Tranport:</label><select class="form-control" [(ngModel)]="mission.transportEnum" name="transport" required
             [ngModelOptions]="{standalone: true}">
-            <option *ngFor="let t of transport" [ngValue]="t">{{t}}</option>
+            <option *ngFor="let t of transport" [ngValue]="t.toUpperCase()">{{t}}</option>
           </select>
         </div>
         <div class="form-group center-boutons-formulaire">
