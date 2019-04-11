@@ -28,8 +28,6 @@ export const ROUTES: Routes = [
   { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard]},
-  { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard] },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
   { path: 'calendar-Mission', component: CalendarMissionComponent, resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
   { path: 'approve-mission', component: ApproveMissionComponent  },
@@ -38,7 +36,8 @@ export const ROUTES: Routes = [
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'missions', component: ListerMissionsComponent },
-  { path: 'createMission', component: CreateMissionComponent,
+  {
+    path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
     resolve: {
       kinds: KindsResolver
     }},
