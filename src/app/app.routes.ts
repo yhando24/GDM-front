@@ -34,7 +34,12 @@ export const ROUTES: Routes = [
     path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard],
     resolve: {
       kinds: KindsResolver
-    }
+    }, children : [{
+      path: 'updateMission', component: ModalUpdateMissionComponent,
+      resolve: {
+        kinds: KindsResolver
+      }
+    } ]
   },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
   {
@@ -51,12 +56,12 @@ export const ROUTES: Routes = [
       kinds: KindsResolver
     }
   },
-  {
-    path: 'updateMission', component: ModalUpdateMissionComponent,
-    resolve: {
-      kinds: KindsResolver
-    }
-  },
+  // {
+  //   path: 'updateMission', component: ModalUpdateMissionComponent,
+  //   resolve: {
+  //     kinds: KindsResolver
+  //   }
+  // },
   { path: 'listExpenseAccount', component: ListExpenseAccountComponent },
   { path: 'primes/:idUser', component: VuePrimesComponent },
   {
