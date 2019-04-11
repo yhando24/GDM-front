@@ -1,8 +1,5 @@
-<h2>Liste des missions</h2>
-<button type="button" class="btn btn-success" (click)=newMission()>Créer mission</button>
-<p>
-  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
-</p>
+<h2>Liste des missions des collaborateurs</h2>
+
 <table class="table table-striped">
   <thead>
     <tr class="text-center">
@@ -10,15 +7,13 @@
       <th class="align-middle" scope="col">Nature de la mission</th>
       <th class="align-middle" scope="col">Date de début</th>
       <th class="align-middle" scope="col">Date de fin</th>
-      <!-- // adresse l'employé -->
       <th class="align-middle" scope="col">Ville de départ</th>
       <th class="align-middle" scope="col">Ville d'arrivée</th>
       <th class="align-middle" scope="col">Bonus</th>
       <th class="align-middle" scope="col">Transport</th>
       <th class="align-middle" scope="col">Montant de la facture</th>
       <th class="align-middle" scope="col">Status de la mission</th>
-      <th class="align-middle" scope="col">Action</th>
-
+      <th class="align-middle" scope="col">Collaborateur</th>
     </tr>
   </thead>
   <tbody>
@@ -29,20 +24,12 @@
       <td class="align-middle">{{ mission.endDate }}</td>
       <td class="align-middle">{{ mission.departureCity }}</td>
       <td class="align-middle">{{ mission.arrivalCity }}</td>
-      <!-- //prime = facture toal * % de prime -> disponible dans nature -->
       <td class="align-middle">{{ mission.prime }}</td>
       <td class="align-middle">{{ mission.transportEnum }}</td>
-      <!-- calcul date fin - date début * le TJM -->
       <td class="align-middle">0 €</td>
       <td class="align-middle">{{ mission.missionStatus }}</td>
-
-      <td class="align-middle">
-        <button type="button" class="btn-liste btn btn-modifier btn-sm" (click)="openUpdate(mission)">Modifier</button>
-        <button type="button" class="btn-liste btn btn-danger btn-sm" (click)="delete(mission)">Supprimer</button>
-        <button type="button" class="btn-liste btn btn-info btn-sm" (click)="listExpenseAccount()">Note de frais</button>
-      </td>
+      <td class="align-middle">{{ mission.user.firstName }} {{ mission.user.lastName }}</td>
 
     </tr>
   </tbody>
 </table>
-<router-outlet></router-outlet>

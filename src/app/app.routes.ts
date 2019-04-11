@@ -1,3 +1,4 @@
+import { CalendarMissionResolver } from './../resolvers/CalendarMissionResolver';
 import { Routes } from '@angular/router';
 import { CreationNatureMissionComponent } from './creation-nature-mission/creation-nature-mission.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
@@ -13,37 +14,36 @@ import { KindsResolver } from './lister-nature/lister-nature.route';
 import { ListerMissionsComponent } from './lister-missions/lister-missions.component';
 import { CreateMissionComponent } from './create-mission/create-mission.component';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
+import { CalendarMissionComponent } from './calendar-mission/calendar-mission.component';
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
 import { VuePrimesComponent } from './vue-primes/vue-primes.component';
+import { DisplayAllMissionComponent } from './display-all-mission/display-all-mission.component';
+import { ManagerGuard } from 'src/guards/manager.guard';
 
 
 export const ROUTES: Routes = [
 
   { path: 'creation-nature', component: CreationNatureMissionComponent, canActivate: [AdminGuard]},
   { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
-  { path: 'approve-mission', component: ApproveMissionComponent  },
-  { path: 'kinds', component: ListerNatureComponent},
+  { path: 'kinds', component: ListerNatureComponent, canActivate: [ConnexionGuard]},
   { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard],
+  resolve: {
+    kinds: KindsResolver}},
+  { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
+  { path: 'calendar-Mission', component: CalendarMissionComponent,
+  resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
+  { path: 'approve-mission', component: ApproveMissionComponent  },
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'missions', component: ListerMissionsComponent },
-  { path: 'createMission', component: CreateMissionComponent,
+  { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
   resolve: {
     kinds: KindsResolver
   }},
-  { path: 'createExpenseAccount', component: CreationExpenseAccountComponent },
   { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
   { path: 'primes/:idUser', component: VuePrimesComponent},
-
-
-  {
-    path: 'kinds/createListe',
-    component: ListerNatureComponent,
-    resolve: {
-      kinds: KindsResolver
-    }
-  },
   {
     path: 'accueil',
     component: AccueilComponent,
