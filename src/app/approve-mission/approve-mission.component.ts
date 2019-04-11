@@ -18,13 +18,13 @@ export class ApproveMissionComponent implements OnInit {
   valider(m) {
     m.missionStatus = 'VALIDE';
     this.missionServ.approveOneMission(m).subscribe(mission => { m = mission,
-      this.ngOnInit();
+      this.missionServ.finAllMissionToApprove().subscribe(miss => this.missions = miss);
       });
   }
   rejeter(m) {
     m.missionStatus = 'REJETE';
     this.missionServ.approveOneMission(m).subscribe(mission => { m = mission,
-        this.ngOnInit();
+      this.missionServ.finAllMissionToApprove().subscribe(miss => this.missions = miss);
       });
   }
 }
