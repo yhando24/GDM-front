@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mission, Kind, TransportEnum, getTransportEnum } from '../models';
 import { MissionService } from 'src/services/mission.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { KindService } from 'src/services/kind.service';
   templateUrl: './modal-update-mission.component.html',
   styleUrls: ['./modal-update-mission.component.css']
 })
-export class ModalUpdateMissionComponent implements OnInit, OnDestroy {
+export class ModalUpdateMissionComponent implements OnInit {
   listKinds: Kind[] = [];
   oneMission: Mission;
   listEnum: TransportEnum[] = getTransportEnum();
@@ -22,9 +22,6 @@ export class ModalUpdateMissionComponent implements OnInit, OnDestroy {
     this.kindServ.getActiveKinds();
     this.kindServ.activeKinds.subscribe(kinds => this.listKinds = kinds);
     this.data.oneMission.subscribe(mission => this.oneMission = mission);
-  }
-  ngOnDestroy() {
-    this.kindServ.activeKinds.unsubscribe();
   }
   close() {
     this.data.closeModal();
