@@ -39,21 +39,12 @@ export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'missions', component: ListerMissionsComponent },
   { path: 'createMission', component: CreateMissionComponent,
-  resolve: {
-    kinds: KindsResolver
-  }},
+    resolve: {
+      kinds: KindsResolver
+    }},
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent },
   { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
   { path: 'primes/:idUser', component: VuePrimesComponent},
-
-
-  {
-    path: 'kinds/createListe',
-    component: ListerNatureComponent,
-    resolve: {
-      kinds: KindsResolver
-    }
-  },
   {
     path: 'accueil',
     component: AccueilComponent,
