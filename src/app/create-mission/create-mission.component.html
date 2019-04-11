@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-6">
       <h2>Création de mission</h2>
@@ -6,80 +6,40 @@
       <form (ngSubmit)="submit()" #monForm="ngForm">
 
         <div class="form-group">
-          <label for="kind.mission">Nature :</label>
-          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.kind" name="kind"
-            #kind="ngModel" required>
-          <option *ngFor="let kind of kinds | keys" value="kind.key">{{kind.value}}</option>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
+          <label for="kind">Nature :</label>
+          <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="mission.kind" name="kind" #kind="ngModel" required>
+            <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
+          </select>
         </div>
-        <div class="row">
-          <div class="form-group md-6">
-            <label class="startDate">Date de début
-              <input type="date" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel">
-            </label>
-          </div>
-
-          <div class="form-group md-6">
-            <label class="checked-GDM">Date de fin
-              <input type="date" [(ngModel)]="mission.endDate" name="invoiced" #invoiced="ngModel">
-            </label>
-          </div>
+        <div class="input-group form-group">
+          <label class="startDate">Date de début</label>
+          <input type="date" class="form-control" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel">
         </div>
-
+        <div class="input-group form-group">
+          <label class="startDate">Date de fin</label>
+          <input type="date" class="form-control" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel">
+        </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Ville de départ :</label>
           <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.departureCity"
-            name="name" #name="ngModel" required>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
+            name="depart" #name="ngModel" required>
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Ville d'arrivé :</label>
           <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.arrivalCity"
-            name="name" #name="ngModel" required>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
+            name="arrival" #name="ngModel" required>
         </div>
-
-        <div class="form-group" *ngIf="bonus.value == !null">
-          <label for="formGroupExampleInput">Pourcentage de la prime :</label>
-          <input type="text" class="form-control" placeholder="Entrez le pourcentage de la prime"
-            [(ngModel)]="mission.bonusPercentage" name="bonusPercentage" #bonusPercentage="ngModel" required>
-          <p *ngIf="bonusPercentage.dirty && bonusPercentage.invalid">
-            Entrez le pourcentage du bonus
-          </p>
-        </div>
-
         <div class="form-group">
-          <label class="checked-GDM">Autorisation de dépassement de frais
-            <input type="checkbox" [(ngModel)]="mission.authorizationToExceed" name="authorizationToExceed"
-              #authorizationToExceed="ngModel">
-            <span class="checkmark"></span>
-          </label>
+          <label>Tranport:</label><select class="form-control" [(ngModel)]="mission.transportEnum" name="transport" required
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let t of transport" [ngValue]="t.toUpperCase()">{{t}}</option>
+          </select>
         </div>
-
-        <div class="form-group">
-          <label for="formGroupExampleInput">Transport :</label>
-          <input type="text" class="form-control" placeholder="Entrez une nature" [(ngModel)]="mission.kind" name="name"
-            #name="ngModel" required>
-          <option *ngFor="let trasnp of transports | keys" value="trasnp.key">{{trasnp.value}}</option>
-          <p *ngIf="name.dirty && name.invalid">
-            Entrez le nom de votre nouvelle nature de mission
-          </p>
-        </div>
-
         <div class="form-group center-boutons-formulaire">
-          <button class="btn btn-primary bouton-formulaire" type="submit" [disabled]="!monForm.valid">Valider</button>
+          <button class="btn btn-primary bouton-formulaire" type="submit()" [disabled]="!monForm.valid">Valider</button>
           <button class="btn btn-danger bouton-formulaire" type="cancel">Annuler</button>
-          <p *ngIf="error && error.length>0">
-            {{error}}
-          </p>
         </div>
       </form>
     </div>
-  </div>
-</div> -->
+    </div>
+</div>

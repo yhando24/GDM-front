@@ -14,7 +14,7 @@ export class ModalDeleteMissionComponent implements OnInit {
   ngOnInit() {
    this.ms.oneMission.subscribe(m =>{
     this.missionDeleted = m;
-   })
+   });
   }
   close() {
     this.ms.closeModal();

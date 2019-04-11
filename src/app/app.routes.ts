@@ -15,6 +15,9 @@ import { ListerMissionsComponent } from './lister-missions/lister-missions.compo
 import { CreateMissionComponent } from './create-mission/create-mission.component';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { CalendarMissionComponent } from './calendar-mission/calendar-mission.component';
+import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
+import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
+import { VuePrimesComponent } from './vue-primes/vue-primes.component';
 
 
 export const ROUTES: Routes = [
@@ -29,9 +32,23 @@ export const ROUTES: Routes = [
   { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard] },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
   { path: 'calendar-Mission', component: CalendarMissionComponent, resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
+  { path: 'approve-mission', component: ApproveMissionComponent  },
+  { path: 'kinds', component: ListerNatureComponent},
+  { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
+  { path: 'login', component: ConnectionUserComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'missions', component: ListerMissionsComponent },
+  { path: 'createMission', component: CreateMissionComponent,
+  resolve: {
+    kinds: KindsResolver
+  }},
+  { path: 'createExpenseAccount', component: CreationExpenseAccountComponent },
+  { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
+  { path: 'primes/:idUser', component: VuePrimesComponent},
+
 
   {
-    path: 'kinds/lister',
+    path: 'kinds/createListe',
     component: ListerNatureComponent,
     resolve: {
       kinds: KindsResolver

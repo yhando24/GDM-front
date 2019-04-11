@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Kind, Mission } from '../models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Kind, Mission, TransportEnum, getTransportEnum } from '../models';
 import { environment } from 'src/environments/environment';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+import { MissionService } from 'src/services/mission.service';
 
 @Component({
   selector: 'app-create-mission',
@@ -11,10 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./create-mission.component.css']
 })
 export class CreateMissionComponent implements OnInit {
-  kinds: Kind;
-  mission : Mission;
+  kinds: Kind[] = [];
+  mission: Mission = {};
+  transport: TransportEnum[] = [] ;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router , private missionServ: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
 
   httpOptions = {
@@ -22,23 +23,15 @@ export class CreateMissionComponent implements OnInit {
       'Content-Type': 'application/json'
     })
   };
+
   ngOnInit() {
-    this.route.data.subscribe((data: { kinds: Kind }) => this.kinds = data.kinds);
+    this.route.data.subscribe(({kinds}) => { this.kinds = kinds,
+    this.transport = getTransportEnum(); });
+  }
+  submit() {
+    this.missionServ.createOneMission(this.mission).subscribe(
+      () => this.router.navigateByUrl('missions'),
+    error => console.log(error.error));
   }
 
-  createUser(mission: Mission): Observable<Mission> {
-    return this.http.post<Mission>(
-      this.URL_BACKEND,
-      {
-        startDate: mission.startDate,
-        endDate: mission.endDate,
-        departureCity: mission.departureCity,
-        arrivalCity: mission.arrivalCity,
-        prime: mission.prime,
-        transportEnum: mission.transportEnum,
-        kind: mission.kind,
-      },
-      this.httpOptions
-    );
-  }
 }

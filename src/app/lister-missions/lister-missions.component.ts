@@ -20,6 +20,7 @@ interface Alert {
 
 export class ListerMissionsComponent implements OnInit, OnDestroy {
 
+
   alertSubscribe: Subscription;
 
 
@@ -27,8 +28,12 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   listeMission: Mission[];
   alert: Alert;
   constructor(private data: MissionService, private route: Router, private modal: ModalService) { }
-  newMission(){
+  newMission() {
     this.route.navigate(['/createMission']);
+  }
+
+  listExpenseAccount() {
+    this.route.navigate(['/listExpenseAccount']);
   }
 
   ngOnInit() {
@@ -53,15 +58,28 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  delete(m : Mission){
+  delete(m: Mission) {
     this.data.addMission(m);
     this.modal.openModal('deleteMission');
 
   }
 
-  ngOnDestroy(): void {
-    this.data.checkMission.next([]);
-
+  openUpdate(mission: Mission) {
+    this.data.addMission(mission);
+    this.modal.openModal('updateMission');
   }
 
+  ngOnDestroy(): void {
+    this.data.checkMission.next([]);
+  }
+
+  modifer() {
+    console.log("Je me modifie")
+  }
+  supprimer() {
+    console.log("Je me supprime")
+  }
+  noteDeFrais() {
+    console.log("Je suis une note de frais!")
+  }
 }

@@ -1,2 +1,53 @@
 @import '../node_modules/@fullcalendar/core/main.css';
 @import '../node_modules/@fullcalendar/daygrid/main.css';
+.btn-liste{
+  margin:7.5px;
+}
+
+.btn{
+  width: 100% !important;
+  max-width: 150px;
+}
+
+.btn-modifier {
+  color: white !important;
+  font-weight: bold;
+  background-color: rgba(255, 94, 53, 1) !important;
+  border-color: rgba(255, 94, 53, 1) !important;
+}
+
+.btn-modifier:hover {
+  color: #fff;
+  background-color: rgb(189, 75, 46) !important;
+  border-color: rgb(189, 75, 46) !important;
+}
+
+.btn-modifier:focus, .btn-modifier.focus {
+  box-shadow: 0 0 0 0.2rem rgba(201, 70, 61, 1);
+}
+
+.btn-modifier.disabled, .btn-modifier:disabled {
+  color: #fff;
+  background-color: rgba(255, 94, 53, 1);
+  border-color: rgba(255, 94, 53, 1);
+}
+
+.btn-modifier:not(:disabled):not(.disabled):active, .btn-modifier:not(:disabled):not(.disabled).active,
+.show > .btn-modifier.dropdown-toggle {
+  color: #fff;
+  background-color: rgb(189, 75, 46);
+  border-color: rgb(189, 75, 46);
+}
+
+.btn-modifier:not(:disabled):not(.disabled):active:focus, .btn-modifier:not(:disabled):not(.disabled).active:focus,
+.show > .btn-modifier.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.center-boutons-formulaire{
+  text-align: center;
+  }
+
+  .bouton-formulaire{
+    margin:15px;
+  }
