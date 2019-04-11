@@ -15,8 +15,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let m of missions; index as i">
-      <td scope="row">{{ i + 1 }}</td>
+    <tr *ngFor="let m of missions">
+      <td>{{ m.id }}</td>
     <td>{{m.startDate}}</td>
       <td>{{m.endDate}}</td>
       <td> {{m.kind.name}} </td>
