@@ -18,6 +18,8 @@ import { CalendarMissionComponent } from './calendar-mission/calendar-mission.co
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 import { ApproveMissionComponent } from './approve-mission/approve-mission.component';
 import { VuePrimesComponent } from './vue-primes/vue-primes.component';
+import { DisplayAllMissionComponent } from './display-all-mission/display-all-mission.component';
+import { ManagerGuard } from 'src/guards/manager.guard';
 
 
 export const ROUTES: Routes = [
@@ -29,8 +31,11 @@ export const ROUTES: Routes = [
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
-  { path: 'calendar-Mission', component: CalendarMissionComponent, resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
-  { path: 'approve-mission', component: ApproveMissionComponent  },
+  { path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard]},
+  { path: 'calendar-Mission', component: CalendarMissionComponent,
+    resolve: { missions: CalendarMissionResolver },
+    canActivate: [ConnexionGuard] },
+  { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
   { path: 'kinds', component: ListerNatureComponent},
   { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
   { path: 'login', component: ConnectionUserComponent },
