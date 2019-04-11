@@ -41,9 +41,10 @@ export const ROUTES: Routes = [
     path: 'calendar-Mission', component: CalendarMissionComponent,
     resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard]
   },
-  { path: 'approve-mission', component: ApproveMissionComponent },
+  { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
   { path: 'login', component: ConnectionUserComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard] },
   {
     path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
     resolve: {
