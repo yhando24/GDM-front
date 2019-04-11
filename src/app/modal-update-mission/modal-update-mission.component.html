@@ -1,4 +1,3 @@
-<!-- Modal Update Mission -->
 <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">Modification de la Mission</h4>
   <button type="button" class="close" aria-label="Close" (click)="close()">
@@ -40,11 +39,6 @@
         name="transport">
         <option *ngFor="let transportEnum of listEnum"> {{transportEnum}} </option>
       </select>
-
-      <!-- <label>Montant de la facture</label>
-      <div class="input-group"></div>
-      <input class="form-control form-control-lg" type="text" name="Montant de la facture"
-        [(ngModel)]="oneMission.facture" /> -->
 
     </div>
   </form>
