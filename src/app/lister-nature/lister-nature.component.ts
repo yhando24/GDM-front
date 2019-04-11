@@ -40,11 +40,11 @@ export class ListerNatureComponent implements OnInit {
 
     this.data.checkKind.subscribe(message => {
       if (message !== null) {
-        this.alert.message = message[1],
+        this.alert.message = message[1];
           this.alert.type = message[0];
       }
       setTimeout(() => {
-        this.alert.message = '',
+        this.alert.message = '';
           this.alert.type = '';
       }, 2000);
       this.data
@@ -55,8 +55,6 @@ export class ListerNatureComponent implements OnInit {
   }
 
   submit() {
-    // this.modalService.dismissAll();
-
     this.data.updateKind(this.oneKind).subscribe(() => this.data.findAllKind()
       .subscribe(arg => (this.listeKinds = arg)),
       error => console.log(`l'update n'a pas eu lieu` + error.error));
@@ -64,7 +62,6 @@ export class ListerNatureComponent implements OnInit {
 
   delete(kind: Kind) {
     console.log(kind);
-    // this.modalService.dismissAll();
     this.data.deleteKind(kind.id).subscribe();
   }
 
