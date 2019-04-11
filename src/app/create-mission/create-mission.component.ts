@@ -16,9 +16,9 @@ interface Alert {
 export class CreateMissionComponent implements OnInit {
   kinds: Kind[] = [];
   mission: Mission = {};
-  transport: TransportEnum[] = [] ;
-  alert: Alert = {type : '', message: ''};
-  constructor(private route: ActivatedRoute, private router: Router , private missionServ: MissionService) { }
+  transport: TransportEnum[] = [];
+  alert: Alert = { type: '', message: '' };
+  constructor(private route: ActivatedRoute, private router: Router, private missionServ: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
 
   httpOptions = {

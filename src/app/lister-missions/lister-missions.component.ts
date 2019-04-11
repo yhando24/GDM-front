@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Mission } from '../models';
+import { Mission, Kind } from '../models';
 import { MissionService } from 'src/services/mission.service';
-import { Route, Router } from '@angular/router';
+import { Route, Router, ActivatedRoute } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { ModalService } from 'src/services/modal.service';
 import { Subscription } from 'rxjs';
@@ -23,11 +23,13 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
 
   alertSubscribe: Subscription;
 
+  kinds: Kind[] = [];
+
 
 
   listeMission: Mission[];
   alert: Alert;
-  constructor(private data: MissionService, private route: Router, private modal: ModalService) { }
+  constructor(private data: MissionService, private route: Router, private modal: ModalService, private road: ActivatedRoute) { }
   newMission() {
     this.route.navigate(['/createMission']);
   }
@@ -37,6 +39,7 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.road.data.subscribe(({ kinds }) => this.kinds = kinds);
     this.alert = { type: '', message: '' };
     this.data.finAllMission().subscribe(arg => (
       this.listeMission = arg
@@ -61,12 +64,12 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   delete(m: Mission) {
     this.data.addMission(m);
     this.modal.openModal('deleteMission');
-
   }
 
   openUpdate(mission: Mission) {
     this.data.addMission(mission);
     this.modal.openModal('updateMission');
+    this.route.navigateByUrl('updateMission');
   }
 
   ngOnDestroy(): void {
