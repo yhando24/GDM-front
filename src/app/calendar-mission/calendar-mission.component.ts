@@ -27,7 +27,7 @@ export class CalendarMissionComponent implements OnInit {
     const tmp = [];
     this.missionsClassique.forEach(m => {
       const mission = new ModelMissionCalendar(m.id, m.startDate, m.endDate, m.kind.name);
-      tmp.push(mission);
+      tmp.push(mission)
     });
     this.missions = tmp;
 
