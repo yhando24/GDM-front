@@ -21,6 +21,9 @@
         <a class="nav-link " [routerLink]="['/approve-mission']"
           *ngIf="role ==='MANAGER'">Valider mission</a>
       </li>
+      <li class="nav-item hvr-underline-from-center">
+        <a class="nav-link " [routerLink]="['/display-all-mission']" *ngIf="role ==='MANAGER'">Missions des collaborateurs</a>
+      </li>
     </ul>
     <div *ngIf="user">
       <h4 class="bjr-user">Bonjour {{user.firstName}} !</h4>

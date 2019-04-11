@@ -21,7 +21,7 @@
     <div class="form-group">
       <label>Role:</label><select class="form-control form-control-lg" [(ngModel)]="oneUser.role"
         [ngModelOptions]="{standalone: true}">
-        <option *ngFor="let r of listeRole" [ngValue]="r">{{r}}</option>
+        <option *ngFor="let r of listeRole" [ngValue]="r.toUpperCase()">{{r}}</option>
       </select>
     </div>
     <button type="submit" class="btn btn-outline-dark">Save</button>

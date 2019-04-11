@@ -2,7 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-6">
       <h2>Création de mission</h2>
-
+      <p>
+        <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+      </p>
       <form (ngSubmit)="submit()" #monForm="ngForm">
 
         <div class="form-group">
