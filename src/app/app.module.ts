@@ -26,6 +26,10 @@ import { KindsResolver } from './lister-nature/lister-nature.route';
 import { CreationExpenseAccountComponent } from './creation-expense-account/creation-expense-account.component';
 import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
 
+import { CalendarMissionComponent } from './calendar-mission/calendar-mission.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+
+
 
 
 @NgModule({
@@ -49,11 +53,14 @@ import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete
     KindsResolver,
     CreationExpenseAccountComponent,
     ModalDeleteMissionComponent,
+    CalendarMissionComponent,
+
 
   ],
 
   imports: [
     BrowserModule,
+    FullCalendarModule,
     NgbModule,
     HttpClientModule,
     FormsModule,

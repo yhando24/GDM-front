@@ -34,9 +34,24 @@ export interface Mission {
 
 }
 
+export interface IModelMissionCalendar {
+  id: number,
+  start: Date,
+  end: Date,
+  title: string
+}
+
+export class ModelMissionCalendar implements IModelMissionCalendar {
+  public constructor(public id: number, public start: Date, public end: Date, public title: string) {
+    this.id = id;
+    this.start = start;
+    this.end = end;
+    this.title = title;
+  }
+}
+
 
 export interface token {
-
   id_token: string;
 }
 

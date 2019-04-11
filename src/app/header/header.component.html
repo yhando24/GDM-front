@@ -7,11 +7,15 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item" *ngIf="role ==='ADMIN'">
-                    <a class="nav-link" [routerLink]="['/users']" routerLinkActive="router-link-active" >Users</a>
+                    <a class="nav-link" [routerLink]="['/users']" routerLinkActive="router-link-active" >Utilisateurs</a>
                   </li>
                 <li class="nav-item">
                       <a class="nav-link" [routerLink]="['/missions']" routerLinkActive="router-link-active" >Missions</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/calendar-Mission']" routerLinkActive="router-link-active">Calendrier-Mission</a>
+                  </li>
+
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/kinds']" routerLinkActive="router-link-active" *ngIf="role ==='ADMIN'">Natures</a>
                 </li>
