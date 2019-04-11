@@ -4,7 +4,10 @@ import { Kind, Mission, TransportEnum, getTransportEnum } from '../models';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { MissionService } from 'src/services/mission.service';
-
+interface Alert {
+  type: string;
+  message: string;
+}
 @Component({
   selector: 'app-create-mission',
   templateUrl: './create-mission.component.html',
@@ -14,7 +17,7 @@ export class CreateMissionComponent implements OnInit {
   kinds: Kind[] = [];
   mission: Mission = {};
   transport: TransportEnum[] = [] ;
-
+  alert: Alert = {type : '', message: ''};
   constructor(private route: ActivatedRoute, private router: Router , private missionServ: MissionService) { }
   URL_BACKEND = environment.backendUrl + 'users';
 
@@ -25,13 +28,19 @@ export class CreateMissionComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.route.data.subscribe(({kinds}) => { this.kinds = kinds,
-    this.transport = getTransportEnum(); });
+    this.route.data.subscribe(({ kinds }) => {
+      this.kinds = kinds;
+      this.transport = getTransportEnum();
+    });
   }
   submit() {
     this.missionServ.createOneMission(this.mission).subscribe(
       () => this.router.navigateByUrl('missions'),
-    error => console.log(error.error));
+    error => {
+
+      this.alert.type = 'danger';
+      this.alert.message = error.error;
+      console.log(this.alert.message)});
   }
 
 }
