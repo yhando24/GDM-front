@@ -41,7 +41,7 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.road.data.subscribe(({ kinds }) => this.kinds = kinds);
     this.alert = { type: '', message: '' };
-    this.data.finAllMission().subscribe(arg => (
+    this.data.finAllMissionByUser().subscribe(arg => (
       this.listeMission = arg
     ));
 

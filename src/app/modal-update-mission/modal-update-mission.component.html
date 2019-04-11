@@ -12,7 +12,7 @@
     <div class="form-group">
       <label for="kind">Nature :</label>
       <select class="form-control" [(ngModel)]="oneMission.kind.name" name="kind" #kind="ngModel" required>
-        <option *ngFor="let kind of listKinds" [ngValue]="oneMission.kind.name">{{kind.name}}</option>
+        <option *ngFor="let kind of listKinds" [ngValue]="kind.name">{{kind.name}}</option>
       </select>
     </div>
 
@@ -44,56 +44,10 @@
       name="transport">
       <option *ngFor="let transportEnum of listEnum" [ngValue]="transportEnum.toUpperCase()"> {{transportEnum}}
       </option>
-      <!-- Modal Update Mission -->
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Modification de la Mission</h4>
-        <button type="button" class="close" aria-label="Close" (click)="close()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    </select>
 
-      <div class="modal-body">
-        <form (ngSubmit)="submit()" [ngFormOptions]="{ updateOn: 'blur' }" #form="ngForm">
-
-
-          <div class="form-group">
-            <label for="kind">Nature :</label>
-            <select class="form-control" [(ngModel)]="oneMission.kind.name" name="kind" #kind="ngModel" required>
-              <option *ngFor="let kind of listKinds" [ngValue]="kind">{{kind.name}}</option>
-            </select>
-          </div>
-
-          <label>Date de début</label>
-          <div class="input-group">
-            <input class="form-control form-control-lg" type="date" name="Date de débgit put"
-              placeholder={{oneMission.startDate}} [(ngModel)]="oneMission.startDate" />
-          </div>
-
-          <label>Date de fin</label>
-          <div class="input-group">
-            <input class="form-control form-control-lg" type="date" name="Date de fin"
-              placeholder={{oneMission.endDate}} [(ngModel)]="oneMission.endDate" />
-          </div>
-
-          <label>Ville de départ</label>
-          <div class="input-group">
-            <input class="form-control form-control-lg" type="text" name="Ville de départ"
-              placeholder={{oneMission.departureCity}} [(ngModel)]="oneMission.departureCity" />
-          </div>
-
-          <label>Ville d'arrivée</label>
-          <div class="input-group">
-            <input class="form-control form-control-lg" type="text" name="Ville d'arrivée"
-              placeholder={{oneMission.arrivalCity}} [(ngModel)]="oneMission.arrivalCity" />
-          </div>
-
-          <label for="inputState">Transport</label>
-          <select id="inputState" class="form-control" [(ngModel)]="oneMission.transportEnum" #champRole="ngModel"
-            name="transport">
-            <option *ngFor="let transportEnum of listEnum" [ngValue]="transportEnum.toUpperCase()"> {{transportEnum}}
-            </option>
-          </select>
-        </form>
-      </div>
-
-      <div class="modal-footer">
+        <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-primary" >Valider</button>
+      <button type="button" class="btn btn-outline-dark" (click)="close()">Annuler</button>
+    </div>
+  </form>

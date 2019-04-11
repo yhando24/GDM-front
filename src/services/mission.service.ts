@@ -51,6 +51,10 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 
+  finAllMissionByUser(): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + "/perso");
+  }
+
   addMission(mission: Mission) {
     this.mission.next(mission);
   }
