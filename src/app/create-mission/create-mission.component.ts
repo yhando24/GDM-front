@@ -37,10 +37,9 @@ export class CreateMissionComponent implements OnInit {
     this.missionServ.createOneMission(this.mission).subscribe(
       () => this.router.navigateByUrl('missions'),
     error => {
-
       this.alert.type = 'danger';
       this.alert.message = error.error;
-      console.log(this.alert.message)});
+     });
   }
 
 }
