@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Mission } from 'src/app/models';
+import { Mission, ModelMissionCalendar } from 'src/app/models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MissionService {
 
-  constructor(private http: HttpClient, private modalService: NgbModal) { }
+  constructor(private http: HttpClient, private modalService: NgbModal) {}
 
   get oneMission(): Observable<Mission> {
     return this.mission.asObservable();
@@ -23,7 +23,7 @@ export class MissionService {
   public checkMission = new BehaviorSubject<string[]>(null);
 
   httpOptions = {
-    headers: new HttpHeaders ({
+    headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
@@ -45,6 +45,7 @@ export class MissionService {
   }
 
   finAllMission(): Observable<Mission[]> {
+    console.log('je cherche toute les missions')
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 
@@ -56,10 +57,24 @@ export class MissionService {
     return this.http
       .delete(this.URL_BACKEND + '/delete/' + m.id, this.httpOptions);
   }
+  createOneMission(m: Mission): Observable<Mission> {
+    return this.http
+      .post(this.URL_BACKEND, m, this.httpOptions);
+  }
 
   updateMission(mission: Mission): Observable<Mission> {
-    console.log(mission);
+
     return this.http.patch<Mission>(this.URL_BACKEND + '/update/' + mission, this.httpOptions);
+  }
+  finAllMissionToApprove(): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/waiting');
+  }
+  approveOneMission(m: Mission): Observable<Mission> {
+    return this.http.patch<Mission>(this.URL_BACKEND, m , this.httpOptions);
+  }
+
+  findMissionByUser(id: number): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/' + id) ;
   }
 
 }

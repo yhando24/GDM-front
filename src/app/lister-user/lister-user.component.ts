@@ -89,7 +89,11 @@ export class ListerUserComponent implements OnInit {
     this.modal.openModal('deleteUser');
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f72cccf96aafbc7a60c270b9a8a12ae1d412b70a
 =======
 >>>>>>> ee93e5bd438664d138b68368f43ec0b5cb1acd83
+=======
+
+>>>>>>> 9071bdb83638ee1883394579468e086687324a78
 }

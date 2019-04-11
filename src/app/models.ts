@@ -1,10 +1,10 @@
 export interface User {
-  id?: number;
-  firstName?: string;
-  lastName?: string;
-  password?: string;
-  email?: string;
-  role?: Role;
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    password?: string;
+    email?: string;
+    role?: Role;
 }
 
 export enum Role {
@@ -16,26 +16,41 @@ export enum Role {
 export function getEnum() {
   return [Role.USER, Role.ADMIN, Role.MANAGER];
 }
-
 export function getRolesEnum() {
   return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
 export interface Mission {
-  id?: number;
-  kind?: Kind;
-  startDate?: Date;
-  endDate?: Date;
-  departureCity?: string;
-  arrivalCity?: string;
-  prime?: number;
-  missionStatus?: MissionStatusEnum;
-  transportEnum?: TransportEnum;
-
+    id?: number;
+    kind?: Kind;
+    startDate?: Date;
+    endDate?: Date;
+    departureCity?: string;
+    arrivalCity?: string;
+    prime?: number;
+    missionStatus?: MissionStatusEnum;
+    transportEnum?: TransportEnum;
+    user?: User;
 }
 
-export interface token {
+export interface IModelMissionCalendar {
+  id: number,
+  start: Date,
+  end: Date,
+  title: string
+}
 
+export class ModelMissionCalendar implements IModelMissionCalendar {
+  public constructor(public id: number, public start: Date, public end: Date, public title: string) {
+    this.id = id;
+    this.start = start;
+    this.end = end;
+    this.title = title;
+  }
+}
+
+
+export interface token {
   id_token: string;
 }
 
@@ -44,15 +59,29 @@ export enum MissionStatusEnum {
 }
 
 export enum TransportEnum {
-  TRAIN = 'Train', AVION = 'Avion', TAXI = 'Taxi', BUS = 'Bus', BATEAU = 'Bateau',
-  NAVETTE_SPATIALE = 'Navette_Spatiale', VOITURE = 'Voiture', VELO = 'Velo', HELICOPTERE = 'Helicoptère'
+  TRAIN = 'train',
+  AVION = 'avion',
+  TAXI = 'taxi',
+  BUS = 'bus',
+  BATEAU = 'bateau',
+  NAVETTE_SPATIALE = 'navette_spatiale',
+  VOITURE = 'voiture',
+  VELO = 'velo',
+  HELICOPTERE = 'helicoptere'
 }
-
 export function getTransportEnum() {
-  return [TransportEnum.AVION, TransportEnum.BATEAU, TransportEnum.BUS, TransportEnum.HELICOPTERE,
-  TransportEnum.TAXI, TransportEnum.TRAIN, TransportEnum.VELO, TransportEnum.VOITURE];
+  return [
+    TransportEnum.AVION,
+    TransportEnum.BATEAU,
+    TransportEnum.BUS,
+    TransportEnum.HELICOPTERE,
+    TransportEnum.NAVETTE_SPATIALE,
+    TransportEnum.TAXI,
+    TransportEnum.TRAIN,
+    TransportEnum.VELO,
+    TransportEnum.VOITURE
+  ];
 }
-
 export interface Kind {
 
   id?: number;
