@@ -95,7 +95,7 @@ export class KindService {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
   }
   findActive(): Observable<HttpResponse<Kind[]>> {
-    console.log("je afis la requete!!!!")
+    console.log('je afis la requete!!!!');
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds/active', { observe: 'response' });
   }
 

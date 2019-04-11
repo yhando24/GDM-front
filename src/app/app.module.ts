@@ -29,6 +29,11 @@ import { CreationExpenseAccountComponent } from './creation-expense-account/crea
 import { ListExpenseAccountComponent } from './list-expense-account/list-expense-account.component';
 import { ModalDeleteMissionComponent } from './modal-delete-mission/modal-delete-mission.component';
 import { DisplayAllMissionComponent } from './display-all-mission/display-all-mission.component';
+import { VuePrimesComponent } from './vue-primes/vue-primes.component';
+
+
+import { CalendarMissionComponent } from './calendar-mission/calendar-mission.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 
 
 
@@ -55,14 +60,17 @@ import { DisplayAllMissionComponent } from './display-all-mission/display-all-mi
     ApproveMissionComponent,
     CreationExpenseAccountComponent,
     ModalDeleteMissionComponent,
+    CalendarMissionComponent,
     ModalUpdateMissionComponent,
     CreationExpenseAccountComponent,
     ListExpenseAccountComponent,
-    DisplayAllMissionComponent
+    DisplayAllMissionComponent,
+    VuePrimesComponent
   ],
 
   imports: [
     BrowserModule,
+    FullCalendarModule,
     NgbModule,
     HttpClientModule,
     FormsModule,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Mission } from 'src/app/models';
+import { Mission, ModelMissionCalendar } from 'src/app/models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -45,6 +45,7 @@ export class MissionService {
   }
 
   finAllMission(): Observable<Mission[]> {
+    console.log('je cherche toute les missions')
     return this.http.get<Mission[]>(this.URL_BACKEND);
   }
 
@@ -71,4 +72,9 @@ export class MissionService {
   approveOneMission(m: Mission): Observable<Mission> {
     return this.http.patch<Mission>(this.URL_BACKEND, m , this.httpOptions);
   }
+
+  findMissionByUser(id: number): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/' + id) ;
+  }
+
 }
