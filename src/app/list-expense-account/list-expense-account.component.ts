@@ -39,11 +39,11 @@ newExpenseAccount(){
 
     this.data.checkexpenseAccount.subscribe(message => {
       if (message !== null) {
-        this.alert.message = message[1],
+        this.alert.message = message[1];
           this.alert.type = message[0];
       }
       setTimeout(() => {
-        this.alert.message = '',
+        this.alert.message = '';
           this.alert.type = '';
       }, 2000);
       this.data
