@@ -23,9 +23,6 @@ export class FormusercreateComponent implements OnInit {
   }
   submit() {
     this.userService.createUser(this.user).subscribe(() => {
-      console.log(this.user),
-// tslint:disable-next-line: no-unused-expression
-      this.user + ' //Envoyé avec succès',
       this.router.navigate(['/accueil']);
     },
       error => {

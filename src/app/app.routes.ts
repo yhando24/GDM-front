@@ -47,6 +47,7 @@ export const ROUTES: Routes = [
     path: 'calendar-Mission', component: CalendarMissionComponent,
     resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard]
   },
+  {path : 'listeExpense', component: ListExpenseAccountComponent},
   { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
   { path: 'login', component: ConnectionUserComponent, canActivate: [loginGuard]  },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -58,7 +59,7 @@ export const ROUTES: Routes = [
   }},
  // { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
   { path: 'createExpenseAccount/:idMission', component: CreationExpenseAccountComponent, resolve: {mission: MissionResolver}},
-  { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent},
+  { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent, resolve: {mission: MissionResolver}},
   { path: 'primes/:idUser', component: VuePrimesComponent},
 
   {
