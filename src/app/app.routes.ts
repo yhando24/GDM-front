@@ -1,4 +1,4 @@
-import { CalendarMissionResolver } from './../resolvers/CalendarMissionResolver';
+import { CalendarMissionResolver } from '../resolvers/CalendarMissionResolver';
 import { Routes } from '@angular/router';
 import { CreationNatureMissionComponent } from './creation-nature-mission/creation-nature-mission.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
@@ -21,7 +21,9 @@ import { ApproveMissionComponent } from './approve-mission/approve-mission.compo
 import { VuePrimesComponent } from './vue-primes/vue-primes.component';
 import { DisplayAllMissionComponent } from './display-all-mission/display-all-mission.component';
 import { ManagerGuard } from 'src/guards/manager.guard';
+import { MissionResolver } from './creation-expense-account/MissionResolver';
 import { ModalUpdateMissionComponent } from './modal-update-mission/modal-update-mission.component';
+
 
 
 export const ROUTES: Routes = [
@@ -45,24 +47,23 @@ export const ROUTES: Routes = [
     path: 'calendar-Mission', component: CalendarMissionComponent,
     resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard]
   },
+  {path : 'listeExpense', component: ListExpenseAccountComponent},
   { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
   { path: 'login', component: ConnectionUserComponent, canActivate: [loginGuard]  },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard] },
-  {
-    path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
-    resolve: {
-      kinds: KindsResolver
-    }
-  },
-  // {
-  //   path: 'updateMission', component: ModalUpdateMissionComponent,
-  //   resolve: {
-  //     kinds: KindsResolver
-  //   }
-  // },
-  { path: 'listExpenseAccount', component: ListExpenseAccountComponent },
-  { path: 'primes/:idUser', component: VuePrimesComponent },
+
+  { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
+  resolve: {
+    kinds: KindsResolver
+  }},
+ // { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
+  { path: 'createExpenseAccount/:idMission', component: CreationExpenseAccountComponent, resolve: {mission: MissionResolver}},
+  { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent, resolve: {mission: MissionResolver}},
+  { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent},
+  { path: 'primes', component: VuePrimesComponent},
+
+
   {
     path: 'accueil',
     component: AccueilComponent,

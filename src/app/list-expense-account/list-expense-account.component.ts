@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpenseAccount } from '../models';
+import { ExpenseAccount, Mission } from '../models';
 import { ExpenseAccountService } from 'src/services/expense-account.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ModalService } from 'src/services/modal.service';
+import { MissionService } from 'src/services/mission.service';
 
 interface Alert {
   type: string;
@@ -16,26 +17,37 @@ interface Alert {
 })
 export class ListExpenseAccountComponent implements OnInit {
 
-  listExpenseAccount;
+  listExpenseAccount: ExpenseAccount[];
   oneExpenseAccount: ExpenseAccount;
   titreModal: string;
   messageModal: string;
   footerModal: string;
   closeResult: string;
   alert: Alert;
+  oneMission: Mission = {};
 
+  constructor(private datam: MissionService, private data: ExpenseAccountService, private route: Router, private modalService: ModalService, private actiroute: ActivatedRoute) { }
 
-  constructor(private data: ExpenseAccountService, private route: Router, private modalService: ModalService) { }
-
-newExpenseAccount(){
-  this.route.navigate(['/createExpenseAccount']);
-}
+  newExpenseAccount() {
+    this.route.navigate(['/createExpenseAccount/' + this.oneMission.id]);
+  }
 
   ngOnInit() {
+    this.actiroute.data.subscribe(({ mission }) => {
+      setTimeout(() => {
+        this.oneMission = mission,
+          this.data
+            .findAllExpenseAccountByMission(this.oneMission.id)
+            .subscribe(arg => (this.listExpenseAccount = arg, console.log(this.listExpenseAccount)))
+        console.log(this.oneMission)
+          ;
+      });
+    });
+    // this.idMission = Number(this.actiroute.snapshot.paramMap.get('idMission')),
+    // this.datam.FindMissionById(this.idMission).subscribe(value => this.oneMission = value);
     this.alert = { type: '', message: '' };
-    this.data
-      .findAllExpenseAccount()
-      .subscribe(arg => (this.listExpenseAccount = arg));
+    ;
+
 
     this.data.checkexpenseAccount.subscribe(message => {
       if (message !== null) {
@@ -46,13 +58,11 @@ newExpenseAccount(){
         this.alert.message = '',
           this.alert.type = '';
       }, 2000);
-      this.data
-        .findAllExpenseAccount()
-        .subscribe(arg => (this.listExpenseAccount = arg));
+
     });
   }
 
-  submit(){
+  submit() {
     this.data.updateExpenseAccount(this.oneExpenseAccount).subscribe(() => this.data.findAllExpenseAccount()
       .subscribe(arg => (this.listExpenseAccount = arg)),
       error => console.log(`l'update n'a pas eu lieu` + error.error));

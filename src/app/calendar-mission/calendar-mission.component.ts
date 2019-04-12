@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { OptionsInput } from '@fullcalendar/core';
+
 import dayGrid from '@fullcalendar/daygrid';
 import timeGrid from '@fullcalendar/timegrid';
 import interaction from '@fullcalendar/interaction';
-import { ModelMissionCalendar, Mission } from '../models';
+import { ModelMissionCalendar, Mission, IMission } from '../models';
 import { Subscription } from 'rxjs';
 import { MissionService } from 'src/services/mission.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,15 +20,16 @@ import { ActivatedRoute } from '@angular/router';
 export class CalendarMissionComponent implements OnInit {
   missions: Array<ModelMissionCalendar>;
   mission: ModelMissionCalendar;
-  missionsClassique: Mission[] = [];
+  missionsClassique: Mission[];
   actionSub: Subscription;
-  headerOption ={
-      left: 'prevYear, prev',
-      center: 'title, today ',
-      right: ' next, nextYear',
+  headerOption = {
+    left: 'prevYear, prev',
+    center: 'title, today ',
+    right: ' next, nextYear',
 
-    };
-textOption ={ today:    "aujourd'hui",   color: "#52AEA0"}
+  };
+  textOption = { today: "aujourd'hui", color: "#52AEA0" }
+
 
   ngOnInit() {
 

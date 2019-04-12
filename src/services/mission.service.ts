@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { Mission, ModelMissionCalendar } from 'src/app/models';
+import { Mission, ModelMissionCalendar, IMission } from 'src/app/models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -17,8 +17,10 @@ export class MissionService {
 
   constructor(private http: HttpClient, private modalService: NgbModal) { }
 
-  get oneMission(): Observable<Mission> {
-    return this.mission.asObservable();
+  get oneMission(): Observable<Mission> { return this.mission.asObservable(); }
+
+  FindMissionById(id: number): Observable<Mission> {
+    return this.http.get<Mission>(this.URL_BACKEND + '/findById/' + id);
   }
 
   URL_BACKEND = environment.backendUrl + 'missions';
@@ -32,14 +34,14 @@ export class MissionService {
     })
   };
 
-  missionDeleted(m: Mission) {
+  missionDeleted(m: IMission) {
     this.checkMission.next(['success', `la mission ${m.kind.name} du ${m.startDate}
     à bien été supprimé`]);
   }
   missionNotDeleted(message: string) {
     this.checkMission.next(['danger', message]);
   }
-  missionUpdated(mission: Mission) {
+  missionUpdated(mission: IMission) {
     this.checkMission.next(['success', `la mission ${mission.kind.name} du ${mission.startDate}
     à bien été modifiée`]);
   }
@@ -85,8 +87,8 @@ export class MissionService {
     return this.http.patch<Mission>(this.URL_BACKEND, m, this.httpOptions);
   }
 
-  findPrimeMissionByUser(id: number): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id);
+  findPrimeMissionByUser(): Observable<Mission[]> {
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/');
   }
 
   finAllMissionFordownload(): Observable<Mission[]>{
@@ -94,4 +96,7 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/export');
   }
 
+  findById(id: number): Observable<Mission> {
+    return this.http.get<Mission>(this.URL_BACKEND + '/findById/' + id);
+  }
 }

@@ -1,31 +1,31 @@
-<h2>liste des mission à valider</h2>
+<h2>Liste des mission à valider</h2>
 
 
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date de debut</th>
-      <th scope="col">Date de fin</th>
-      <th scope="col">Natures</th>
-      <th scope="col">Départ</th>
-      <th scope="col">Arrivée</th>
-      <th scope="col">Transport</th>
-      <th scope="col">Actions</th>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Date de debut</th>
+      <th class="align-middle" scope="col">Date de fin</th>
+      <th class="align-middle" scope="col">Natures</th>
+      <th class="align-middle" scope="col">Départ</th>
+      <th class="align-middle" scope="col">Arrivée</th>
+      <th class="align-middle" scope="col">Transport</th>
+      <th class="align-middle" scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let m of missions; index as i">
-      <td scope="row">{{ i + 1 }}</td>
-    <td>{{m.startDate}}</td>
-      <td>{{m.endDate}}</td>
-      <td> {{m.kind.name}} </td>
-      <td> {{m.departureCity}} </td>
-      <td> {{m.arrivalCity}} </td>
-      <td> {{m.transportEnum}} </td>
-      <td>
-        <button type="button" class="btn btn-success" (click)="valider(m)">valider</button>
-        <button type="button" class="btn btn-danger" (click)="rejeter(m)">rejeter</button>
+    <tr class="text-center" *ngFor="let m of missions; index as i">
+      <td class="align-middle" scope="row">{{ i + 1 }}</td>
+    <td class="align-middle">{{m.startDate}}</td>
+      <td class="align-middle">{{m.endDate}}</td>
+      <td class="align-middle"> {{m.kind.name}} </td>
+      <td class="align-middle"> {{m.departureCity}} </td>
+      <td class="align-middle"> {{m.arrivalCity}} </td>
+      <td class="align-middle"> {{m.transportEnum}} </td>
+      <td class="align-middle">
+        <button type="button" class="btn btn-success btn-liste" (click)="valider(m)">Valider</button>
+        <button type="button" class="btn btn-danger btn-liste" (click)="rejeter(m)">Rejeter</button>
       </td>
     </tr>
   </tbody>
