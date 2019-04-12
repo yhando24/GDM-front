@@ -1,4 +1,7 @@
-<h1>Formulaire Création </h1>
+
+<div class="row justify-content-center">
+    <div class="col-8">
+<h2>Formulaire Création </h2>
 
 <form (ngSubmit)="submit()" #createUser="ngForm">
   <div class="form-row">
@@ -40,8 +43,8 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="form-check">
-        <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Submit </button>
+    <div class="form-check center-boutons-formulaire">
+        <button class="btn btn-primary" type="submit" [disabled]="createUser.invalid">Créer</button>
         <p *ngIf="createUser.invalid">
           Au moins un champ du formulaire est invalide.
         </p>
@@ -50,3 +53,6 @@
     </div>
   </div>
 </form>
+</div>
+</div>
+

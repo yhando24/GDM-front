@@ -1,34 +1,33 @@
 <nav class="fond-nav-barre navbar navbar-expand-lg navbar-light navbar-GDM" *ngIf="isAuthenticated()">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+  <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
   <img class="logo navbar-brand hvr-bob" src="../../assets/resources/logo-GDM.png" routerLink="/accueil" alt="logo-GDM">
 
   <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item hvr-underline-from-center" *ngIf="role ==='ADMIN'">
+      <li class="nav-item hvr-underline-from-left" *ngIf="role ==='ADMIN'">
         <a class="nav-link" [routerLink]="['/users']" >Utilisateurs</a>
       </li>
-      <li class="nav-item hvr-underline-from-center">
+      <li class="nav-item hvr-underline-from-left">
         <a class="nav-link" [routerLink]="['/missions']" routerLinkActive="router-link-active">Missions</a>
       </li>
-      <li class="nav-item hvr-underline-from-center" *ngIf="user">
-      <li class="nav-item">
+      <li *ngIf="user" class="nav-item hvr-underline-from-left">
         <a class="nav-link" [routerLink]="['/calendar-Mission']" routerLinkActive="router-link-active">Calendrier-Mission</a>
       </li>
-      <li class="nav-item hvr-underline-from-center" *ngIf="user">
-        <a class="nav-link" [routerLink]="['/primes',user.id]" routerLinkActive="router-link-active">Primes</a>
+      <li class="nav-item hvr-underline-from-left">
+        <a class="nav-link" [routerLink]="['/primes']" routerLinkActive="router-link-active">Primes</a>
       </li>
-      <li class="nav-item hvr-underline-from-center">
+      <li class="nav-item hvr-underline-from-left">
         <a class="nav-link " [routerLink]="['/kinds']" routerLinkActive="router-link-active"
           *ngIf="role ==='ADMIN'">Natures</a>
       </li>
-      <li class="nav-item hvr-underline-from-center">
+      <li class="nav-item hvr-underline-from-left">
         <a class="nav-link " [routerLink]="['/approve-mission']"
           *ngIf="role ==='MANAGER'">Valider mission</a>
       </li>
-      <li class="nav-item hvr-underline-from-center">
+      <li class="nav-item hvr-underline-from-left">
         <a class="nav-link " [routerLink]="['/display-all-mission']" *ngIf="role ==='MANAGER'">Missions des collaborateurs</a>
       </li>
     </ul>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MissionService } from 'src/services/mission.service';
-import { Mission } from '../models';
+import { Mission, IMission } from '../models';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 import { from } from 'rxjs';
@@ -28,15 +28,15 @@ export class GraphMission implements IGraphMission {
   styleUrls: ['./vue-primes.component.css']
 })
 export class VuePrimesComponent implements OnInit {
-  listeMissions: Mission[];
+  listeMissions: IMission[];
   idUser: number;
   chart: any;
 
   constructor(private serviceMission: MissionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.idUser = Number(this.route.snapshot.paramMap.get('idUser'));
-    this.serviceMission.findPrimeMissionByUser(this.idUser).subscribe(values => {
+    //this.idUser = Number(this.route.snapshot.paramMap.get('idUser'));
+    this.serviceMission.findPrimeMissionByUser().subscribe(values => {
       this.listeMissions = values;
       const tmp: GraphMission[] = [];
       values.forEach(m => {

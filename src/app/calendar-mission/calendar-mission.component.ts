@@ -5,7 +5,7 @@ import { OptionsInput } from '@fullcalendar/core';
 import dayGrid from '@fullcalendar/daygrid';
 import timeGrid from '@fullcalendar/timegrid';
 import interaction from '@fullcalendar/interaction';
-import { ModelMissionCalendar, Mission } from '../models';
+import { ModelMissionCalendar, Mission, IMission } from '../models';
 import { Subscription } from 'rxjs';
 import { MissionService } from 'src/services/mission.service';
 import { ActivatedRoute } from '@angular/router';
