@@ -24,18 +24,16 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   alertSubscribe: Subscription;
 
   kinds: Kind[] = [];
-
-
-
   listeMission: Mission[];
   alert: Alert;
+
   constructor(private data: MissionService, private route: Router, private modal: ModalService, private road: ActivatedRoute) { }
   newMission() {
     this.route.navigate(['/createMission']);
   }
 
-  listExpenseAccount() {
-    this.route.navigate(['/listExpenseAccount']);
+  listExpenseAccount(id: number) {
+    this.route.navigate(['/listExpenseAccount/'+ id]);
   }
 
   ngOnInit() {

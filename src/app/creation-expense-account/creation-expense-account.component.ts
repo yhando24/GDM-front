@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpenseAccount } from '../models';
+import { ExpenseAccount, Mission } from '../models';
 import { ExpenseAccountService } from 'src/services/expense-account.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { HttpHeaders } from '@angular/common/http';
+import { MissionService } from 'src/services/mission.service';
 
 @Component({
   selector: 'app-creation-expense-account',
@@ -12,18 +15,31 @@ export class CreationExpenseAccountComponent implements OnInit {
 
   error: string;
   newExpenseAccount: ExpenseAccount = {};
+  mission: Mission;
 
-  constructor(private expenseAccountService: ExpenseAccountService, private router: Router) { }
+  constructor(private data: MissionService, private route: ActivatedRoute, private expenseAccountService: ExpenseAccountService, private router: Router) { }
+
 
   ngOnInit() {
+    this.route.data.subscribe(({ mission }) => {
+      setTimeout(() => {
+        this.mission = mission,
+        console.log(this.mission)
+        ;
+      }, 0);
+    });
   }
 
+
   submit() {
-    this.expenseAccountService.createExpenseAccount(this.newExpenseAccount).subscribe(
-      value => this.router.navigateByUrl('expense-accounts'),
-      error => this.error = error
+    this.newExpenseAccount.mission = this.mission;
+    this.expenseAccountService.createExpenseAccount(this.newExpenseAccount).subscribe(() => (
+      this.router.navigate(['/listExpenseAccount/' + this.mission.id])),
+
     );
+    console.log("pas yo");
   }
+
 
   cancel() {
     this.router.navigateByUrl('expense-accounts');

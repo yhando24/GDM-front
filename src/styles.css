@@ -1,8 +1,13 @@
 @import '../node_modules/@fullcalendar/core/main.css';
 @import '../node_modules/@fullcalendar/daygrid/main.css';
-.btn-liste{
-  margin:7.5px;
-}
+
+
+
+
+
+.fc .fc-row .fc-content-skeleton table, .fc .fc-row .fc-content-skeleton td, .fc .fc-row .fc-mirror-skeleton td {
+  border-color: #ddd !important;
+  }
 
 .fc-today{
   background-color:#C5114A !important;
@@ -20,8 +25,13 @@
     color: #fff;
     background-color: #C5114A !important;
     border-color: #C5114A !important;
+    margin-top:15px !important;
+    margin-bottom:15px !important;
 }
 
+.btn-liste{
+  margin:7.5px;
+}
 
 .btn{
   width: 100% !important;

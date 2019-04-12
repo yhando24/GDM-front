@@ -51,4 +51,10 @@ user: User|number;
       this.missionServ.criteriaMissionUser(this.mois, this.annee, this.user).subscribe(list => this.listeMission = list);
     }
   }
+  dlMission() {
+    this.missionServ.finAllMissionFordownload().subscribe(arg => (
+      console.log(arg)
+    ));
+  }
 }
+
