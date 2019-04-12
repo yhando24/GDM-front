@@ -18,18 +18,14 @@ export class CreationExpenseAccountComponent implements OnInit {
   mission: Mission;
 
   constructor(private data: MissionService, private route: ActivatedRoute, private expenseAccountService: ExpenseAccountService, private router: Router) { }
-  URL_BACKEND = environment.backendUrl + 'users';
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
 
   ngOnInit() {
     this.route.data.subscribe(({ mission }) => {
       setTimeout(() => {
-        this.mission = mission;
+        this.mission = mission,
+        console.log(this.mission)
+        ;
       }, 0);
     });
   }
@@ -37,10 +33,9 @@ export class CreationExpenseAccountComponent implements OnInit {
 
   submit() {
     this.newExpenseAccount.mission = this.mission;
-    console.log(this.newExpenseAccount);
-    this.expenseAccountService.createExpenseAccount(this.newExpenseAccount).subscribe(
-      value => this.router.navigateByUrl('expense-accounts'),
-      error => this.error = error
+    this.expenseAccountService.createExpenseAccount(this.newExpenseAccount).subscribe(() => (
+      this.router.navigate(['/listExpenseAccount/' + this.mission.id])),
+
     );
     console.log("pas yo");
   }

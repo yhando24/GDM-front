@@ -17,29 +17,36 @@ interface Alert {
 })
 export class ListExpenseAccountComponent implements OnInit {
 
-  listExpenseAccount;
+  listExpenseAccount: ExpenseAccount[];
   oneExpenseAccount: ExpenseAccount;
   titreModal: string;
   messageModal: string;
   footerModal: string;
   closeResult: string;
   alert: Alert;
-  oneMission: Mission;
-  idMission: number;
+  oneMission: Mission = {};
 
   constructor(private datam: MissionService, private data: ExpenseAccountService, private route: Router, private modalService: ModalService, private actiroute: ActivatedRoute) { }
 
   newExpenseAccount() {
-    this.route.navigate(['/createExpenseAccount/' + this.idMission]);
+    this.route.navigate(['/createExpenseAccount/' + this.oneMission.id]);
   }
 
   ngOnInit() {
-    this.idMission = Number(this.actiroute.snapshot.paramMap.get('idMission')),
-    this.datam.FindMissionById(this.idMission).subscribe(value => this.oneMission = value);
+    this.actiroute.data.subscribe(({ mission }) => {
+      setTimeout(() => {
+        this.oneMission = mission,
+          this.data
+            .findAllExpenseAccountByMission(this.oneMission.id)
+            .subscribe(arg => (this.listExpenseAccount = arg, console.log(this.listExpenseAccount)))
+        console.log(this.oneMission)
+          ;
+      });
+    });
+    // this.idMission = Number(this.actiroute.snapshot.paramMap.get('idMission')),
+    // this.datam.FindMissionById(this.idMission).subscribe(value => this.oneMission = value);
     this.alert = { type: '', message: '' };
-    this.data
-      .findAllExpenseAccountByMission(this.idMission)
-      .subscribe(arg => (this.listExpenseAccount = arg, console.log(this.listExpenseAccount)));
+    ;
 
 
     this.data.checkexpenseAccount.subscribe(message => {

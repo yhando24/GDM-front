@@ -5,7 +5,7 @@ import { ExpenseAccount } from 'src/app/models';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-const URL_BACKEND = environment.backendUrl;
+const   URL_BACKEND = environment.backendUrl + 'expense-accounts/';
 
 @Injectable({
   providedIn: 'root'
@@ -50,31 +50,32 @@ export class ExpenseAccountService {
     this.modalService.dismissAll();
   }
 
-  createExpenseAccount(newExpenseAccount: ExpenseAccount): Observable<ExpenseAccount> {
-    return this.http.post<ExpenseAccount>(URL_BACKEND + 'expense-accounts', newExpenseAccount,
+  createExpenseAccount(ea: ExpenseAccount): Observable<ExpenseAccount> {
+    return this.http.post<ExpenseAccount>(URL_BACKEND, ea,
       this.httpOptions);
   }
 
   findAllExpenseAccount(): Observable<ExpenseAccount[]> {
-    return this.http.get<ExpenseAccount[]>(URL_BACKEND + 'expense-accounts');
+    return this.http.get<ExpenseAccount[]>(URL_BACKEND);
   }
 
   findAllExpenseAccountByMission(id: number): Observable<ExpenseAccount[]> {
-    return this.http.get<ExpenseAccount[]>(URL_BACKEND + 'expense-accounts/' + id);
+    console.log('JE suis dans la méthode pour tout trouver par mission' + id)
+    return this.http.get<ExpenseAccount[]>(URL_BACKEND + id);
   }
 
   getById(id: number): Observable<ExpenseAccount> {
-    return this.http.get<ExpenseAccount>(URL_BACKEND + 'expense-accounts');
+    return this.http.get<ExpenseAccount>(URL_BACKEND);
   }
 
   updateExpenseAccount(expenseAccount: ExpenseAccount): Observable<ExpenseAccount> {
     console.log(expenseAccount);
-    return this.http.patch<ExpenseAccount>(URL_BACKEND + 'expense-accounts', expenseAccount, this.httpOptions);
+    return this.http.patch<ExpenseAccount>(URL_BACKEND + expenseAccount, this.httpOptions);
   }
 
   deleteExpenseAccount(id: number): Observable<void> {
     console.log(id);
-    return this.http.delete<void>(URL_BACKEND + 'expense-accounts/delete-expense-account/' + id, this.httpOptions);
+    return this.http.delete<void>(URL_BACKEND + 'delete-expense-account/' + id, this.httpOptions);
   }
 
   getExpenseAccount(): ExpenseAccount {

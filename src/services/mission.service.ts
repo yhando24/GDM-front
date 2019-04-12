@@ -19,7 +19,6 @@ export class MissionService {
   get oneMission(): Observable<Mission> { return this.mission.asObservable(); }
 
   FindMissionById(id: number): Observable<Mission> {
-    console.log('Je suis dans la recherche d\'une mission ' + id)
     return this.http.get<Mission>(this.URL_BACKEND + '/findById/' + id);
   }
 
