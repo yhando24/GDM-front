@@ -84,7 +84,7 @@ export class MissionService {
     return this.http.patch<Mission>(this.URL_BACKEND, m, this.httpOptions);
   }
 
-  findPrimeMissionByUser(id: number): Observable<Mission[]> {
+  findPrimeMissionByUser(id: number): Observable<IMission[]> {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id);
   }
 

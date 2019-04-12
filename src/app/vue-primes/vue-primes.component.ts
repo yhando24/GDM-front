@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MissionService } from 'src/services/mission.service';
-import { Mission } from '../models';
+import { Mission, IMission } from '../models';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 
@@ -10,7 +10,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./vue-primes.component.css']
 })
 export class VuePrimesComponent implements OnInit {
-  listeMissions: Mission[];
+  listeMissions: IMission[];
   idUser: number;
   chart: Chart;
 
