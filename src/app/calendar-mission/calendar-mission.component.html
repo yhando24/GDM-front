@@ -1,1 +1,5 @@
-<full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" [weekends]="false" [events]="missions"></full-calendar>
+<full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" [weekends]="true" [events]="missions"
+    editable= 'true'    
+    [header]="headerOption" [buttonText]="textOption" themeSystem='bootstrap' selectable="true"
+locale='fr'>
+</full-calendar>

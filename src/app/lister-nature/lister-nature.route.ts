@@ -15,11 +15,8 @@ import { HttpResponse } from '@angular/common/http';
 export class KindsResolver implements Resolve<Kind[]> {
   constructor(private kinds: KindService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      console.log("je suis dans le ressolver")
       return this.kinds.findActive().pipe(map((kind: HttpResponse<Kind[]>) => kind.body));
 
   }
 }
-
-
 

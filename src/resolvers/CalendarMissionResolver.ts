@@ -16,7 +16,7 @@ export class CalendarMissionResolver implements Resolve<Mission[]> {
   constructor(private ms: MissionService) {}
   missions: ModelMissionCalendar[] = [];
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Mission []> | Promise<Mission[]> | Mission []{
-      return this.ms.finAllMission();
+      return this.ms.finAllMissionByUser();
    }
   }
 

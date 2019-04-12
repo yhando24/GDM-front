@@ -31,7 +31,12 @@ export class KindService {
   private kindd: Kind;
 
   private kind = new BehaviorSubject<Kind>(null);
-  public checkKind = new BehaviorSubject<string[]>(null);
+  public checkKind = new Subject<string[]>();
+  public activeKinds = new BehaviorSubject<Kind[]>(null);
+
+  getActiveKinds() {
+    this.findActived().subscribe(data => this.activeKinds.next(data)) ;
+  }
 
   kindDeleted(kind: Kind) {
     this.checkKind.next(['success', `la nature ${kind.name}
@@ -94,9 +99,14 @@ export class KindService {
   findAllKind(): Observable<Kind[]> {
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds');
   }
+
   findActive(): Observable<HttpResponse<Kind[]>> {
     console.log('je afis la requete!!!!');
     return this.http.get<Kind[]>(URL_BACKEND + 'kinds/active', { observe: 'response' });
+  }
+
+  findActived(): Observable<Kind[]> {
+    return this.http.get<Kind[]>(URL_BACKEND + 'kinds/active');
   }
 
   findKindHistoric(id: number): Observable<Historic[]> {

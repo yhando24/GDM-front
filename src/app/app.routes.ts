@@ -5,6 +5,7 @@ import { ListerUserComponent } from './lister-user/lister-user.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { FormusercreateComponent } from './formusercreate/formusercreate.component';
 
+import { loginGuard } from 'src/guards/loginGuard';
 import { ConnexionGuard } from 'src/guards/connexionGuard';
 import { ConnectionUserComponent } from './connection-user/connection-user.component';
 import { ListerNatureComponent } from './lister-nature/lister-nature.component';
@@ -21,25 +22,36 @@ import { VuePrimesComponent } from './vue-primes/vue-primes.component';
 import { DisplayAllMissionComponent } from './display-all-mission/display-all-mission.component';
 import { ManagerGuard } from 'src/guards/manager.guard';
 import { MissionResolver } from './creation-expense-account/MissionResolver';
+import { ModalUpdateMissionComponent } from './modal-update-mission/modal-update-mission.component';
+
 
 
 export const ROUTES: Routes = [
 
-  { path: 'creation-nature', component: CreationNatureMissionComponent, canActivate: [AdminGuard]},
-  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard]},
-  { path: 'kinds', component: ListerNatureComponent, canActivate: [ConnexionGuard]},
-  { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard]},
+  { path: 'creation-nature', component: CreationNatureMissionComponent, canActivate: [AdminGuard] },
+  { path: 'users', component: ListerUserComponent, canActivate: [AdminGuard] },
+  { path: 'kinds', component: ListerNatureComponent, canActivate: [ConnexionGuard] },
+  { path: 'creation-users', component: FormusercreateComponent, canActivate: [AdminGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'missions', component: ListerMissionsComponent, canActivate: [ConnexionGuard],
   resolve: {
-    kinds: KindsResolver}},
+    kinds: KindsResolver
+  }, children : [{
+      path: 'updateMission', component: ModalUpdateMissionComponent,resolve: {
+      kinds: KindsResolver
+    }
+    } ]
+  },
   { path: 'createExpenseAccount', component: CreationExpenseAccountComponent, canActivate: [ConnexionGuard] },
-  { path: 'calendar-Mission', component: CalendarMissionComponent,
-  resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard] },
+  {
+    path: 'calendar-Mission', component: CalendarMissionComponent,
+    resolve: { missions: CalendarMissionResolver }, canActivate: [ConnexionGuard]
+  },
   { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
-  { path: 'login', component: ConnectionUserComponent },
+  { path: 'login', component: ConnectionUserComponent, canActivate: [loginGuard]  },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard] },
+
   { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
   resolve: {
     kinds: KindsResolver
@@ -48,6 +60,7 @@ export const ROUTES: Routes = [
   { path: 'createExpenseAccount/:idMission', component: CreationExpenseAccountComponent, resolve: {mission: MissionResolver}},
   { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent},
   { path: 'primes/:idUser', component: VuePrimesComponent},
+
   {
     path: 'accueil',
     component: AccueilComponent,
