@@ -3,16 +3,13 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Mission, ModelMissionCalendar } from 'src/app/models';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MissionService {
-  kinds(data: MissionService, arg1: { kinds: any; }, kinds: any): Observable<import("../app/models").Kind>[] {
-    throw new Error("Method not implemented.");
-  }
 
   constructor(private http: HttpClient, private modalService: NgbModal) { }
 
@@ -20,7 +17,7 @@ export class MissionService {
     return this.mission.asObservable();
   }
 
-  URL_BACKEND = environment.backendUrl + 'missions';
+  URL_BACKEND = environment.backendUrl +'missions';
 
   private mission = new BehaviorSubject<Mission>(null);
   public checkMission = new Subject<string[]>();
@@ -30,6 +27,9 @@ export class MissionService {
       'Content-Type': 'application/json'
     })
   };
+  kinds(data: MissionService, arg1: { kinds: any; }, kinds: any): Observable<import('../app/models').Kind>[] {
+    throw new Error('Method not implemented.');
+  }
 
   missionDeleted(m: Mission) {
     this.checkMission.next(['success', `la mission ${m.kind.name} du ${m.startDate}
@@ -52,7 +52,7 @@ export class MissionService {
   }
 
   finAllMissionByUser(): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.URL_BACKEND + "/perso");
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/perso');
   }
 
   addMission(mission: Mission) {
@@ -88,4 +88,15 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id);
   }
 
+  criteriaMission( mois?: number, annee?: number): Observable<Mission[]> {
+    if( mois && annee) {
+      return this.http.get<Mission[]>(this.URL_BACKEND + '/criteria?month=' + mois + '&year=' + annee);
+    }
+  }
+  criteriaMissionUser(mois: number, annee: number, user): Observable<Mission[]> {
+    if (mois && annee) {
+      return this.http.post<Mission[]>(this.URL_BACKEND + '/criteria?month=' + mois + '&year=' + annee,
+      user, this.httpOptions)
+    }
+  }
 }

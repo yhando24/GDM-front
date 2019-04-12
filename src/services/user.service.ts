@@ -85,4 +85,8 @@ export class UserService {
     return this.http
       .delete(this.URL_BACKEND + '/delete/' + user.id, this.httpOptions);
   }
+  userWithMission(): Observable<User[]> {
+    return this.http.get<User[]>(this.URL_BACKEND + '/withMission/');
+  }
+
 }
