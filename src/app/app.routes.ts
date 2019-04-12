@@ -59,7 +59,7 @@ export const ROUTES: Routes = [
  // { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
   { path: 'createExpenseAccount/:idMission', component: CreationExpenseAccountComponent, resolve: {mission: MissionResolver}},
   { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent},
-  { path: 'primes/:idUser', component: VuePrimesComponent},
+  { path: 'primes', component: VuePrimesComponent},
 
   {
     path: 'accueil',
