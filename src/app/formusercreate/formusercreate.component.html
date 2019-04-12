@@ -38,7 +38,7 @@
     <div class="form-group col-md-6">
       <label for="inputState">Role</label>
       <select id="inputState" class="form-control" [(ngModel)]="user.role" #champRole="ngModel" name="role">
-        <option *ngFor="let role of listEnum"> {{role}} </option>
+        <option *ngFor="let role of listEnum" value="{{role | uppercase}}"> {{role}} </option>
       </select>
     </div>
   </div>

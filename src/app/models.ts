@@ -10,9 +10,9 @@ export interface User {
 }
 
 export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-  MANAGER = 'MANAGER'
+  USER = 'User',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager'
 }
 
 export function getEnum() {
@@ -38,16 +38,17 @@ export interface IMission {
 
 
 export class Mission implements IMission {
-  public constructor(public id?: number, public kind?: Kind, startDate?: Date, departureCity?: string, arrivalCity?: string, prime?: number, missionStatus?: MissionStatusEnum, transportEnum?: TransportEnum, user?: User) {
+  public constructor(public id?: number, public kind?: Kind, public startDate?: Date, public departureCity?: string, public endDate?: Date, public arrivalCity?: string, public prime?: number, public missionStatus?: MissionStatusEnum, public transportEnum?: TransportEnum, public user?: User) {
     this.id = id ? id : null;
     this.kind = kind ? kind : null;
-    startDate = startDate ? startDate : null;
-    departureCity = departureCity ? departureCity : null;
-    arrivalCity = arrivalCity ? arrivalCity : null;
-    prime = prime ? prime : null;
-    missionStatus = missionStatus ? missionStatus : null;
-    transportEnum = transportEnum ? transportEnum : null;
-    user = user ? user : null;
+    this.startDate = startDate ? startDate : null;
+    this.endDate = endDate ? endDate : null;
+    this.departureCity = departureCity ? departureCity : null;
+    this.arrivalCity = arrivalCity ? arrivalCity : null;
+    this.prime = prime ? prime : null;
+    this.missionStatus = missionStatus ? missionStatus : null;
+    this.transportEnum = transportEnum ? transportEnum : null;
+    this.user = user ? user : null;
   }
 }
 
@@ -120,9 +121,18 @@ export interface Historic {
 }
 
 export enum ExpenseAccountStatusEnum {
-  EN_ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
+  ATTENTE, VALIDE, REJETE, INITIAL, ANNULE
 }
 
+export function getStatusAccount() {
+  return [
+    ExpenseAccountStatusEnum.ATTENTE,
+    ExpenseAccountStatusEnum.VALIDE,
+    ExpenseAccountStatusEnum.ANNULE,
+    ExpenseAccountStatusEnum.REJETE,
+    ExpenseAccountStatusEnum.INITIAL,
+
+  ]}
 export interface ExpenseAccount {
   id?: number;
   date?: Date;

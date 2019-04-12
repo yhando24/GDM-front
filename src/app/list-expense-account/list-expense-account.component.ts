@@ -25,23 +25,22 @@ export class ListExpenseAccountComponent implements OnInit {
   closeResult: string;
   alert: Alert;
   oneMission: Mission;
-  idMission:number;
+  idMission: number;
 
-  constructor(private datam: MissionService, private data: ExpenseAccountService, private route: Router, private modalService: ModalService,private actiroute: ActivatedRoute) { }
+  constructor(private datam: MissionService, private data: ExpenseAccountService, private route: Router, private modalService: ModalService, private actiroute: ActivatedRoute) { }
 
-newExpenseAccount(){
-  this.route.navigate(['/createExpenseAccount/'+this.idMission]);
-}
+  newExpenseAccount() {
+    this.route.navigate(['/createExpenseAccount/' + this.idMission]);
+  }
 
   ngOnInit() {
-    this.idMission = Number (this.actiroute.snapshot.paramMap.get('idMission'))
-    console.log(this.oneMission);
-    this.datam.oneMission.subscribe(mission => this.oneMission = mission);
-    console.log(this.oneMission);
+    this.idMission = Number(this.actiroute.snapshot.paramMap.get('idMission')),
+    this.datam.FindMissionById(this.idMission).subscribe(value => this.oneMission = value);
     this.alert = { type: '', message: '' };
     this.data
       .findAllExpenseAccountByMission(this.idMission)
-      .subscribe(arg => (this.listExpenseAccount = arg));
+      .subscribe(arg => (this.listExpenseAccount = arg, console.log(this.listExpenseAccount)));
+
 
     this.data.checkexpenseAccount.subscribe(message => {
       if (message !== null) {
@@ -52,13 +51,11 @@ newExpenseAccount(){
         this.alert.message = '',
           this.alert.type = '';
       }, 2000);
-      this.data
-        .findAllExpenseAccountByMission(this.idMission)
-        .subscribe(arg => (this.listExpenseAccount = arg));
+
     });
   }
 
-  submit(){
+  submit() {
     this.data.updateExpenseAccount(this.oneExpenseAccount).subscribe(() => this.data.findAllExpenseAccount()
       .subscribe(arg => (this.listExpenseAccount = arg)),
       error => console.log(`l'update n'a pas eu lieu` + error.error));
