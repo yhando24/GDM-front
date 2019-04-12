@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { OptionsInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { ModelMissionCalendar, Mission } from '../models';
+import { ModelMissionCalendar, Mission, IMission } from '../models';
 import { Subscription } from 'rxjs';
 import { MissionService } from 'src/services/mission.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CalendarMissionComponent implements OnInit {
   missions: Array<ModelMissionCalendar>;
   mission: ModelMissionCalendar;
-  missionsClassique: Mission[] = [];
+  missionsClassique: IMission[] = [];
   actionSub: Subscription;
   ngOnInit() {
 

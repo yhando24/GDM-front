@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpenseAccount } from '../models';
+import { ExpenseAccount, Mission } from '../models';
 import { ExpenseAccountService } from 'src/services/expense-account.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ModalService } from 'src/services/modal.service';
+import { MissionService } from 'src/services/mission.service';
 
 interface Alert {
   type: string;
@@ -23,18 +24,23 @@ export class ListExpenseAccountComponent implements OnInit {
   footerModal: string;
   closeResult: string;
   alert: Alert;
+  oneMission: Mission;
+  idMission:number;
 
-
-  constructor(private data: ExpenseAccountService, private route: Router, private modalService: ModalService) { }
+  constructor(private datam: MissionService, private data: ExpenseAccountService, private route: Router, private modalService: ModalService,private actiroute: ActivatedRoute) { }
 
 newExpenseAccount(){
-  this.route.navigate(['/createExpenseAccount']);
+  this.route.navigate(['/createExpenseAccount/'+this.idMission]);
 }
 
   ngOnInit() {
+    this.idMission = Number (this.actiroute.snapshot.paramMap.get('idMission'))
+    console.log(this.oneMission);
+    this.datam.oneMission.subscribe(mission => this.oneMission = mission);
+    console.log(this.oneMission);
     this.alert = { type: '', message: '' };
     this.data
-      .findAllExpenseAccount()
+      .findAllExpenseAccountByMission(this.idMission)
       .subscribe(arg => (this.listExpenseAccount = arg));
 
     this.data.checkexpenseAccount.subscribe(message => {
@@ -47,7 +53,7 @@ newExpenseAccount(){
           this.alert.type = '';
       }, 2000);
       this.data
-        .findAllExpenseAccount()
+        .findAllExpenseAccountByMission(this.idMission)
         .subscribe(arg => (this.listExpenseAccount = arg));
     });
   }

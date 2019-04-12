@@ -1,10 +1,12 @@
+import { NullTemplateVisitor } from '@angular/compiler';
+
 export interface User {
-    id?: number;
-    firstName?: string;
-    lastName?: string;
-    password?: string;
-    email?: string;
-    role?: Role;
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  password?: string;
+  email?: string;
+  role?: Role;
 }
 
 export enum Role {
@@ -20,24 +22,40 @@ export function getRolesEnum() {
   return [Role.MANAGER, Role.USER, Role.ADMIN];
 }
 
-export interface Mission {
-    id?: number;
-    kind?: Kind;
-    startDate?: Date;
-    endDate?: Date;
-    departureCity?: string;
-    arrivalCity?: string;
-    prime?: number;
-    missionStatus?: MissionStatusEnum;
-    transportEnum?: TransportEnum;
-    user?: User;
+export interface IMission {
+  id?: number;
+  kind?: Kind;
+  startDate?: Date;
+  endDate?: Date;
+  departureCity?: string;
+  arrivalCity?: string;
+  prime?: number;
+  missionStatus?: MissionStatusEnum;
+  transportEnum?: TransportEnum;
+  user?: User;
+}
+
+
+
+export class Mission implements IMission {
+  public constructor(public id?: number, public kind?: Kind, startDate?: Date, departureCity?: string, arrivalCity?: string, prime?: number, missionStatus?: MissionStatusEnum, transportEnum?: TransportEnum, user?: User) {
+    this.id = id ? id : null;
+    this.kind = kind ? kind : null;
+    startDate = startDate ? startDate : null;
+    departureCity = departureCity ? departureCity : null;
+    arrivalCity = arrivalCity ? arrivalCity : null;
+    prime = prime ? prime : null;
+    missionStatus = missionStatus ? missionStatus : null;
+    transportEnum = transportEnum ? transportEnum : null;
+    user = user ? user : null;
+  }
 }
 
 export interface IModelMissionCalendar {
-  id: number,
-  start: Date,
-  end: Date,
-  title: string
+  id: number;
+  start: Date;
+  end: Date;
+  title: string;
 }
 
 export class ModelMissionCalendar implements IModelMissionCalendar {
@@ -111,5 +129,6 @@ export interface ExpenseAccount {
   type?: string;
   amount?: number;
   status?: ExpenseAccountStatusEnum;
+  mission?: IMission;
 }
 

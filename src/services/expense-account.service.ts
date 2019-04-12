@@ -51,16 +51,16 @@ export class ExpenseAccountService {
   }
 
   createExpenseAccount(newExpenseAccount: ExpenseAccount): Observable<ExpenseAccount> {
-    return this.http.post<ExpenseAccount>(URL_BACKEND + 'expense-accounts', {
-      date: newExpenseAccount.date,
-      type: newExpenseAccount.type,
-      amount: newExpenseAccount.amount,
-    },
+    return this.http.post<ExpenseAccount>(URL_BACKEND + 'expense-accounts', newExpenseAccount,
       this.httpOptions);
   }
 
   findAllExpenseAccount(): Observable<ExpenseAccount[]> {
     return this.http.get<ExpenseAccount[]>(URL_BACKEND + 'expense-accounts');
+  }
+
+  findAllExpenseAccountByMission(id: number): Observable<ExpenseAccount[]> {
+    return this.http.get<ExpenseAccount[]>(URL_BACKEND + 'expense-accounts/' + id);
   }
 
   getById(id: number): Observable<ExpenseAccount> {

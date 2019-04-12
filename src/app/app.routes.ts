@@ -1,4 +1,4 @@
-import { CalendarMissionResolver } from './../resolvers/CalendarMissionResolver';
+import { CalendarMissionResolver } from '../resolvers/CalendarMissionResolver';
 import { Routes } from '@angular/router';
 import { CreationNatureMissionComponent } from './creation-nature-mission/creation-nature-mission.component';
 import { ListerUserComponent } from './lister-user/lister-user.component';
@@ -20,6 +20,7 @@ import { ApproveMissionComponent } from './approve-mission/approve-mission.compo
 import { VuePrimesComponent } from './vue-primes/vue-primes.component';
 import { DisplayAllMissionComponent } from './display-all-mission/display-all-mission.component';
 import { ManagerGuard } from 'src/guards/manager.guard';
+import { MissionResolver } from './creation-expense-account/MissionResolver';
 
 
 export const ROUTES: Routes = [
@@ -43,7 +44,9 @@ export const ROUTES: Routes = [
   resolve: {
     kinds: KindsResolver
   }},
-  { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
+ // { path: 'listExpenseAccount', component: ListExpenseAccountComponent},
+  { path: 'createExpenseAccount/:idMission', component: CreationExpenseAccountComponent, resolve: {mission: MissionResolver}},
+  { path: 'listExpenseAccount/:idMission', component: ListExpenseAccountComponent},
   { path: 'primes/:idUser', component: VuePrimesComponent},
   {
     path: 'accueil',
