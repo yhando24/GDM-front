@@ -35,8 +35,8 @@ export class VuePrimesComponent implements OnInit {
   constructor(private serviceMission: MissionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.idUser = Number(this.route.snapshot.paramMap.get('idUser'));
-    this.serviceMission.findPrimeMissionByUser(this.idUser).subscribe(values => {
+    //this.idUser = Number(this.route.snapshot.paramMap.get('idUser'));
+    this.serviceMission.findPrimeMissionByUser().subscribe(values => {
       this.listeMissions = values;
       const tmp: GraphMission[] = [];
       values.forEach(m => {
