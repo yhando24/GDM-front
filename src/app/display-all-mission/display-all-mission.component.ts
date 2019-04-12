@@ -17,5 +17,10 @@ listeMission: Mission[];
       this.listeMission = arg
     ));
   }
-
+  dlMission() {
+    this.missionServ.finAllMissionFordownload().subscribe(arg => (
+      console.log(arg)
+    ));
+  }
 }
+

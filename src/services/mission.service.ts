@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   providedIn: 'root'
 })
 export class MissionService {
+
   kinds(data: MissionService, arg1: { kinds: any; }, kinds: any): Observable<import("../app/models").Kind>[] {
     throw new Error("Method not implemented.");
   }
@@ -86,6 +87,11 @@ export class MissionService {
 
   findPrimeMissionByUser(id: number): Observable<Mission[]> {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/' + id);
+  }
+
+  finAllMissionFordownload(): Observable<Mission[]>{
+    console.log('jexporte')
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/export');
   }
 
 }

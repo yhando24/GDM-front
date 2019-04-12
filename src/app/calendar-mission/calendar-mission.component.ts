@@ -28,7 +28,7 @@ export class CalendarMissionComponent implements OnInit {
 
     };
 textOption ={ today:    "aujourd'hui",   color: "#52AEA0"}
-  
+
   ngOnInit() {
 
     this.route.data.subscribe(data => this.missionsClassique = data['missions']);
@@ -36,8 +36,10 @@ textOption ={ today:    "aujourd'hui",   color: "#52AEA0"}
     console.log(this.missionsClassique[0].id)
     const tmp = [];
     this.missionsClassique.forEach(m => {
+     console.log(m.missionStatus)
       const mission = new ModelMissionCalendar(m.id, m.startDate, m.endDate, m.kind.name);
       tmp.push(mission)
+
     });
     this.missions = tmp;
     this.missions.forEach(m => {
