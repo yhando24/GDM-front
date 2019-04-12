@@ -1,8 +1,14 @@
 <h2>Liste des notes de frais</h2>
-<button type="button" class="btn btn-success" (click)=newExpenseAccount()>Creer une nouvelle note de frais</button>
+<button type="button" class="btn btn-success" (click)=newExpenseAccount()>Ajouter un frais</button>
 <p>
   <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
 </p>
+
+<p class="md-6">Date de début de la mission = {{oneMission.startDate}}
+</p>
+<p class="md-6">Date de fin de la mission = {{oneMission.endDate}}
+</p>
+
 
 <table class="table table-striped ">
   <thead>

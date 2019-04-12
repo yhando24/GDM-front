@@ -20,15 +20,15 @@ import { ActivatedRoute } from '@angular/router';
 export class CalendarMissionComponent implements OnInit {
   missions: Array<ModelMissionCalendar>;
   mission: ModelMissionCalendar;
-  missionsClassique: IMission[] = [];
+  missionsClassique: Mission[];
   actionSub: Subscription;
-  headerOption ={
-      left: 'prevYear, prev',
-      center: 'title, today ',
-      right: ' next, nextYear',
+  headerOption = {
+    left: 'prevYear, prev',
+    center: 'title, today ',
+    right: ' next, nextYear',
 
-    };
-textOption ={ today:    "aujourd'hui",   color: "#52AEA0"}
+  };
+  textOption = { today: "aujourd'hui", color: "#52AEA0" }
 
   ngOnInit() {
 
