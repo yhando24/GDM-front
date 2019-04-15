@@ -9,10 +9,12 @@ import { Mission } from '../models';
 })
 export class DisplayAllMissionComponent implements OnInit {
 listeMission: Mission[];
-
+  exportExcelUrl: string;
   constructor(private missionServ: MissionService) { }
 
   ngOnInit() {
+    this.exportExcelUrl = "http://localhost:8080/missions/export?Authorization=Bearer%20"+ "azezaeza";
+
     this.missionServ.finAllMissionForManager().subscribe(arg => (
       this.listeMission = arg
     ));
