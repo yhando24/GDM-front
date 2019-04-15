@@ -23,7 +23,7 @@ export class MissionService {
     return this.http.get<Mission>(this.URL_BACKEND + '/findById/' + id);
   }
 
-  URL_BACKEND = environment.backendUrl + 'missions';
+  URL_BACKEND = environment.backendUrl +'missions';
 
   private mission = new BehaviorSubject<Mission>(null);
   public checkMission = new Subject<string[]>();
@@ -55,7 +55,7 @@ export class MissionService {
   }
 
   finAllMissionByUser(): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.URL_BACKEND + "/perso");
+    return this.http.get<Mission[]>(this.URL_BACKEND + '/perso');
   }
 
   addMission(mission: Mission) {
@@ -91,6 +91,17 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/');
   }
 
+  criteriaMission( mois?: number, annee?: number): Observable<Mission[]> {
+    if( mois && annee) {
+      return this.http.get<Mission[]>(this.URL_BACKEND + '/criteria?month=' + mois + '&year=' + annee);
+    }
+  }
+  criteriaMissionUser(mois: number, annee: number, user): Observable<Mission[]> {
+    if (mois && annee) {
+      return this.http.post<Mission[]>(this.URL_BACKEND + '/criteria?month=' + mois + '&year=' + annee,
+      user, this.httpOptions)
+    }
+  }
   finAllMissionFordownload(): Observable<Mission[]>{
     console.log('jexporte')
     return this.http.get<Mission[]>(this.URL_BACKEND + '/export');

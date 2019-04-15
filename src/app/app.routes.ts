@@ -37,7 +37,7 @@ export const ROUTES: Routes = [
   resolve: {
     kinds: KindsResolver
   }, children : [{
-      path: 'updateMission', component: ModalUpdateMissionComponent,resolve: {
+      path: 'updateMission', component: ModalUpdateMissionComponent, resolve: {
       kinds: KindsResolver
     }
     } ]
@@ -51,8 +51,12 @@ export const ROUTES: Routes = [
   { path: 'approve-mission', component: ApproveMissionComponent, canActivate: [ManagerGuard] },
   { path: 'login', component: ConnectionUserComponent, canActivate: [loginGuard]  },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard] },
-
+  {
+    path: 'display-all-mission', component: DisplayAllMissionComponent, canActivate: [ManagerGuard],
+    resolve: {
+      kinds: KindsResolver
+    }
+  },
   { path: 'createMission', component: CreateMissionComponent, canActivate: [ConnexionGuard],
   resolve: {
     kinds: KindsResolver

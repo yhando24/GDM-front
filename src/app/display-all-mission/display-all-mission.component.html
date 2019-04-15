@@ -1,5 +1,34 @@
 <h2>Liste des missions des collaborateurs</h2>
+
+<form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
+  <div class="row">
+    <div class="form-group col-2 offset-2">
+       <label>Collaborateur:</label>
+      <select class="form-control" [(ngModel)]="user" name="user">
+        <option [ngValue]="0">Collaborateur</option>
+        <option *ngFor="let item of listeUsers" [ngValue]="item">{{item.firstName}}</option>
+      </select>
+    </div>
+      <div class="form-group col-2">
+      <label>Mois:</label>
+      <select class="form-control " [(ngModel)]="mois" name="mois">
+        <option *ngFor="let item of listeMois" [ngValue]="item.number">{{item.name}}</option>
+      </select>
+      </div>
+      <div class="form-group col-2">
+        <label>Année:</label>
+      <select class="form-control" [(ngModel)]="annee" name="annee">
+        <option *ngFor="let item of listeAnnees" [ngValue]="item.number">{{item.name}}</option>
+      </select>
+      </div>
+      <div class="col-2 ">
+        <label style="color:white">sadfasdf</label>
+        <button type="submit" class="btn btn-outline-danger">Trier</button>
+      </div>
+  </div>
+</form>
 <a type="button" class="btn btn-success" href="{{exportExcelUrl}}">Telecharger les missions</a>
+
 <table class="table table-striped">
   <thead>
     <tr class="text-center">
@@ -29,7 +58,6 @@
       <td class="align-middle">0 €</td>
       <td class="align-middle">{{ mission.missionStatus }}</td>
       <td class="align-middle">{{ mission.user.firstName }} {{ mission.user.lastName }}</td>
-
     </tr>
   </tbody>
 </table>
