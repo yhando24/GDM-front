@@ -43,11 +43,9 @@ user: User|number;
   submit() {
     if (this.mois === 0 && this.annee === 0 && this.user === 0) {
       this.missionServ.finAllMissionForManager().subscribe(arg => (this.listeMission = arg));
-    }
-    if ((this.mois !== 0 && this.annee !== 0 && this.user === 0) || (this.mois === 0 && this.annee === 0 && this.user === 0)) {
+    } else if (this.user === 0) {
       this.missionServ.criteriaMission(this.mois, this.annee).subscribe(list => this.listeMission = list);
-    }
-    if (this.mois !== 0 && this.annee !== 0 && this.user !== 0) {
+    } else if ( this.user !== 0) {
       this.missionServ.criteriaMissionUser(this.mois, this.annee, this.user).subscribe(list => this.listeMission = list);
     }
   }

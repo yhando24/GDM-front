@@ -91,16 +91,12 @@ export class MissionService {
     return this.http.get<Mission[]>(this.URL_BACKEND + '/primes/');
   }
 
-  criteriaMission( mois?: number, annee?: number): Observable<Mission[]> {
-    if( mois && annee) {
+  criteriaMission( mois: number, annee: number): Observable<Mission[]> {
       return this.http.get<Mission[]>(this.URL_BACKEND + '/criteria?month=' + mois + '&year=' + annee);
-    }
   }
   criteriaMissionUser(mois: number, annee: number, user): Observable<Mission[]> {
-    if (mois && annee) {
       return this.http.post<Mission[]>(this.URL_BACKEND + '/criteria?month=' + mois + '&year=' + annee,
-      user, this.httpOptions)
-    }
+      user, this.httpOptions);
   }
   finAllMissionFordownload(): Observable<Mission[]>{
     console.log('jexporte')

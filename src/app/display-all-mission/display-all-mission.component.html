@@ -1,5 +1,5 @@
 <h2>Liste des missions des collaborateurs</h2>
-<form (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}" #form="ngForm">
+<form (ngSubmit)="submit()" #form="ngForm">
   <div class="row">
     <div class="form-group col-2 offset-2">
        <label>Collaborateur:</label>
@@ -10,7 +10,7 @@
     </div>
       <div class="form-group col-2">
       <label>Mois:</label>
-      <select class="form-control " [(ngModel)]="mois" name="mois">
+      <select class="form-control " [(ngModel)]="mois" name="mois" [disabled]="annee ==0">
         <option *ngFor="let item of listeMois" [ngValue]="item.number">{{item.name}}</option>
       </select>
       </div>
