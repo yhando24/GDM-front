@@ -33,6 +33,9 @@ export class CreateMissionComponent implements OnInit {
       this.transport = getTransportEnum();
     });
   }
+  cancel(){
+    this.router.navigateByUrl('missions')
+  }
   submit() {
     this.missionServ.createOneMission(this.mission).subscribe(
       () => this.router.navigateByUrl('missions'),
