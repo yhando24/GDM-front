@@ -74,6 +74,6 @@ export class ListerMissionsComponent implements OnInit, OnDestroy {
   }
 
   noteDeFrais() {
-    console.log('Je suis une note de frais!')
+    console.log('Je suis une note de frais!');
   }
 }

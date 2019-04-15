@@ -141,4 +141,26 @@ export interface ExpenseAccount {
   status?: ExpenseAccountStatusEnum;
   mission?: IMission;
 }
+export interface Month {
+  name: string;
+  number: number;
+}
+
+export function getMonthOfYear(): Month[] {
+  return [{ name: 'Mois', number: 0 }, { name: 'janvier', number: 1 }, { name: 'février', number: 2 },
+    { name: 'mars', number: 3 }, { name: 'avril', number: 4 }, { name: 'mai', number: 5 },
+    { name: 'juin', number: 6 }, { name: 'juillet', number: 7 }, { name: 'août', number: 8 },
+    { name: 'septembre', number: 9 }, { name: 'octobre', number: 10 }, { name: 'novembre', number: 11 },
+    { name: 'décembre', number: 12 }];
+}
+export interface Year{
+  name: string;
+  number: number;
+}
+
+export function getYears(): Year[]{
+  return [{ name: 'Année', number: 0 }, { name: '2017', number: 2017 },
+    { name: '2018', number: 2018 }, { name: '2019', number: 2019 },
+    { name: '2020', number: 2020 }, { name: '2021', number: 2021 }];
+}
 
