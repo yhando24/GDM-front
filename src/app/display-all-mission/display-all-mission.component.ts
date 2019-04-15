@@ -6,6 +6,7 @@ import { Kind } from 'src/app/models';
 
 import { getYears } from './../models';
 import { UserService } from './../../services/user.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-display-all-mission',
@@ -15,17 +16,26 @@ import { UserService } from './../../services/user.service';
 
 export class DisplayAllMissionComponent implements OnInit {
 listeMission: Mission[];
-listeMois: Month[];
-listeNatures: Kind[];
-listeAnnees: Year[];
-listeUsers: User[];
-nature: string;
-mois: number;
-annee: number;
-user: User|number;
+  exportExcelUrl: string;
+  listeMois: Month[];
+  listeNatures: Kind[];
+  listeAnnees: Year[];
+  listeUsers: User[];
+  nature: string;
+  mois: number;
+  annee: number;
+  user: User | number;
   constructor(private userServ: UserService, private route: ActivatedRoute, private missionServ: MissionService) { }
-
   ngOnInit() {
+    const helper = new JwtHelperService();
+    const idToken = localStorage.getItem('id_token');
+    console.log(idToken);
+    this.exportExcelUrl = "http://localhost:8080/missions/export?Authorization=Bearer%20"+ "azezaeza";
+
+
+
+
+
     const date = new Date();
     this.mois = 0;
     this.annee = 0;
